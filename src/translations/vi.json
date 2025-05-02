@@ -51,5 +51,15 @@
         "image": "Ảnh đại diện",
         "save": "Lưu",
         "edit": "Chỉnh sửa"
+    },
+    "homepage": {
+        "search": "Tìm kiếm",
+        "search-placeholder": "Tìm kiếm bác sĩ, phòng khám, bệnh viện",
+        "specialty": "Chuyên khoa",
+        "doctor": "Bác sĩ",
+        "health-facility": "Cơ sở y tế",
+        "handbook": "Cẩm nang",
+        "outstanding-doctor": "Bác sĩ nổi bật",
+        "more-info": "Xem thêm"
     }
 }

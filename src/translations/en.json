@@ -51,5 +51,15 @@
         "image": "Avatar",
         "save": "Save ",
         "edit": "Edit"
+    },
+    "homepage": {
+        "search": "Search",
+        "search-placeholder": "Search for doctors, clinics, hospitals",
+        "specialty": "Specialty",
+        "doctor": "Doctor",
+        "health-facility": "Health facility",
+        "handbook": "Handbook",
+        "outstanding-doctor": "Outstanding doctor",
+        "more-info": "More"
     }
 }
