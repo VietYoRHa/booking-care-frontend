@@ -24,17 +24,20 @@
     },
     "menu": {
         "admin": {
-            "manage-user": "User",
-            "manage-doctor": "Doctor",
+            "user": "User",
+            "manage-doctor": "Manage Doctor",
             "manage-admin": "Admin",
             "crud": "CRUD User",
-            "crud-redux": "CRUD User Redux",
+            "crud-redux": "Manage User",
             "clinic": "Clinic",
             "manage-clinic": "Manage Clinic",
             "specialty": "Specialty",
             "manage-specialty": "Manage Specialty",
             "handbook": "Handbook",
             "manage-handbook": "Manage Handbook"
+        },
+        "doctor": {
+            "manage-schedule": "Manage Schedule"
         }
     },
     "manage-user": {
