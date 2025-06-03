@@ -59,6 +59,12 @@ class Login extends Component {
         });
     };
 
+    handleKeyDown = (event) => {
+        if (event.key === "Enter" || event.keyCode === 13) {
+            this.handleLogin();
+        }
+    };
+
     render() {
         // JSX
         return (
@@ -76,6 +82,7 @@ class Login extends Component {
                                 onChange={(event) =>
                                     this.handleOnChangeInput(event, "username")
                                 }
+                                onKeyDown={(event) => this.handleKeyDown(event)}
                             />
                         </div>
                         <div className="col-12 form-group login-input">
@@ -95,6 +102,9 @@ class Login extends Component {
                                             event,
                                             "password"
                                         )
+                                    }
+                                    onKeyDown={(event) =>
+                                        this.handleKeyDown(event)
                                     }
                                 />
                                 <span
