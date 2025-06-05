@@ -78,6 +78,28 @@
             "no-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn ngày khác",
             "choose": "Chọn",
             "book-free": "và đặt (miễn phí)"
+        },
+        "extra-doctor-info": {
+            "address": "Địa chỉ khám",
+            "price": "Giá khám",
+            "more-detail": "Xem chi tiết",
+            "hide-detail": "Ẩn chi tiết",
+            "payment": "Phương thức thanh toán"
+        }
+    },
+    "admin": {
+        "manage-doctor": {
+            "title": "Quản lý thông tin bác sĩ",
+            "select-doctor": "Bác sĩ",
+            "introduce": "Thông tin giới thiệu",
+            "add": "Tạo thông tin",
+            "save": "Lưu thông tin",
+            "price": "Giá khám",
+            "payment": "Phương thức thanh toán",
+            "province": "Tỉnh/Thành phố",
+            "name-clinic": "Tên phòng khám",
+            "address-clinic": "Địa chỉ phòng khám",
+            "note": "Ghi chú"
         }
     }
 }
