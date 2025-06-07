@@ -84,7 +84,20 @@
             "price": "Giá khám",
             "more-detail": "Xem chi tiết",
             "hide-detail": "Ẩn chi tiết",
-            "payment": "Phương thức thanh toán"
+            "payment": "Phương thức thanh toán",
+            "free-booking": "Miễn phí đặt lịch"
+        },
+        "booking-modal": {
+            "title": "Đặt lịch khám",
+            "full-name": "Họ và tên",
+            "phone-number": "Số điện thoại",
+            "email": "Email",
+            "address": "Địa chỉ liên hệ",
+            "reason": "Lý do khám",
+            "date-of-birth": "Ngày sinh",
+            "genders": "Giới tính",
+            "confirm": "Xác nhận",
+            "cancel": "Hủy"
         }
     },
     "admin": {

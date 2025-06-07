@@ -84,7 +84,20 @@
             "price": "Price",
             "more-detail": "More",
             "hide-detail": "Hide",
-            "payment": "Payment method"
+            "payment": "Payment method",
+            "free-booking": "Free booking"
+        },
+        "booking-modal": {
+            "title": "Book an appointment",
+            "full-name": "Full name",
+            "phone-number": "Phone number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reason for visit",
+            "date-of-birth": "Date of birth",
+            "genders": "Gender",
+            "confirm": "Confirm",
+            "cancel": "Cancel"
         }
     },
     "admin": {

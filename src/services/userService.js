@@ -47,6 +47,10 @@ const getExtraDoctorInfoById = (id) => {
     return axios.get(`/api/get-extra-doctor-info-by-id?id=${id}`);
 };
 
+const getProfileDoctorById = (id) => {
+    return axios.get(`/api/get-profile-doctor-by-id?id=${id}`);
+};
+
 const saveBulkScheduleDoctor = (data) => {
     return axios.post("/api/bulk-create-schedule", data);
 };
@@ -55,6 +59,10 @@ const getScheduleDoctorByDate = (doctorId, date) => {
     return axios.get(
         `/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`
     );
+};
+
+const postBookAppointment = (data) => {
+    return axios.post("/api/patient-book-appointment", data);
 };
 
 export {
@@ -69,6 +77,8 @@ export {
     saveDetailDoctorService,
     getDetailInfoDoctor,
     getExtraDoctorInfoById,
+    getProfileDoctorById,
     saveBulkScheduleDoctor,
     getScheduleDoctorByDate,
+    postBookAppointment,
 };

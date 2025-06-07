@@ -144,7 +144,9 @@ class HomeHeader extends Component {
                                     <div className="icon-child">
                                         <i className="fas fa-mobile-alt"></i>
                                     </div>
-                                    <FormattedMessage id="banner.remote-checkup" />
+                                    <div className="text-child">
+                                        <FormattedMessage id="banner.remote-checkup" />
+                                    </div>
                                 </div>
                                 <div className="option-child">
                                     <div className="icon-child">
