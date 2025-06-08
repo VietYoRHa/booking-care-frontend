@@ -90,10 +90,7 @@
                 background-size: cover;
                 background-repeat: no-repeat;
                 background-color: #eee;
-
-                &.section-specialty {
-                    background-image: url("../../assets/specialty/co-xuong-khop.png");
-                }
+                padding-bottom: 10px;
 
                 &.section-medical-facility {
                     background-image: url("../../assets/medical-facility/benh-vien-thu-cuc.png");
@@ -102,7 +99,6 @@
                     width: 120px;
                     height: 120px;
                     border-radius: 50%;
-                    // background-image: url("../../assets/outstanding-doctor/bac-si-avatar.png");
                 }
                 &.section-handbook {
                     background-image: url("../../assets/handbook/handbook.png");
