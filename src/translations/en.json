@@ -98,6 +98,11 @@
             "genders": "Gender",
             "confirm": "Confirm",
             "cancel": "Cancel"
+        },
+        "verify": {
+            "loading": "Verifying appointment...",
+            "success": "Appointment confirmed successfully!",
+            "error": "The appointment does not exist or has already been confirmed!"
         }
     },
     "admin": {

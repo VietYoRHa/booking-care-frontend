@@ -27,6 +27,7 @@ class BookingModal extends Component {
             genders: [],
             selectedGender: "",
             timeType: "",
+            isLoading: false,
         };
     }
 
@@ -96,25 +97,32 @@ class BookingModal extends Component {
         let date = new Date(this.state.dateOfBirth).getTime();
         let timeString = this.buildTimeBooking(this.props.data);
         let doctorName = this.buildDoctorName(this.props.data);
-        let res = await postBookAppointment({
-            fullName: this.state.fullName,
-            phoneNumber: this.state.phoneNumber,
-            email: this.state.email,
-            address: this.state.address,
-            reason: this.state.reason,
-            date: date,
-            doctorId: this.state.doctorId,
-            selectedGender: this.state.selectedGender.value,
-            timeType: this.state.timeType,
-            language: this.props.language,
-            timeString: timeString,
-            doctorName: doctorName,
-        });
-        if (res && res.errCode === 0) {
-            this.props.handleCloseModal();
-            toast.success("Booking a new appointment successfully!");
-        } else {
+        try {
+            this.setState({ isLoading: true });
+            let res = await postBookAppointment({
+                fullName: this.state.fullName,
+                phoneNumber: this.state.phoneNumber,
+                email: this.state.email,
+                address: this.state.address,
+                reason: this.state.reason,
+                date: date,
+                doctorId: this.state.doctorId,
+                selectedGender: this.state.selectedGender.value,
+                timeType: this.state.timeType,
+                language: this.props.language,
+                timeString: timeString,
+                doctorName: doctorName,
+            });
+            if (res && res.errCode === 0) {
+                this.props.handleCloseModal();
+                toast.success("Booking a new appointment successfully!");
+            } else {
+                toast.error("Booking a new appointment error!");
+            }
+        } catch (error) {
             toast.error("Booking a new appointment error!");
+        } finally {
+            this.setState({ isLoading: false });
         }
     };
 
@@ -288,6 +296,7 @@ class BookingModal extends Component {
                         <button
                             className="btn btn-primary"
                             onClick={() => this.handleConfirmBooking()}
+                            disabled={this.state.isLoading}
                         >
                             <FormattedMessage id="patient.booking-modal.confirm" />
                         </button>

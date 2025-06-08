@@ -98,6 +98,11 @@
             "genders": "Giới tính",
             "confirm": "Xác nhận",
             "cancel": "Hủy"
+        },
+        "verify": {
+            "loading": "Đang tải...",
+            "success": "Xác nhận lịch hẹn thành công!",
+            "error": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
         }
     },
     "admin": {
