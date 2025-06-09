@@ -8,6 +8,7 @@ import NumberFormat from "react-number-format";
 import _ from "lodash";
 import moment from "moment";
 import localization from "moment/locale/vi";
+import { withRouter } from "react-router-dom";
 
 class ProfileDoctor extends Component {
     constructor(props) {
@@ -78,9 +79,22 @@ class ProfileDoctor extends Component {
         return <></>;
     };
 
+    handleViewDetailDoctor = (doctorId) => {
+        if (this.props.history) {
+            this.props.history.push(`/detail-doctor/${doctorId}`);
+        }
+    };
+
     render() {
         let { profileData } = this.state;
-        let { language, isShowDoctorDescription, data } = this.props;
+        let {
+            doctorId,
+            language,
+            isShowDoctorDescription,
+            data,
+            isShowDetailLink,
+            isShowPrice,
+        } = this.props;
         let nameVi = "";
         let nameEn = "";
         if (profileData && profileData.positionData) {
@@ -90,16 +104,28 @@ class ProfileDoctor extends Component {
         return (
             <div className="profile-doctor-container">
                 <div className="intro-doctor">
-                    <div
-                        className="content-left"
-                        style={{
-                            backgroundImage: `url(${
-                                profileData && profileData.image
-                                    ? profileData.image
-                                    : ""
-                            })`,
-                        }}
-                    ></div>
+                    <div className="content-left">
+                        <div
+                            className="content-left__image"
+                            style={{
+                                backgroundImage: `url(${
+                                    profileData && profileData.image
+                                        ? profileData.image
+                                        : ""
+                                })`,
+                            }}
+                        />
+                        {isShowDetailLink === true && (
+                            <div
+                                className="view-detail-doctor"
+                                onClick={() =>
+                                    this.handleViewDetailDoctor(doctorId)
+                                }
+                            >
+                                <FormattedMessage id="patient.extra-doctor-info.more" />
+                            </div>
+                        )}
+                    </div>
                     <div className="content-right">
                         <div className="up">
                             {language === LANGUAGES.VI ? nameVi : nameEn}
@@ -122,41 +148,43 @@ class ProfileDoctor extends Component {
                                 <>{this.renderTimeBooking(data)}</>
                             )}
                         </div>
+                        {isShowPrice === true && (
+                            <div className="price">
+                                <span className="left">
+                                    <FormattedMessage id="patient.extra-doctor-info.price" />
+                                    :{" "}
+                                </span>
+                                <span className="right">
+                                    {profileData &&
+                                        profileData.Doctor_Info &&
+                                        language === LANGUAGES.VI && (
+                                            <NumberFormat
+                                                value={
+                                                    profileData.Doctor_Info
+                                                        .priceTypeData.valueVi
+                                                }
+                                                displayType={"text"}
+                                                thousandSeparator={true}
+                                                suffix={"VND"}
+                                            />
+                                        )}{" "}
+                                    {profileData &&
+                                        profileData.Doctor_Info &&
+                                        language === LANGUAGES.EN && (
+                                            <NumberFormat
+                                                value={
+                                                    profileData.Doctor_Info
+                                                        .priceTypeData.valueEn
+                                                }
+                                                displayType={"text"}
+                                                thousandSeparator={true}
+                                                suffix={"$"}
+                                            />
+                                        )}
+                                </span>
+                            </div>
+                        )}
                     </div>
-                </div>
-                <div className="price">
-                    <span className="left">
-                        <FormattedMessage id="patient.extra-doctor-info.price" />
-                        :{" "}
-                    </span>
-                    <span className="right">
-                        {profileData &&
-                            profileData.Doctor_Info &&
-                            language === LANGUAGES.VI && (
-                                <NumberFormat
-                                    value={
-                                        profileData.Doctor_Info.priceTypeData
-                                            .valueVi
-                                    }
-                                    displayType={"text"}
-                                    thousandSeparator={true}
-                                    suffix={"VND"}
-                                />
-                            )}{" "}
-                        {profileData &&
-                            profileData.Doctor_Info &&
-                            language === LANGUAGES.EN && (
-                                <NumberFormat
-                                    value={
-                                        profileData.Doctor_Info.priceTypeData
-                                            .valueEn
-                                    }
-                                    displayType={"text"}
-                                    thousandSeparator={true}
-                                    suffix={"$"}
-                                />
-                            )}
-                    </span>
                 </div>
             </div>
         );
@@ -173,4 +201,6 @@ const mapDispatchToProps = (dispatch) => {
     return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ProfileDoctor);
+export default withRouter(
+    connect(mapStateToProps, mapDispatchToProps)(ProfileDoctor)
+);

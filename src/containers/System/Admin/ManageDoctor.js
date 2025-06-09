@@ -170,7 +170,7 @@ class ManageDoctor extends Component {
             selectedPrice: this.state.selectedPrice.value,
             selectedPayment: this.state.selectedPayment.value,
             selectedProvince: this.state.selectedProvince.value,
-            selectedClinic: this.state.selectedClinic.value,
+            // selectedClinic: this.state.selectedClinic.value,
             selectedSpecialty: this.state.selectedSpecialty.value,
             addressClinic: this.state.addressClinic,
             nameClinic: this.state.nameClinic,

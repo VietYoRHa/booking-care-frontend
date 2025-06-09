@@ -2,13 +2,27 @@
     .intro-doctor {
         display: flex;
         .content-left {
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center center;
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            align-items: center;
             margin: 10px 20px;
+            &__image {
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center center;
+                width: 80px;
+                height: 80px;
+                border-radius: 50%;
+            }
+            .view-detail-doctor {
+                color: #5dc6d3;
+                cursor: pointer;
+                width: fit-content;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
         }
         .content-right {
             width: calc(100% - 80px);
@@ -16,6 +30,7 @@
             flex-direction: column;
             padding-left: 10px;
             padding-top: 10px;
+            padding-right: 20px;
             .up {
                 font-weight: 600;
                 font-size: 16px;
@@ -23,6 +38,9 @@
             .down {
                 white-space: pre-wrap;
                 word-wrap: break-word;
+                color: rgb(85, 85, 85);
+            }
+            .price {
                 color: rgb(85, 85, 85);
             }
         }

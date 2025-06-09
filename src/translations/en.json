@@ -85,7 +85,8 @@
             "more-detail": "More",
             "hide-detail": "Hide",
             "payment": "Payment method",
-            "free-booking": "Free booking"
+            "free-booking": "Free booking",
+            "more": "More"
         },
         "booking-modal": {
             "title": "Book an appointment",
