@@ -109,6 +109,8 @@
         "manage-doctor": {
             "title": "Quản lý thông tin bác sĩ",
             "select-doctor": "Bác sĩ",
+            "specialty": "Chuyên khoa",
+            "clinic": "Phòng khám",
             "introduce": "Thông tin giới thiệu",
             "add": "Tạo thông tin",
             "save": "Lưu thông tin",

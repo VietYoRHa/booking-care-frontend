@@ -109,6 +109,8 @@
         "manage-doctor": {
             "title": "Manage Doctor Information",
             "select-doctor": "Doctor",
+            "specialty": "Specialty",
+            "clinic": "Clinic",
             "introduce": "Introduction Information",
             "add": "Add",
             "save": "Save",

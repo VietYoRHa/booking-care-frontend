@@ -27,12 +27,18 @@ class ManageDoctor extends Component {
             listPrice: [],
             listPayment: [],
             listProvince: [],
+            listClinics: [],
+            listSpecialties: [],
             selectedPrice: "",
             selectedPayment: "",
             selectedProvince: "",
+            selectedClinic: "",
+            selectedSpecialty: "",
             addressClinic: "",
             nameClinic: "",
             note: "",
+            clinicId: "",
+            specialtyId: "",
         };
     }
 
@@ -75,7 +81,7 @@ class ManageDoctor extends Component {
         if (
             prevProps.allRequiredDoctorInfo !== this.props.allRequiredDoctorInfo
         ) {
-            let { resPrice, resPayment, resProvince } =
+            let { resPrice, resPayment, resProvince, resSpecialty } =
                 this.props.allRequiredDoctorInfo;
             let dataSelectPrice = this.buildDataInputSelect(resPrice, "PRICE");
             let dataSelectPayment = this.buildDataInputSelect(
@@ -86,10 +92,15 @@ class ManageDoctor extends Component {
                 resProvince,
                 "PROVINCE"
             );
+            let dataSelectSpecialty = this.buildDataInputSelect(
+                resSpecialty,
+                "SPECIALTY"
+            );
             this.setState({
                 listPrice: dataSelectPrice,
                 listPayment: dataSelectPayment,
                 listProvince: dataSelectProvince,
+                listSpecialties: dataSelectSpecialty,
             });
         }
     }
@@ -129,6 +140,14 @@ class ManageDoctor extends Component {
                     result.push(object);
                 });
             }
+            if (type === "SPECIALTY") {
+                inputData.forEach((item) => {
+                    let object = {};
+                    object.label = item.name;
+                    object.value = item.id;
+                    result.push(object);
+                });
+            }
         }
         return result;
     };
@@ -151,6 +170,8 @@ class ManageDoctor extends Component {
             selectedPrice: this.state.selectedPrice.value,
             selectedPayment: this.state.selectedPayment.value,
             selectedProvince: this.state.selectedProvince.value,
+            selectedClinic: this.state.selectedClinic.value,
+            selectedSpecialty: this.state.selectedSpecialty.value,
             addressClinic: this.state.addressClinic,
             nameClinic: this.state.nameClinic,
             note: this.state.note,
@@ -161,13 +182,21 @@ class ManageDoctor extends Component {
 
     handleChangeSelect = async (selectedDoctor) => {
         this.setState({ selectedDoctor });
-        let { listPrice, listPayment, listProvince } = this.state;
+        let {
+            listPrice,
+            listPayment,
+            listProvince,
+            listSpecialties,
+            listClinics,
+        } = this.state;
         const res = await getDetailInfoDoctor(selectedDoctor.value);
         if (res && res.errCode === 0 && res.data && res.data.Markdown) {
             let markdown = res.data.Markdown;
             let selectedPrice = "",
                 selectedPayment = "",
                 selectedProvince = "",
+                selectedSpecialty = "",
+                selectedClinic = "",
                 addressClinic = "",
                 nameClinic = "",
                 note = "";
@@ -181,6 +210,12 @@ class ManageDoctor extends Component {
                 selectedProvince = listProvince.find(
                     (item) => item.value === res.data.Doctor_Info.provinceId
                 );
+                selectedSpecialty = listSpecialties.find(
+                    (item) => item.value === res.data.Doctor_Info.specialtyId
+                );
+                selectedClinic = listClinics.find(
+                    (item) => item.value === res.data.Doctor_Info.clinicId
+                );
                 addressClinic = res.data.Doctor_Info.addressClinic;
                 nameClinic = res.data.Doctor_Info.nameClinic;
                 note = res.data.Doctor_Info.note;
@@ -193,6 +228,8 @@ class ManageDoctor extends Component {
                 selectedPrice: selectedPrice,
                 selectedPayment: selectedPayment,
                 selectedProvince: selectedProvince,
+                selectedSpecialty: selectedSpecialty,
+                selectedClinic: selectedClinic,
                 addressClinic: addressClinic,
                 nameClinic: nameClinic,
                 note: note,
@@ -206,6 +243,8 @@ class ManageDoctor extends Component {
                 selectedPrice: "",
                 selectedPayment: "",
                 selectedProvince: "",
+                selectedSpecialty: "",
+                selectedClinic: "",
                 addressClinic: "",
                 nameClinic: "",
                 note: "",
@@ -237,10 +276,14 @@ class ManageDoctor extends Component {
             selectedPrice,
             selectedPayment,
             selectedProvince,
+            selectedClinic,
+            selectedSpecialty,
             listPrice,
             listPayment,
             listProvince,
             listDoctors,
+            listClinics,
+            listSpecialties,
         } = this.state;
 
         return (
@@ -248,8 +291,8 @@ class ManageDoctor extends Component {
                 <div className="manage-doctor-title title">
                     <FormattedMessage id="admin.manage-doctor.title" />
                 </div>
-                <div className="more-info">
-                    <div className="content-left form-group">
+                <div className="row">
+                    <div className="col-4 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.select-doctor" />
                         </label>
@@ -262,20 +305,36 @@ class ManageDoctor extends Component {
                             }
                         />
                     </div>
-                    <div className="content-right">
+                    <div className="col-4 form-group">
                         <label>
-                            <FormattedMessage id="admin.manage-doctor.introduce" />
+                            <FormattedMessage id="admin.manage-doctor.specialty" />
                         </label>
-                        <textarea
-                            className="form-control"
-                            onChange={(event) =>
-                                this.handleOnChangeInput(event, "description")
+                        <Select
+                            value={selectedSpecialty}
+                            onChange={this.handleChangeSelectDoctorInfo}
+                            options={listSpecialties}
+                            name="selectedSpecialty"
+                            placeholder={
+                                <FormattedMessage id="admin.manage-doctor.specialty" />
                             }
-                            value={this.state.description}
-                        ></textarea>
+                        />
+                    </div>
+                    <div className="col-4 form-group">
+                        <label>
+                            <FormattedMessage id="admin.manage-doctor.clinic" />
+                        </label>
+                        <Select
+                            value={selectedClinic}
+                            onChange={this.handleChangeSelectDoctorInfo}
+                            options={listClinics}
+                            name="selectedClinic"
+                            placeholder={
+                                <FormattedMessage id="admin.manage-doctor.clinic" />
+                            }
+                        />
                     </div>
                 </div>
-                <div className="more-info-extra row">
+                <div className="row">
                     <div className="col-4 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.price" />
@@ -353,6 +412,20 @@ class ManageDoctor extends Component {
                             }
                             value={this.state.note}
                         />
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12 form-group">
+                        <label>
+                            <FormattedMessage id="admin.manage-doctor.introduce" />
+                        </label>
+                        <textarea
+                            className="form-control"
+                            onChange={(event) =>
+                                this.handleOnChangeInput(event, "description")
+                            }
+                            value={this.state.description}
+                        ></textarea>
                     </div>
                 </div>
                 <div className="manage-doctor-editor">
