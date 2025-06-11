@@ -61,6 +61,12 @@ const getScheduleDoctorByDate = (doctorId, date) => {
     );
 };
 
+const getListPatientForDoctor = (data) => {
+    return axios.get(
+        `/api/get-list-patient-for-doctor?doctorId=${data.doctorId}&date=${data.date}`
+    );
+};
+
 const postBookAppointment = (data) => {
     return axios.post("/api/patient-book-appointment", data);
 };
@@ -110,6 +116,7 @@ export {
     getProfileDoctorById,
     saveBulkScheduleDoctor,
     getScheduleDoctorByDate,
+    getListPatientForDoctor,
     postBookAppointment,
     postVerifyBookAppointment,
     createNewSpecialty,
