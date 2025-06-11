@@ -1,0 +1,11 @@
+.clinic-item {
+    cursor: pointer;
+    &:hover {
+        .clinic-name {
+            color: #49bce2;
+        }
+    }
+    .clinic-name {
+        padding: 10px 0;
+    }
+}

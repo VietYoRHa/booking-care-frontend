@@ -87,7 +87,6 @@ class OutStandingDoctor extends Component {
                                                             ? nameVi
                                                             : nameEn}
                                                     </div>
-                                                    <div>Chuyên khoa</div>
                                                 </div>
                                             </div>
                                         </div>

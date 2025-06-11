@@ -81,7 +81,7 @@ class ManageDoctor extends Component {
         if (
             prevProps.allRequiredDoctorInfo !== this.props.allRequiredDoctorInfo
         ) {
-            let { resPrice, resPayment, resProvince, resSpecialty } =
+            let { resPrice, resPayment, resProvince, resSpecialty, resClinic } =
                 this.props.allRequiredDoctorInfo;
             let dataSelectPrice = this.buildDataInputSelect(resPrice, "PRICE");
             let dataSelectPayment = this.buildDataInputSelect(
@@ -96,10 +96,15 @@ class ManageDoctor extends Component {
                 resSpecialty,
                 "SPECIALTY"
             );
+            let dataSelectClinic = this.buildDataInputSelect(
+                resClinic,
+                "CLINIC"
+            );
             this.setState({
                 listPrice: dataSelectPrice,
                 listPayment: dataSelectPayment,
                 listProvince: dataSelectProvince,
+                listClinics: dataSelectClinic,
                 listSpecialties: dataSelectSpecialty,
             });
         }
@@ -140,7 +145,7 @@ class ManageDoctor extends Component {
                     result.push(object);
                 });
             }
-            if (type === "SPECIALTY") {
+            if (type === "SPECIALTY" || type === "CLINIC") {
                 inputData.forEach((item) => {
                     let object = {};
                     object.label = item.name;
@@ -170,7 +175,7 @@ class ManageDoctor extends Component {
             selectedPrice: this.state.selectedPrice.value,
             selectedPayment: this.state.selectedPayment.value,
             selectedProvince: this.state.selectedProvince.value,
-            // selectedClinic: this.state.selectedClinic.value,
+            selectedClinic: this.state.selectedClinic.value,
             selectedSpecialty: this.state.selectedSpecialty.value,
             addressClinic: this.state.addressClinic,
             nameClinic: this.state.nameClinic,
