@@ -5,6 +5,7 @@ import * as actions from "../../../store/actions";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
+import { FormattedMessage } from "react-intl";
 
 // const mdParser = new MarkdownIt();
 
@@ -47,11 +48,19 @@ class TableManageUser extends Component {
                 <table id="TableManageUser">
                     <tbody>
                         <tr>
-                            <th>Email</th>
-                            <th>First Name</th>
-                            <th>Last Name</th>
-                            <th>Address</th>
-                            <th>Action</th>
+                            <th>
+                                <FormattedMessage id="manage-user.email" />
+                            </th>
+                            <th>
+                                <FormattedMessage id="manage-user.first-name" />
+                            </th>
+                            <th>
+                                <FormattedMessage id="manage-user.last-name" />
+                            </th>
+                            <th>
+                                <FormattedMessage id="manage-user.address" />
+                            </th>
+                            <th></th>
                         </tr>
                         {arrUsers &&
                             arrUsers.length > 0 &&
