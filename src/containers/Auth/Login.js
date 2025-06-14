@@ -134,7 +134,7 @@ class Login extends Component {
                                 Login
                             </button>
                         </div>
-                        <div className="col-12">
+                        {/* <div className="col-12">
                             <span className="forgot-password">
                                 Forgot password?
                             </span>
@@ -147,7 +147,7 @@ class Login extends Component {
                         <div className="col-12 social-login">
                             <i className="fab fa-google-plus-g google"></i>
                             <i className="fab fa-facebook-f facebook"></i>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

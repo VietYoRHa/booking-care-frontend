@@ -55,7 +55,8 @@
         "role": "Vai trò",
         "image": "Ảnh đại diện",
         "save": "Lưu",
-        "edit": "Chỉnh sửa"
+        "edit": "Chỉnh sửa thông tin",
+        "cancel": "Hủy"
     },
     "homepage": {
         "search": "Tìm kiếm",

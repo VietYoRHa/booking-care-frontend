@@ -55,7 +55,8 @@
         "role": "Role",
         "image": "Avatar",
         "save": "Save ",
-        "edit": "Edit"
+        "edit": "Edit",
+        "cancel": "Cancel"
     },
     "homepage": {
         "search": "Search",
