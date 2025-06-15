@@ -125,5 +125,10 @@
             "address-clinic": "Địa chỉ phòng khám",
             "note": "Ghi chú"
         }
+    },
+    "common": {
+        "access-denied": "Từ chối truy cập",
+        "no-permission": "Bạn không có quyền truy cập vào trang này",
+        "back-to-home": "Quay về trang chủ"
     }
 }

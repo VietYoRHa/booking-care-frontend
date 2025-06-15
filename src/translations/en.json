@@ -125,5 +125,10 @@
             "address-clinic": "Clinic's Address",
             "note": "Note"
         }
+    },
+    "common": {
+        "access-denied": "Access Denied",
+        "no-permission": "You do not have permission to access this page",
+        "back-to-home": "Back to Home"
     }
 }

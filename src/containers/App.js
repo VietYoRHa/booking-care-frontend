@@ -5,14 +5,14 @@ import { ConnectedRouter as Router } from "connected-react-router";
 import { history } from "../redux";
 import { ToastContainer } from "react-toastify";
 import {
-    userIsAuthenticated,
     userIsNotAuthenticated,
+    adminAuthenticated,
+    doctorAuthenticated,
 } from "../hoc/authentication";
 import { path } from "../utils";
 import Home from "../routes/Home";
 import Login from "./Auth/Login";
 import System from "../routes/System";
-import { CustomToastCloseButton } from "../components/CustomToast";
 import HomePage from "./HomePage/HomePage.js";
 import CustomScrollbars from "../components/CustomScrollbars.js";
 import DetailDoctor from "./Patient/Doctor/DetailDoctor.js";
@@ -20,6 +20,7 @@ import Doctor from "../routes/Doctor.js";
 import VerifyEmail from "./Patient/VerifyBooking.js";
 import DetailSpecialty from "./Patient/Specialty/DetailSpecialty.js";
 import DetailClinic from "./Patient/Clinic/DetailClinic.js";
+import Forbidden from "./Forbidden/Forbidden.js";
 
 class App extends Component {
     handlePersistorState = () => {
@@ -63,11 +64,11 @@ class App extends Component {
                                     />
                                     <Route
                                         path={path.SYSTEM}
-                                        component={userIsAuthenticated(System)}
+                                        component={adminAuthenticated(System)}
                                     />
                                     <Route
                                         path={path.DOCTOR}
-                                        component={userIsAuthenticated(Doctor)}
+                                        component={doctorAuthenticated(Doctor)}
                                     />
                                     <Route
                                         path={path.HOMEPAGE}
@@ -89,22 +90,15 @@ class App extends Component {
                                         path={path.VERIFY}
                                         component={VerifyEmail}
                                     />
+
+                                    <Route
+                                        path="/forbidden"
+                                        component={Forbidden}
+                                    />
                                 </Switch>
                             </CustomScrollbars>
                         </div>
 
-                        {/* <ToastContainer
-                            className="toast-container"
-                            toastClassName="toast-item"
-                            bodyClassName="toast-item-body"
-                            autoClose={false}
-                            hideProgressBar={true}
-                            pauseOnHover={false}
-                            pauseOnFocusLoss={true}
-                            closeOnClick={false}
-                            draggable={false}
-                            closeButton={<CustomToastCloseButton />}
-                        /> */}
                         <ToastContainer
                             position="bottom-right"
                             autoClose={5000}

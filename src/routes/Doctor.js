@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 import Header from "../containers/Header/Header";
 import ManageSchedule from "../containers/System/Doctor/ManageSchedule";
 import ManagePatient from "../containers/System/Doctor/ManagePatient";
 
 class Doctor extends Component {
     render() {
-        const { isLoggedIn } = this.props;
+        const { defaultDoctorMenuPath, isLoggedIn } = this.props;
         return (
             <>
                 {isLoggedIn && <Header />}
@@ -22,6 +22,13 @@ class Doctor extends Component {
                                 path="/doctor/manage-patient"
                                 component={ManagePatient}
                             />
+                            <Route
+                                component={() => {
+                                    return (
+                                        <Redirect to={defaultDoctorMenuPath} />
+                                    );
+                                }}
+                            />
                         </Switch>
                     </div>
                 </div>
@@ -32,7 +39,7 @@ class Doctor extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        systemMenuPath: state.app.systemMenuPath,
+        defaultDoctorMenuPath: state.app.defaultDoctorMenuPath,
         isLoggedIn: state.user.isLoggedIn,
     };
 };

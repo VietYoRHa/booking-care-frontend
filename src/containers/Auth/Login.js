@@ -5,6 +5,7 @@ import * as actions from "../../store/actions";
 import "./Login.scss";
 import { FormattedMessage } from "react-intl";
 import { handleLoginApi } from "../../services/userService";
+import authService from "../../services/authService";
 
 class Login extends Component {
     constructor(props) {
@@ -38,6 +39,9 @@ class Login extends Component {
                 });
             }
             if (data && data.errCode === 0) {
+                if (data.user.accessToken) {
+                    authService.setToken(data.user.accessToken);
+                }
                 this.props.userLoginSuccess(data.user);
             }
         } catch (error) {
