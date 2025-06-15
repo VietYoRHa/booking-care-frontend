@@ -97,7 +97,7 @@ class ManagePatient extends Component {
                                         <th>Giới tính</th>
                                         <th>Hành động</th>
                                     </tr>
-                                    {data && data.length > 0 && data.patientData
+                                    {data && data.length > 0
                                         ? data.map((item, index) => {
                                               let genderLabel =
                                                   language === LANGUAGES.VI

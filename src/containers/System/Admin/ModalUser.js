@@ -220,6 +220,7 @@ class ModalUser extends Component {
                     isOpen={this.props.isOpen}
                     toggle={this.props.toggle}
                     size="lg"
+                    style={{ maxWidth: "1000px", width: "100%" }}
                     centered={true}
                     className="modal-user-container"
                 >
