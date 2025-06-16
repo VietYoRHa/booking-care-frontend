@@ -122,7 +122,7 @@ class ManageSchedule extends Component {
         });
 
         if (res && res.errCode === 0) {
-            toast.success("Save schedule success!");
+            toast.success("Lưu lịch khám thành công");
         } else {
             toast.error(res.errMessage);
         }

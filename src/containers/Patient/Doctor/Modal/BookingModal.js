@@ -122,12 +122,14 @@ class BookingModal extends Component {
             });
             if (res && res.errCode === 0) {
                 this.props.handleCloseModal();
-                toast.success("Booking a new appointment successfully!");
+                toast.success(
+                    "Đặt lịch hẹn thành công! Vui lòng kiểm tra email để xác nhận."
+                );
             } else {
-                toast.error("Booking a new appointment error!");
+                toast.error("Đặt lịch hẹn thất bại!");
             }
         } catch (error) {
-            toast.error("Booking a new appointment error!");
+            toast.error("Đặt lịch hẹn thất bại!");
         } finally {
             this.setState({ isLoading: false });
         }

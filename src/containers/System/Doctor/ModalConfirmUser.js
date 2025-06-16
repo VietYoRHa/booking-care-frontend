@@ -3,7 +3,10 @@ import { connect } from "react-redux";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import "./ModalConfirmUser.scss";
 import { APPOINTMENT_STATUS } from "../../../utils";
-import { postCancelAppointment } from "../../../services/userService";
+import {
+    postCancelAppointment,
+    postCompleteAppointment,
+} from "../../../services/userService";
 import { toast } from "react-toastify";
 
 class ModalConfirmUser extends Component {
@@ -11,8 +14,9 @@ class ModalConfirmUser extends Component {
         super(props);
         this.state = {
             cancelReason: "",
-            attachment: null,
+            file: null,
             isLoading: false,
+            fileName: "",
         };
     }
 
@@ -29,8 +33,17 @@ class ModalConfirmUser extends Component {
         });
     };
 
+    handleFileChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            this.setState({
+                file: e.target.files[0],
+                fileName: e.target.files[0].name,
+            });
+        }
+    };
+
     handleConfirmAppointment = async () => {
-        let { dataConfirm, handleCloseModal, refetchListPatient } = this.props;
+        let { dataConfirm, toggle, refetchListPatient } = this.props;
         if (dataConfirm && dataConfirm.statusId === APPOINTMENT_STATUS.CANCEL) {
             try {
                 let res = await postCancelAppointment({
@@ -52,7 +65,7 @@ class ModalConfirmUser extends Component {
                         cancelReason: "",
                     });
                     toast.success("Từ chối lịch hẹn thành công");
-                    handleCloseModal();
+                    toggle();
                     refetchListPatient();
                 } else {
                     toast.error("Từ chối lịch hẹn thất bại");
@@ -62,12 +75,49 @@ class ModalConfirmUser extends Component {
             }
         }
         if (dataConfirm && dataConfirm.statusId === APPOINTMENT_STATUS.DONE) {
+            const formData = new FormData();
+            formData.append("id", dataConfirm.id);
+            formData.append("doctorId", dataConfirm.doctorId);
+            formData.append("email", dataConfirm.email);
+            formData.append("fullName", dataConfirm.fullName);
+            formData.append("date", dataConfirm.date);
+            formData.append("language", dataConfirm.language);
+            formData.append("patientId", dataConfirm.patientId);
+            formData.append("statusId", dataConfirm.statusId);
+            formData.append("timeString", dataConfirm.timeString);
+            formData.append("timeType", dataConfirm.timeType);
+            formData.append("doctorName", dataConfirm.doctorName);
+            formData.append("file", this.state.file);
+            try {
+                let res = await postCompleteAppointment(formData);
+                if (res && res.errCode === 0) {
+                    this.setState({
+                        file: null,
+                        fileName: "",
+                    });
+                    toast.success("Xác nhận bệnh nhân đã khám thành công");
+                    toggle();
+                    refetchListPatient();
+                } else {
+                    toast.error("Xác nhận bệnh nhân đã khám thất bại");
+                }
+            } catch (error) {
+                toast.error("Xác nhận bệnh nhân đã khám thất bại");
+            }
         }
     };
 
+    handleCloseModal = () => {
+        this.setState({
+            cancelReason: "",
+            file: null,
+            fileName: "",
+        });
+        this.props.toggle();
+    };
+
     render() {
-        let { isOpen, dataConfirm, handleCloseModal } = this.props;
-        console.log("dataConfirm in ModalConfirmUser: ", dataConfirm);
+        let { isOpen, dataConfirm, toggle } = this.props;
 
         return (
             <Modal
@@ -75,7 +125,7 @@ class ModalConfirmUser extends Component {
                 className={"confirm-modal-container"}
                 centered={true}
             >
-                <ModalHeader toggle={handleCloseModal}>
+                <ModalHeader toggle={toggle}>
                     {dataConfirm &&
                         dataConfirm.statusId === APPOINTMENT_STATUS.DONE &&
                         "Xác nhận bệnh nhân đã khám"}
@@ -100,6 +150,7 @@ class ModalConfirmUser extends Component {
                                     <input
                                         type="file"
                                         className="form-control-file"
+                                        onChange={this.handleFileChange}
                                     />
                                 </div>
                             </div>
@@ -135,7 +186,10 @@ class ModalConfirmUser extends Component {
                     >
                         Confirm
                     </Button>
-                    <Button color="secondary" onClick={handleCloseModal}>
+                    <Button
+                        color="secondary"
+                        onClick={() => this.handleCloseModal()}
+                    >
                         Cancel
                     </Button>
                 </ModalFooter>

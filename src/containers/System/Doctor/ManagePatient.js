@@ -123,9 +123,9 @@ class ManagePatient extends Component {
         });
     };
 
-    closeModal = () => {
+    toggleModal = () => {
         this.setState({
-            isOpenModal: false,
+            isOpenModal: !this.state.isOpenModal,
             dataConfirm: {},
         });
     };
@@ -228,7 +228,7 @@ class ManagePatient extends Component {
                 </div>
                 <ModalConfirmUser
                     isOpen={isOpenModal}
-                    handleCloseModal={this.closeModal}
+                    toggle={this.toggleModal}
                     dataConfirm={dataConfirm}
                     refetchListPatient={this.refetchListPatient}
                 />

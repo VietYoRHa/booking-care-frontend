@@ -105,11 +105,11 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Create specialty successfully");
+                    toast.success("Tạo phòng khám thành công");
                     this.props.toggle();
                     this.props.fetchAllClinic();
                 } else {
-                    toast.error("Create specialty failed");
+                    toast.error("Tạo phòng khám thất bại");
                 }
             }
             if (this.props.action === CRUD_ACTIONS.EDIT) {
@@ -129,15 +129,15 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Edit clinic successfully");
+                    toast.success("Sửa thông tin phòng khám thành công");
                     this.props.toggle();
                     this.props.fetchAllClinic();
                 } else {
-                    toast.error("Edit clinic failed");
+                    toast.error("Sửa thông tin phòng khám thất bại");
                 }
             }
         } catch (error) {
-            toast.error("Create specialty failed");
+            toast.error("Có lỗi xảy ra khi lưu thông tin phòng khám");
         } finally {
             this.setState({
                 isLoading: false,
