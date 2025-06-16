@@ -54,13 +54,13 @@ class DoctorExtraInfo extends Component {
                         <FormattedMessage id="patient.extra-doctor-info.address" />
                     </div>
                     <div className="name-clinic">
-                        {extraInfo && extraInfo.nameClinic
-                            ? extraInfo.nameClinic
+                        {extraInfo && extraInfo.clinicData?.name
+                            ? extraInfo.clinicData?.name
                             : ""}
                     </div>
                     <div className="detail-address">
-                        {extraInfo && extraInfo.addressClinic
-                            ? extraInfo.addressClinic
+                        {extraInfo && extraInfo.clinicData?.address
+                            ? extraInfo.clinicData?.address
                             : ""}
                     </div>
                 </div>
