@@ -72,7 +72,6 @@ class ManagePatient extends Component {
     render() {
         let { data, isOpenModal, dataConfirm } = this.state;
         let { language } = this.props;
-
         return (
             <>
                 <div className="manage-patient-container">
@@ -92,13 +91,16 @@ class ManagePatient extends Component {
                                     <tr>
                                         <th>STT</th>
                                         <th>Thời gian</th>
-                                        <th>họ tên</th>
+                                        <th>Họ tên</th>
                                         <th>Địa chỉ</th>
                                         <th>Giới tính</th>
+                                        <th>Lí do khám</th>
                                         <th>Hành động</th>
                                     </tr>
                                     {data && data.length > 0
                                         ? data.map((item, index) => {
+                                              let nameVi = `${item.patientData.lastName} ${item.patientData.firstName}`;
+                                              let nameEn = `${item.patientData.firstName} ${item.patientData.lastName}`;
                                               let genderLabel =
                                                   language === LANGUAGES.VI
                                                       ? item.patientData
@@ -116,10 +118,10 @@ class ManagePatient extends Component {
                                                       <td>{index + 1}</td>
                                                       <td>{timeLabel}</td>
                                                       <td>
-                                                          {
-                                                              item.patientData
-                                                                  .firstName
-                                                          }
+                                                          {language ===
+                                                          LANGUAGES.VI
+                                                              ? nameVi
+                                                              : nameEn}
                                                       </td>
                                                       <td>
                                                           {
@@ -128,6 +130,8 @@ class ManagePatient extends Component {
                                                           }
                                                       </td>
                                                       <td>{genderLabel}</td>
+                                                      <td>{item.reason}</td>
+
                                                       <td>
                                                           <button
                                                               className="btn btn-primary"

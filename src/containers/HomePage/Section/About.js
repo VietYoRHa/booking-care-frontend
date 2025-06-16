@@ -5,7 +5,7 @@ class About extends Component {
     render() {
         return (
             <div className="section-share section-about">
-                <div className="section-about-header">Dành cho bác sĩ</div>
+                <div className="section-about-header">Về chúng tôi</div>
                 <div className="section-about-content">
                     <div className="content-left">
                         <iframe

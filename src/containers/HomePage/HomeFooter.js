@@ -6,8 +6,8 @@ class HomeFooter extends Component {
         return (
             <div className="home-footer">
                 <p>
-                    &copy; 2025 Doan Thai Viet. All rights reserved. <br />
-                    <span>Contact me: </span>
+                    &copy; 2025 VitaBook. All rights reserved. <br />
+                    <span>Contact: </span>
                     <a
                         target="_blank"
                         rel="noopener noreferrer"
