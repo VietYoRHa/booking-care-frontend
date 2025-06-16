@@ -26,6 +26,7 @@
         "admin": {
             "user": "Người dùng",
             "manage-doctor": "Quản lý Bác sĩ",
+            "manage-schedule": "Quản lý lịch khám",
             "manage-admin": "Admin",
             "crud": "CRUD User",
             "manage-user": "Quản lý người dùng",

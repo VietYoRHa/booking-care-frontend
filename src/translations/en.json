@@ -26,6 +26,7 @@
         "admin": {
             "user": "User",
             "manage-doctor": "Manage Doctor",
+            "manage-schedule": "Manage Schedule",
             "manage-admin": "Admin",
             "crud": "CRUD User",
             "manage-user": "Manage User",

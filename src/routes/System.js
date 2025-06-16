@@ -6,6 +6,7 @@ import Header from "../containers/Header/Header";
 import ManageDoctor from "../containers/System/Admin/ManageDoctor";
 import ManageSpecialty from "../containers/System/Specialty/ManageSpecialty";
 import ManageClinic from "../containers/System/Clinic/ManageClinic";
+import AdminManageSchedule from "../containers/System/Admin/AdminManageSchedule";
 
 class System extends Component {
     render() {
@@ -23,6 +24,10 @@ class System extends Component {
                             <Route
                                 path="/system/manage-doctor"
                                 component={ManageDoctor}
+                            />
+                            <Route
+                                path="/system/manage-schedule"
+                                component={AdminManageSchedule}
                             />
                             <Route
                                 path="/system/manage-specialty"
