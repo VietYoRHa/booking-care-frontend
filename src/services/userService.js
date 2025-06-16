@@ -83,6 +83,14 @@ const getAllSpecialty = () => {
     return axios.get("/api/get-all-specialty");
 };
 
+const editSpecialty = (data) => {
+    return axios.put("/api/edit-specialty", data);
+};
+
+const deleteSpecialty = (specialtyId) => {
+    return axios.delete("/api/delete-specialty", { data: { id: specialtyId } });
+};
+
 const getDetailSpecialtyById = (data) => {
     return axios.get(
         `/api/get-detail-specialty-by-id?id=${data.id}&location=${data.location}`
@@ -129,6 +137,8 @@ export {
     postVerifyBookAppointment,
     createNewSpecialty,
     getAllSpecialty,
+    editSpecialty,
+    deleteSpecialty,
     getDetailSpecialtyById,
     createNewClinic,
     getAllClinic,

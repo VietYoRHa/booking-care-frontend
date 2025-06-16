@@ -2,9 +2,12 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
-import "./ManageClinic.scss";
+import "./ManageSpecialty.scss";
 import { CommonUtils, CRUD_ACTIONS } from "../../../utils";
-import { createNewClinic, editClinic } from "../../../services/userService";
+import {
+    createNewSpecialty,
+    editSpecialty,
+} from "../../../services/userService";
 import { toast } from "react-toastify";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 
@@ -15,7 +18,6 @@ class ModalClinic extends Component {
         super(props);
         this.state = {
             name: "",
-            address: "",
             imageBase64: "",
             descriptionHTML: "",
             descriptionMarkdown: "",
@@ -84,15 +86,14 @@ class ModalClinic extends Component {
         }
     };
 
-    handleSaveClinic = async () => {
+    handleSaveSpecialty = async () => {
         try {
             this.setState({
                 isLoading: true,
             });
             if (this.props.action === CRUD_ACTIONS.CREATE) {
-                let res = await createNewClinic({
+                let res = await createNewSpecialty({
                     name: this.state.name,
-                    address: this.state.address,
                     imageBase64: this.state.imageBase64,
                     descriptionHTML: this.state.descriptionHTML,
                     descriptionMarkdown: this.state.descriptionMarkdown,
@@ -100,20 +101,19 @@ class ModalClinic extends Component {
                 if (res && res.errCode === 0) {
                     this.setState({
                         name: "",
-                        address: "",
                         imageBase64: "",
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Create specialty successfully");
+                    toast.success("Tạo chuyên khoa thành công");
                     this.props.toggle();
-                    this.props.fetchAllClinic();
+                    this.props.fetchAllSpecialty();
                 } else {
-                    toast.error("Create specialty failed");
+                    toast.error("Tạo chuyên khoa thất bại");
                 }
             }
             if (this.props.action === CRUD_ACTIONS.EDIT) {
-                let res = await editClinic({
+                let res = await editSpecialty({
                     id: this.props.editData.id,
                     name: this.state.name,
                     address: this.state.address,
@@ -129,15 +129,15 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Edit clinic successfully");
+                    toast.success("Sửa chuyên khoa thành công");
                     this.props.toggle();
-                    this.props.fetchAllClinic();
+                    this.props.fetchAllSpecialty();
                 } else {
-                    toast.error("Edit clinic failed");
+                    toast.error("Sửa chuyên khoa thất bại");
                 }
             }
         } catch (error) {
-            toast.error("Create specialty failed");
+            toast.error("Đã xảy ra lỗi khi lưu chuyên khoa");
         } finally {
             this.setState({
                 isLoading: false,
@@ -146,7 +146,7 @@ class ModalClinic extends Component {
     };
 
     render() {
-        let { name, address, descriptionMarkdown, isLoading } = this.state;
+        let { name, descriptionMarkdown, isLoading } = this.state;
         let { toggle, isOpen } = this.props;
         return (
             <>
@@ -159,13 +159,13 @@ class ModalClinic extends Component {
                 >
                     <ModalHeader toggle={this.props.toggle}>
                         {this.props.action === CRUD_ACTIONS.CREATE
-                            ? "Thêm phòng khám"
-                            : "Chỉnh sửa phòng khám"}
+                            ? "Thêm chuyên khoa"
+                            : "Chỉnh sửa chuyên khoa"}
                     </ModalHeader>
                     <ModalBody>
                         <div className="add-new-specialty row col-12 ">
                             <div className="col-6 form-group">
-                                <label>Tên phòng khám</label>
+                                <label>Tên chuyên khoa</label>
                                 <input
                                     className="form-control"
                                     type="text"
@@ -175,19 +175,9 @@ class ModalClinic extends Component {
                                     }
                                 />
                             </div>
+
                             <div className="col-6 form-group">
-                                <label>Địa chỉ phòng khám</label>
-                                <input
-                                    className="form-control"
-                                    type="text"
-                                    value={address}
-                                    onChange={(e) =>
-                                        this.handleOnChangeInput(e, "address")
-                                    }
-                                />
-                            </div>
-                            <div className="col-12 form-group">
-                                <label>Ảnh phòng khám</label>
+                                <label>Ảnh chuyên khoa</label>
                                 <input
                                     className="form-control-file"
                                     type="file"
@@ -197,8 +187,8 @@ class ModalClinic extends Component {
                                 />
                             </div>
                         </div>
-                        <div className="col-12">
-                            <label>Mô tả phòng khám</label>
+                        <div className="col-12 form-group">
+                            <label>Mô tả chuyên khoa</label>
                             <MdEditor
                                 style={{ height: "500px" }}
                                 renderHTML={(text) => mdParser.render(text)}
@@ -210,16 +200,16 @@ class ModalClinic extends Component {
                     <ModalFooter>
                         <button
                             className="btn btn-primary mt-3"
-                            onClick={() => this.handleSaveClinic()}
+                            onClick={() => this.handleSaveSpecialty()}
                             disabled={isLoading}
                         >
-                            Save
+                            Lưu
                         </button>
                         <button
                             className="btn btn-secondary mt-3"
                             onClick={() => toggle()}
                         >
-                            Cancel
+                            Huỷ
                         </button>
                     </ModalFooter>
                 </Modal>

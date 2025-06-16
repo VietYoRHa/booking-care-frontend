@@ -1,134 +1,145 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import MarkdownIt from "markdown-it";
-import MdEditor from "react-markdown-editor-lite";
 import "./ManageSpecialty.scss";
-import { CommonUtils } from "../../../utils";
-import { createNewSpecialty } from "../../../services/userService";
+import { CRUD_ACTIONS } from "../../../utils";
+import {
+    deleteSpecialty,
+    getAllSpecialty,
+} from "../../../services/userService";
 import { toast } from "react-toastify";
-
-const mdParser = new MarkdownIt();
+import ModalSpecialty from "./ModalSpecialty";
 
 class ManageSpecialty extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            imageBase64: "",
-            descriptionHTML: "",
-            descriptionMarkdown: "",
-            isLoading: false,
+            isOpenModal: false,
+            specialtyData: {},
+            action: CRUD_ACTIONS.CREATE,
+            editData: null,
         };
     }
 
-    async componentDidMount() {}
+    async componentDidMount() {
+        this.fetchAllSpecialty();
+    }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.language !== this.props.language) {
         }
     }
 
-    handleOnChangeInput = (event, id) => {
-        let value = event.target.value;
-        let copyState = { ...this.state };
-        copyState[id] = value;
-        this.setState({
-            ...copyState,
-        });
-    };
-
-    handleEditorChange = ({ html, text }) => {
-        this.setState({
-            descriptionHTML: html,
-            descriptionMarkdown: text,
-        });
-    };
-
-    handleOnChangeImage = async (event) => {
-        let file = event.target.files[0];
-        if (file) {
-            let base64 = await CommonUtils.getBase64(file);
+    fetchAllSpecialty = async () => {
+        let res = await getAllSpecialty();
+        if (res && res.errCode === 0) {
             this.setState({
-                imageBase64: base64,
+                specialtyData: res.data || {},
             });
         }
     };
 
-    handleSaveSpecialty = async () => {
-        try {
-            this.setState({
-                isLoading: true,
-            });
-            let res = await createNewSpecialty({
-                name: this.state.name,
-                imageBase64: this.state.imageBase64,
-                descriptionHTML: this.state.descriptionHTML,
-                descriptionMarkdown: this.state.descriptionMarkdown,
-            });
+    handleCreateButtonClick = () => {
+        this.setState({
+            isOpenModal: true,
+            action: CRUD_ACTIONS.CREATE,
+            editData: null,
+        });
+    };
+
+    toggleModal = () => {
+        this.setState({
+            isOpenModal: !this.state.isOpenModal,
+            action: CRUD_ACTIONS.CREATE,
+            editData: null,
+        });
+    };
+
+    handleEditSpecialty = (specialty) => {
+        this.setState({
+            isOpenModal: true,
+            action: CRUD_ACTIONS.EDIT,
+            editData: specialty,
+        });
+    };
+
+    handleDeleteSpecialty = async (specialty) => {
+        if (specialty && specialty.id) {
+            let res = await deleteSpecialty(specialty.id);
             if (res && res.errCode === 0) {
-                this.setState({
-                    name: "",
-                    imageBase64: "",
-                    descriptionHTML: "",
-                    descriptionMarkdown: "",
-                });
-                toast.success("Create specialty successfully");
+                toast.success("Xoá chuyên khoa thành công");
+                this.fetchAllSpecialty();
             } else {
-                toast.error("Create specialty failed");
+                toast.error("Xoá chuyên khoa thất bại");
             }
-        } catch (error) {
-            toast.error("Create specialty failed");
-        } finally {
-            this.setState({
-                isLoading: false,
-            });
         }
     };
 
     render() {
-        let { name, descriptionMarkdown, isLoading } = this.state;
+        let { isOpenModal, specialtyData, action, editData } = this.state;
         return (
-            <div className="manage-specialty-container">
-                <div className="title ms-title">Quản lý chuyên khoa</div>
-                <div className="add-new-specialty row col-12 ">
-                    <div className="col-6 form-group">
-                        <label>Tên chuyên khoa</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            value={name}
-                            onChange={(e) =>
-                                this.handleOnChangeInput(e, "name")
-                            }
-                        />
+            <>
+                <div className="manage-specialty-container">
+                    <div className="title ms-title">Quản lý chuyên khoa</div>
+                    <div className="col-12">
+                        <button
+                            className="btn btn-primary mt-3 mb-3"
+                            onClick={() => this.handleCreateButtonClick()}
+                        >
+                            Thêm chuyên khoa
+                        </button>
                     </div>
-                    <div className="col-6 form-group">
-                        <label>Ảnh chuyên khoa</label>
-                        <input
-                            className="form-control-file"
-                            type="file"
-                            onChange={(e) => this.handleOnChangeImage(e)}
-                        />
+                    <div className="col-12">
+                        <table id="TableManage">
+                            <tbody>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên chuyên khoa</th>
+                                    <th>Hành động</th>
+                                </tr>
+                                {specialtyData && specialtyData.length > 0
+                                    ? specialtyData.map((item, index) => {
+                                          return (
+                                              <tr key={index}>
+                                                  <td>{index + 1}</td>
+                                                  <td>{item.name}</td>
+                                                  <td>
+                                                      <button
+                                                          className="btn-edit"
+                                                          onClick={() => {
+                                                              this.handleEditSpecialty(
+                                                                  item
+                                                              );
+                                                          }}
+                                                      >
+                                                          <i className="fas fa-pencil-alt"></i>
+                                                      </button>
+                                                      <button
+                                                          className="btn-delete"
+                                                          onClick={() => {
+                                                              this.handleDeleteSpecialty(
+                                                                  item
+                                                              );
+                                                          }}
+                                                      >
+                                                          <i className="fas fa-trash"></i>
+                                                      </button>
+                                                  </td>
+                                              </tr>
+                                          );
+                                      })
+                                    : "Không có dữ liệu"}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div className="col-12">
-                    <MdEditor
-                        style={{ height: "500px" }}
-                        renderHTML={(text) => mdParser.render(text)}
-                        onChange={this.handleEditorChange}
-                        value={descriptionMarkdown}
-                    />
-                </div>
-                <div className="col-12">
-                    <button
-                        className="btn btn-primary mt-3"
-                        onClick={() => this.handleSaveSpecialty()}
-                        disabled={isLoading}
-                    >
-                        Save
-                    </button>
-                </div>
-            </div>
+                <ModalSpecialty
+                    isOpen={isOpenModal}
+                    toggle={() => this.toggleModal()}
+                    action={action}
+                    editData={editData}
+                    fetchAllSpecialty={this.fetchAllSpecialty}
+                />
+            </>
         );
     }
 }
