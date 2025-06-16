@@ -45,7 +45,7 @@ class TableManageUser extends Component {
         let arrUsers = this.state.arrUsers;
         return (
             <>
-                <table id="TableManageUser">
+                <table id="TableManage">
                     <tbody>
                         <tr>
                             <th>

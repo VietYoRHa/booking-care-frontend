@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 import * as actions from "../../../store/actions";
-import "./UserRedux.scss";
+import "./ManageUser.scss";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { toast } from "react-toastify";

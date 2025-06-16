@@ -1,148 +1,145 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import MarkdownIt from "markdown-it";
-import MdEditor from "react-markdown-editor-lite";
 import "./ManageClinic.scss";
-import { CommonUtils } from "../../../utils";
-import { createNewClinic } from "../../../services/userService";
+import { CRUD_ACTIONS } from "../../../utils";
+import { deleteClinic, getAllClinic } from "../../../services/userService";
 import { toast } from "react-toastify";
-
-const mdParser = new MarkdownIt();
+import ModalClinic from "./ModalClinic";
 
 class ManageClinic extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            name: "",
-            address: "",
-            imageBase64: "",
-            descriptionHTML: "",
-            descriptionMarkdown: "",
-            isLoading: false,
+            isOpenModal: false,
+            clinicData: {},
+            action: CRUD_ACTIONS.CREATE,
+            editData: null,
         };
     }
 
-    async componentDidMount() {}
+    async componentDidMount() {
+        this.fetchAllClinic();
+    }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.language !== this.props.language) {
         }
     }
 
-    handleOnChangeInput = (event, id) => {
-        let value = event.target.value;
-        let copyState = { ...this.state };
-        copyState[id] = value;
-        this.setState({
-            ...copyState,
-        });
-    };
-
-    handleEditorChange = ({ html, text }) => {
-        this.setState({
-            descriptionHTML: html,
-            descriptionMarkdown: text,
-        });
-    };
-
-    handleOnChangeImage = async (event) => {
-        let file = event.target.files[0];
-        if (file) {
-            let base64 = await CommonUtils.getBase64(file);
+    fetchAllClinic = async () => {
+        let res = await getAllClinic();
+        if (res && res.errCode === 0) {
             this.setState({
-                imageBase64: base64,
+                clinicData: res.data || {},
             });
         }
     };
 
-    handleSaveClinic = async () => {
-        try {
-            this.setState({
-                isLoading: true,
-            });
-            let res = await createNewClinic({
-                name: this.state.name,
-                address: this.state.address,
-                imageBase64: this.state.imageBase64,
-                descriptionHTML: this.state.descriptionHTML,
-                descriptionMarkdown: this.state.descriptionMarkdown,
-            });
+    handleCreateButtonClick = () => {
+        this.setState({
+            isOpenModal: true,
+            action: CRUD_ACTIONS.CREATE,
+            editData: null,
+        });
+    };
+
+    toggleModal = () => {
+        this.setState({
+            isOpenModal: !this.state.isOpenModal,
+            action: CRUD_ACTIONS.CREATE,
+            editData: null,
+        });
+    };
+
+    handleEditClinic = (clinic) => {
+        this.setState({
+            isOpenModal: true,
+            action: CRUD_ACTIONS.EDIT,
+            editData: clinic,
+        });
+    };
+
+    handleDeleteClinic = async (clinic) => {
+        if (clinic && clinic.id) {
+            let res = await deleteClinic(clinic.id);
             if (res && res.errCode === 0) {
-                this.setState({
-                    name: "",
-                    address: "",
-                    imageBase64: "",
-                    descriptionHTML: "",
-                    descriptionMarkdown: "",
-                });
-                toast.success("Create specialty successfully");
+                toast.success("Xoá phòng khám thành công");
+                this.fetchAllClinic();
             } else {
-                toast.error("Create specialty failed");
+                toast.error("Xoá phòng khám thất bại");
             }
-        } catch (error) {
-            toast.error("Create specialty failed");
-        } finally {
-            this.setState({
-                isLoading: false,
-            });
         }
     };
 
     render() {
-        let { name, address, descriptionMarkdown, isLoading } = this.state;
+        const { isOpenModal, clinicData, action, editData } = this.state;
         return (
-            <div className="manage-specialty-container">
-                <div className="title ms-title">Quản lý phòng khám</div>
-                <div className="add-new-specialty row col-12 ">
-                    <div className="col-6 form-group">
-                        <label>Tên phòng khám</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            value={name}
-                            onChange={(e) =>
-                                this.handleOnChangeInput(e, "name")
-                            }
-                        />
+            <>
+                <div className="manage-specialty-container">
+                    <div className="title ms-title">Quản lý phòng khám</div>
+                    <div className="col-12">
+                        <button
+                            className="btn btn-primary mt-3 mb-3"
+                            onClick={() => this.handleCreateButtonClick()}
+                        >
+                            Thêm phòng khám
+                        </button>
                     </div>
-                    <div className="col-6 form-group">
-                        <label>Địa chỉ phòng khám</label>
-                        <input
-                            className="form-control"
-                            type="text"
-                            value={address}
-                            onChange={(e) =>
-                                this.handleOnChangeInput(e, "address")
-                            }
-                        />
-                    </div>
-                    <div className="col-12 form-group">
-                        <label>Ảnh phòng khám</label>
-                        <input
-                            className="form-control-file"
-                            type="file"
-                            onChange={(e) => this.handleOnChangeImage(e)}
-                        />
+                    <div className="col-12">
+                        <table id="TableManage">
+                            <tbody>
+                                <tr>
+                                    <th>STT</th>
+                                    <th>Tên phòng khám</th>
+                                    <th>Địa chỉ</th>
+                                    <th>Hành động</th>
+                                </tr>
+                                {clinicData && clinicData.length > 0
+                                    ? clinicData.map((item, index) => {
+                                          return (
+                                              <tr key={index}>
+                                                  <td>{index + 1}</td>
+                                                  <td>{item.name}</td>
+                                                  <td>{item.address}</td>
+
+                                                  <td>
+                                                      <button
+                                                          className="btn-edit"
+                                                          onClick={() => {
+                                                              this.handleEditClinic(
+                                                                  item
+                                                              );
+                                                          }}
+                                                      >
+                                                          <i className="fas fa-pencil-alt"></i>
+                                                      </button>
+                                                      <button
+                                                          className="btn-delete"
+                                                          onClick={() => {
+                                                              this.handleDeleteClinic(
+                                                                  item
+                                                              );
+                                                          }}
+                                                      >
+                                                          <i className="fas fa-trash"></i>
+                                                      </button>
+                                                  </td>
+                                              </tr>
+                                          );
+                                      })
+                                    : "Không có dữ liệu"}
+                            </tbody>
+                        </table>
                     </div>
                 </div>
-                <div className="col-12">
-                    <MdEditor
-                        style={{ height: "500px" }}
-                        renderHTML={(text) => mdParser.render(text)}
-                        onChange={this.handleEditorChange}
-                        value={descriptionMarkdown}
-                    />
-                </div>
-                <div className="col-12">
-                    <button
-                        className="btn btn-primary mt-3"
-                        onClick={() => this.handleSaveClinic()}
-                        disabled={isLoading}
-                    >
-                        Save
-                    </button>
-                </div>
-            </div>
+                <ModalClinic
+                    isOpen={isOpenModal}
+                    toggle={() => this.toggleModal()}
+                    action={action}
+                    editData={editData}
+                    fetchAllClinic={this.fetchAllClinic}
+                />
+            </>
         );
     }
 }

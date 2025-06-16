@@ -86,7 +86,7 @@ class ManagePatient extends Component {
                             />
                         </div>
                         <div className="col-12">
-                            <table id="TableManageUser">
+                            <table id="TableManage">
                                 <tbody>
                                     <tr>
                                         <th>STT</th>

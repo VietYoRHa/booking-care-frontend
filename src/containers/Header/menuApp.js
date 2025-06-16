@@ -3,27 +3,13 @@ export const adminMenu = [
         // Quản lý người dùng
         name: "menu.admin.user",
         menus: [
-            // {
-            //     name: "menu.admin.crud",
-            //     link: "/system/user-manage",
-            // },
             {
-                name: "menu.admin.crud-redux",
+                name: "menu.admin.manage-user",
                 link: "/system/manage-user",
             },
             {
                 name: "menu.admin.manage-doctor",
                 link: "/system/manage-doctor",
-                // subMenus: [
-                //     {
-                //         name: "menu.system.system-administrator.user-manage",
-                //         link: "/system/user-manage",
-                //     },
-                //     {
-                //         name: "menu.system.system-administrator.user-redux",
-                //         link: "/system/user-redux",
-                //     },
-                // ],
             },
             {
                 // Quản lý kế hoạch khám bệnh
