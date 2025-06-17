@@ -67,7 +67,7 @@
         "doctor": "Bác sĩ",
         "health-facility": "Cơ sở y tế",
         "handbook": "Cẩm nang",
-        "outstanding-doctor": "Bác sĩ nổi bật",
+        "outstanding-doctor": "Bác sĩ",
         "more-info": "Xem thêm"
     },
     "manage-schedule": {
@@ -108,6 +108,12 @@
             "loading": "Đang tải...",
             "success": "Xác nhận lịch hẹn thành công!",
             "error": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
+        },
+        "all-specialties": {
+            "title": "Danh sách chuyên khoa",
+            "sub-title": "Tìm và khám phá các chuyên khoa y tế phù hợp với nhu cầu của bạn",
+            "view-detail": "Xem chi tiết",
+            "no-data": "Không có dữ liệu"
         }
     },
     "admin": {

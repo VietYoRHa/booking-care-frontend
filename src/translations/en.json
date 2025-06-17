@@ -67,7 +67,7 @@
         "doctor": "Doctor",
         "health-facility": "Health facility",
         "handbook": "Handbook",
-        "outstanding-doctor": "Outstanding doctor",
+        "outstanding-doctor": "Doctor",
         "more-info": "More"
     },
     "manage-schedule": {
@@ -108,6 +108,12 @@
             "loading": "Verifying appointment...",
             "success": "Appointment confirmed successfully!",
             "error": "The appointment does not exist or has already been confirmed!"
+        },
+        "all-specialties": {
+            "title": "All Medical Specialties",
+            "sub-title": "Find and explore medical specialties that meet your needs",
+            "view-detail": "View details",
+            "no-data": "No data available"
         }
     },
     "admin": {
