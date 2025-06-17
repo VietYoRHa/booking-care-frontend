@@ -21,7 +21,7 @@ class HomePage extends Component {
             slidesToScroll: 1,
         };
         return (
-            <div>
+            <>
                 <HomeHeader isShowBanner={true} />
                 <Specialty settings={settings} />
                 <MedicalFacility settings={settings} />
@@ -29,7 +29,7 @@ class HomePage extends Component {
                 {/* <HandBook settings={settings} /> */}
                 <About />
                 <HomeFooter />
-            </div>
+            </>
         );
     }
 }

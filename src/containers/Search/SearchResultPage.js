@@ -137,16 +137,22 @@ class SearchResultPage extends Component {
                                             </h4>
 
                                             {doctor.Doctor_Info &&
-                                                doctor.Doctor_Info
-                                                    .description && (
-                                                    <div className="doctor-specialty">
-                                                        {/* <i className="fas fa-stethoscope"></i>{" "} */}
-                                                        {
-                                                            doctor.Doctor_Info
-                                                                .description
-                                                        }
-                                                    </div>
-                                                )}
+                                            doctor.Doctor_Info.description ? (
+                                                <div className="doctor-specialty">
+                                                    {/* <i className="fas fa-stethoscope"></i>{" "} */}
+                                                    {
+                                                        doctor.Doctor_Info
+                                                            .description
+                                                    }
+                                                </div>
+                                            ) : (
+                                                <div className="doctor-specialty">
+                                                    <FormattedMessage
+                                                        id="patient.all-doctors.no-info"
+                                                        defaultMessage="Chưa có thông tin"
+                                                    />
+                                                </div>
+                                            )}
 
                                             <div className="view-profile">
                                                 <FormattedMessage id="patient.search.view-profile" />

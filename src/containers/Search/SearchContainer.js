@@ -24,7 +24,29 @@ class SearchContainer extends Component {
         };
 
         this.debouncedSearch = debounce(this.performSearch, 500);
+        this.dropdownRef = React.createRef();
+        this.inputRef = React.createRef();
     }
+
+    componentDidMount() {
+        document.addEventListener("mousedown", this.handleClickOutside);
+    }
+
+    componentWillUnmount() {
+        document.removeEventListener("mousedown", this.handleClickOutside);
+    }
+
+    handleClickOutside = (event) => {
+        if (
+            this.state.isShowResult &&
+            this.dropdownRef.current &&
+            !this.dropdownRef.current.contains(event.target) &&
+            this.inputRef.current &&
+            !this.inputRef.current.contains(event.target)
+        ) {
+            this.setState({ isShowResult: false });
+        }
+    };
 
     handleOnChangeInput = (event) => {
         const keyword = event.target.value;
@@ -73,6 +95,7 @@ class SearchContainer extends Component {
         e.preventDefault();
         const { keyword } = this.state;
         if (keyword.trim()) {
+            this.setState({ isShowResult: false });
             this.props.history.push(
                 `/search?keyword=${encodeURIComponent(keyword)}`
             );
@@ -99,12 +122,6 @@ class SearchContainer extends Component {
 
     handleTabClick = (tab) => {
         this.setState({ activeTab: tab });
-    };
-
-    handleBlur = () => {
-        setTimeout(() => {
-            this.setState({ isShowResult: false });
-        }, 200);
     };
 
     handleFocus = () => {
@@ -216,6 +233,7 @@ class SearchContainer extends Component {
                     <form onSubmit={this.handleSearch}>
                         <div className="input-group">
                             <input
+                                ref={this.inputRef}
                                 type="text"
                                 className="form-control"
                                 placeholder={
@@ -226,7 +244,6 @@ class SearchContainer extends Component {
                                 value={keyword}
                                 onChange={this.handleOnChangeInput}
                                 onFocus={this.handleFocus}
-                                onBlur={this.handleBlur}
                             />
                             <div className="input-group-append">
                                 <button
@@ -240,7 +257,10 @@ class SearchContainer extends Component {
                     </form>
 
                     {isShowResult && (
-                        <div className="search-results-dropdown">
+                        <div
+                            className="search-results-dropdown"
+                            ref={this.dropdownRef}
+                        >
                             <LoadingOverlay
                                 active={isLoading}
                                 spinner
