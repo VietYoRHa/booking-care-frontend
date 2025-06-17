@@ -6,12 +6,15 @@ import "./Login.scss";
 import { FormattedMessage } from "react-intl";
 import { handleLoginApi } from "../../services/userService";
 import authService from "../../services/authService";
+import { loginSchema } from "../../utils/validate/loginSchema";
+import { toast } from "react-toastify";
+import { zodValidate } from "../../utils/validate/validate";
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            username: "",
+            email: "",
             password: "",
             isShowPassword: false,
             errMessage: "",
@@ -25,12 +28,21 @@ class Login extends Component {
     };
 
     handleLogin = async () => {
+        const formObject = {
+            email: this.state.email,
+            password: this.state.password,
+        };
+        let validate = zodValidate(loginSchema, formObject);
+        if (!validate.isValid) {
+            toast.error(validate.errors[0].message);
+            return;
+        }
         this.setState({
             errMessage: "",
         });
         try {
             let data = await handleLoginApi(
-                this.state.username,
+                this.state.email,
                 this.state.password
             );
             if (data && data.errCode !== 0) {
@@ -43,6 +55,7 @@ class Login extends Component {
                     authService.setToken(data.user.accessToken);
                 }
                 this.props.userLoginSuccess(data.user);
+                toast.success("Đăng nhập thành công!");
             }
         } catch (error) {
             if (error.response) {
@@ -52,7 +65,6 @@ class Login extends Component {
                     });
                 }
             }
-            console.log("check error ", error.response);
         }
     };
 
@@ -75,7 +87,7 @@ class Login extends Component {
                 <div className="login-container">
                     <div className="login-content row">
                         <div className="col-12 text-login">
-                            Login to Account
+                            Đăng nhập hệ thống
                         </div>
                         <div className="col-12 form-group login-input">
                             <label>Email</label>
@@ -83,15 +95,15 @@ class Login extends Component {
                                 type="text"
                                 className="form-control"
                                 placeholder="Email"
-                                value={this.state.username}
+                                value={this.state.email}
                                 onChange={(event) =>
-                                    this.handleOnChangeInput(event, "username")
+                                    this.handleOnChangeInput(event, "email")
                                 }
                                 onKeyDown={(event) => this.handleKeyDown(event)}
                             />
                         </div>
                         <div className="col-12 form-group login-input">
-                            <label>Password:</label>
+                            <label>Mật khẩu:</label>
                             <div className="custom-input-password">
                                 <input
                                     type={
@@ -133,27 +145,13 @@ class Login extends Component {
                         <div className="col-12">
                             <button
                                 className="btn-login"
-                                onClick={(event) => {
+                                onClick={() => {
                                     this.handleLogin();
                                 }}
                             >
-                                Login
+                                Đăng nhập
                             </button>
                         </div>
-                        {/* <div className="col-12">
-                            <span className="forgot-password">
-                                Forgot password?
-                            </span>
-                        </div>
-                        <div className="col-12 text-center mt-3">
-                            <span className="text-other-login">
-                                Or login with
-                            </span>
-                        </div>
-                        <div className="col-12 social-login">
-                            <i className="fab fa-google-plus-g google"></i>
-                            <i className="fab fa-facebook-f facebook"></i>
-                        </div> */}
                     </div>
                 </div>
             </div>
@@ -170,7 +168,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         navigate: (path) => dispatch(push(path)),
-        // userLoginFail: () => dispatch(actions.userLoginFail()),
         userLoginSuccess: (userInfo) =>
             dispatch(actions.userLoginSuccess(userInfo)),
     };
