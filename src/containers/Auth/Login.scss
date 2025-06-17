@@ -1,9 +1,8 @@
 .login-background {
-    background: linear-gradient(
-        135deg,
-        rgba(34, 193, 195, 1) 0%,
-        rgba(254, 187, 45, 1) 100%
-    );
+    background-image: url("../../assets/login_background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     height: 100vh;
 
     .login-container {
@@ -51,11 +50,7 @@
                 border-radius: 15px;
                 outline: none;
                 border: none;
-                background: linear-gradient(
-                    135deg,
-                    rgba(34, 193, 195, 1) 0%,
-                    rgba(254, 187, 45, 1) 100%
-                );
+                background-color: #4880ff;
                 color: white;
             }
 
