@@ -49,12 +49,6 @@ class ModalUser extends Component {
     componentDidUpdate(prevProps) {
         if (prevProps.userEdit !== this.props.userEdit && this.props.userEdit) {
             let user = this.props.userEdit;
-            let imageBase64 = "";
-            if (user.image) {
-                imageBase64 = new Buffer(user.image, "base64").toString(
-                    "binary"
-                );
-            }
 
             this.setState({
                 id: user.id,
@@ -67,7 +61,7 @@ class ModalUser extends Component {
                 gender: user.gender,
                 position: user.positionId,
                 role: user.roleId,
-                previewImgUrl: imageBase64,
+                previewImgUrl: user.image,
             });
         }
 
