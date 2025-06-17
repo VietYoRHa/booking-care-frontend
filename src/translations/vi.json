@@ -120,6 +120,13 @@
             "sub-title": "Khám phá các cơ sở y tế hàng đầu và đối tác của VitaBook",
             "view-detail": "Xem chi tiết",
             "no-data": "Không có dữ liệu"
+        },
+        "all-doctors": {
+            "title": "Danh sách bác sĩ",
+            "sub-title": "Tìm kiếm và khám phá các bác sĩ hàng đầu trong lĩnh vực y tế",
+            "view-detail": "Xem chi tiết",
+            "no-data": "Không có dữ liệu",
+            "no-info": "Chưa có thông tin"
         }
     },
     "admin": {

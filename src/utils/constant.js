@@ -12,6 +12,7 @@ export const path = {
     FORBIDDEN: "/forbidden",
     ALL_SPECIALTIES: "/all-specialties",
     ALL_CLINICS: "/all-clinics",
+    ALL_DOCTORS: "/all-doctors",
 };
 
 export const LANGUAGES = {

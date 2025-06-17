@@ -32,6 +32,12 @@ class OutStandingDoctor extends Component {
         }
     };
 
+    handleViewAllDoctors = () => {
+        if (this.props.history) {
+            this.props.history.push(`/all-doctors`);
+        }
+    };
+
     render() {
         let { arrDoctors } = this.state;
         let { language } = this.props;
@@ -43,7 +49,10 @@ class OutStandingDoctor extends Component {
                         <span className="title-section">
                             <FormattedMessage id="homepage.outstanding-doctor" />
                         </span>
-                        <button className="btn-section">
+                        <button
+                            className="btn-section"
+                            onClick={this.handleViewAllDoctors}
+                        >
                             <FormattedMessage id="homepage.more-info" />
                         </button>
                     </div>
@@ -54,13 +63,7 @@ class OutStandingDoctor extends Component {
                                 arrDoctors.map((item, index) => {
                                     let nameVi = `${item.positionData.valueVi}, ${item.lastName} ${item.firstName}`;
                                     let nameEn = `${item.positionData.valueEn}, ${item.firstName} ${item.lastName}`;
-                                    let imageBase64 = "";
-                                    if (item.image) {
-                                        imageBase64 = new Buffer(
-                                            item.image,
-                                            "base64"
-                                        ).toString("binary");
-                                    }
+
                                     return (
                                         <div
                                             className="section-customize"
@@ -76,7 +79,7 @@ class OutStandingDoctor extends Component {
                                                     <div
                                                         className="bg-image section-outstanding-doctor"
                                                         style={{
-                                                            backgroundImage: `url(${imageBase64})`,
+                                                            backgroundImage: `url(${item.image})`,
                                                         }}
                                                     ></div>
                                                 </div>

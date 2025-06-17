@@ -120,6 +120,13 @@
             "sub-title": "Explore top medical facilities and partners of VitaBook",
             "view-detail": "View details",
             "no-data": "No data available"
+        },
+        "all-doctors": {
+            "title": "All Doctors",
+            "sub-title": "Find and explore doctors that meet your needs",
+            "view-detail": "View details",
+            "no-data": "No data available",
+            "no-info": "No information available"
         }
     },
     "admin": {

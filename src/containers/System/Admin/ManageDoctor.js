@@ -447,8 +447,8 @@ class ManageDoctor extends Component {
                     onClick={this.handleSaveContentMarkdown}
                     className={
                         hasOldData === true
-                            ? "save-content-doctor"
-                            : "create-content-doctor"
+                            ? "btn btn-warning mt-3"
+                            : "btn btn-primary mt-3"
                     }
                 >
                     {hasOldData === true ? (
