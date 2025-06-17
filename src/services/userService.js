@@ -129,6 +129,10 @@ const getDetailClinicById = (data) => {
     return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`);
 };
 
+const searchEverything = (keyword) => {
+    return axios.get(`/api/search?keyword=${encodeURIComponent(keyword)}`);
+};
+
 export {
     handleLoginApi,
     getAllUsers,
@@ -159,4 +163,5 @@ export {
     editClinic,
     deleteClinic,
     getDetailClinicById,
+    searchEverything,
 };

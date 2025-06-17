@@ -24,6 +24,7 @@ import Forbidden from "./Forbidden/Forbidden.js";
 import AllSpecialties from "./Patient/Specialty/AllSpecialties.js";
 import AllClinics from "./Patient/Clinic/AllClinics.js";
 import AllDoctors from "./Patient/Doctor/AllDoctors.js";
+import SearchResultPage from "./Search/SearchResultPage.js";
 
 class App extends Component {
     handlePersistorState = () => {
@@ -109,6 +110,10 @@ class App extends Component {
                                     <Route
                                         path={path.ALL_DOCTORS}
                                         component={AllDoctors}
+                                    />
+                                    <Route
+                                        path={path.SEARCH}
+                                        component={SearchResultPage}
                                     />
                                 </Switch>
                             </CustomScrollbars>

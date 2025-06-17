@@ -134,27 +134,34 @@
             margin-bottom: 15px;
         }
 
+        .search-container-wrapper {
+            margin-top: 30px;
+            width: 100%;
+            max-width: 600px;
+        }
+
         .search {
             width: fit-content;
             display: flex;
             justify-content: center;
             align-items: center;
             margin: 0 auto;
-            padding: 10px;
-            border-radius: 25px;
-            background: #f7d800;
+            width: 100%;
+            // padding: 10px;
+            // border-radius: 25px;
+            // background: #f7d800;
 
-            i {
-                margin: 0 5px;
-            }
+            // i {
+            //     margin: 0 5px;
+            // }
 
-            input {
-                height: 30px;
-                width: 360px;
-                background: transparent;
-                border: none;
-                outline: none;
-            }
+            // input {
+            //     height: 30px;
+            //     width: 360px;
+            //     background: transparent;
+            //     border: none;
+            //     outline: none;
+            // }
         }
     }
 

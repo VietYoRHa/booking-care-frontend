@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils/constant.js";
 import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
+import SearchContainer from "../Search/SearchContainer.js";
 
 class HomeHeader extends Component {
     changeLanguage = (language) => {
@@ -123,11 +124,14 @@ class HomeHeader extends Component {
                                 <FormattedMessage id="banner.subtitle" />
                             </div>
                             <div className="search">
-                                <i className="fas fa-search"></i>
+                                {/* <i className="fas fa-search"></i>
                                 <input
                                     type="text"
                                     placeholder="Tìm chuyên khoa khám bệnh"
-                                />
+                                /> */}
+                                <div className="search-container-wrapper">
+                                    <SearchContainer />
+                                </div>
                             </div>
                         </div>
                         <div className="content-down">

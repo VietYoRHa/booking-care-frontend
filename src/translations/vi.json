@@ -127,6 +127,25 @@
             "view-detail": "Xem chi tiết",
             "no-data": "Không có dữ liệu",
             "no-info": "Chưa có thông tin"
+        },
+        "search": {
+            "all": "Tất cả",
+            "doctors": "Bác sĩ",
+            "specialties": "Chuyên khoa",
+            "clinics": "Cơ sở y tế",
+            "doctor": "Bác sĩ",
+            "specialty": "Chuyên khoa",
+            "clinic": "Cơ sở y tế",
+            "no-results": "Không tìm thấy kết quả",
+            "view-all-results": "Xem tất cả kết quả",
+            "results-for": "Kết quả tìm kiếm cho",
+            "total-results": "Tổng số kết quả",
+            "no-results-found": "Không tìm thấy kết quả nào",
+            "try-different-keyword": "Vui lòng thử với từ khóa khác hoặc kiểm tra chính tả",
+            "no-results-in-category": "Không tìm thấy kết quả trong danh mục này",
+            "view-profile": "Xem hồ sơ",
+            "learn-more": "Tìm hiểu thêm",
+            "no-clinic": "Chưa có thông tin"
         }
     },
     "admin": {

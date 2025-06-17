@@ -127,6 +127,25 @@
             "view-detail": "View details",
             "no-data": "No data available",
             "no-info": "No information available"
+        },
+        "search": {
+            "all": "All",
+            "doctors": "Doctors",
+            "specialties": "Specialties",
+            "clinics": "Clinics",
+            "doctor": "Doctor",
+            "specialty": "Specialty",
+            "clinic": "Clinic",
+            "no-results": "No results found",
+            "view-all-results": "View all results",
+            "results-for": "Search results for",
+            "total-results": "Total results",
+            "no-results-found": "No results found",
+            "try-different-keyword": "Please try with different keywords or check spelling",
+            "no-results-in-category": "No results found in this category",
+            "view-profile": "View profile",
+            "learn-more": "Learn more",
+            "no-clinic": "No information"
         }
     },
     "admin": {
