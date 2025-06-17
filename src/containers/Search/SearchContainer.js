@@ -23,7 +23,6 @@ class SearchContainer extends Component {
             activeTab: "all",
         };
 
-        // Debounce search function để tránh gửi quá nhiều request
         this.debouncedSearch = debounce(this.performSearch, 500);
     }
 
@@ -74,7 +73,6 @@ class SearchContainer extends Component {
         e.preventDefault();
         const { keyword } = this.state;
         if (keyword.trim()) {
-            // Redirect to search results page with keyword
             this.props.history.push(
                 `/search?keyword=${encodeURIComponent(keyword)}`
             );
@@ -104,7 +102,6 @@ class SearchContainer extends Component {
     };
 
     handleBlur = () => {
-        // Delay hiding results to allow clicking on results
         setTimeout(() => {
             this.setState({ isShowResult: false });
         }, 200);

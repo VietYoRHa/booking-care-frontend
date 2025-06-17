@@ -4,7 +4,7 @@
 
     .search-header {
         padding: 30px 0;
-        background-color: #0071ba;
+        background-color: #49bce2;
     }
 
     .search-result-container {
@@ -20,7 +20,7 @@
                 color: #333;
 
                 .keyword {
-                    color: #0071ba;
+                    color: #49bce2;
                     margin-left: 5px;
                 }
             }
@@ -88,12 +88,12 @@
                 white-space: nowrap;
 
                 &:hover {
-                    color: #0071ba;
+                    color: #49bce2;
                 }
 
                 &.active {
-                    color: #0071ba;
-                    border-bottom-color: #0071ba;
+                    color: #49bce2;
+                    border-bottom-color: #49bce2;
                 }
             }
         }
@@ -101,6 +101,10 @@
         .search-results {
             .search-result-section {
                 margin-bottom: 30px;
+
+                .section-item {
+                    margin-bottom: 30px;
+                }
 
                 .section-title {
                     font-size: 20px;
@@ -114,11 +118,11 @@
                         margin-right: 8px;
 
                         &.fa-user-md {
-                            color: #f7d800;
+                            color: #49bce2;
                         }
 
                         &.fa-stethoscope {
-                            color: #0071ba;
+                            color: #49bce2;
                         }
 
                         &.fa-hospital {
@@ -152,7 +156,7 @@
                         background-position: center;
                         background-repeat: no-repeat;
                         background-size: cover;
-                        border: 3px solid #f7d800;
+                        border: 3px solid #49bce2;
                     }
 
                     .doctor-info {
@@ -172,10 +176,11 @@
                             font-size: 14px;
                             color: #555;
                             margin-bottom: 15px;
-                            text-align: center;
+                            white-space: pre-wrap;
+                            word-wrap: break-word;
 
                             i {
-                                color: #0071ba;
+                                color: #49bce2;
                                 margin-right: 5px;
                             }
                         }
@@ -282,7 +287,7 @@
                 }
 
                 .specialty-card .view-detail {
-                    color: #0071ba;
+                    color: #49bce2;
                 }
 
                 .clinic-card .view-detail {

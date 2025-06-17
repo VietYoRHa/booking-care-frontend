@@ -33,12 +33,13 @@
                 height: 46px;
                 width: 50px;
                 padding: 0;
-                background-color: #0071ba;
-                border-color: #0071ba;
+                background-color: #ffc10f;
+                border-color: #ffc10f;
+                color: #333;
 
                 &:hover,
                 &:focus {
-                    background-color: #005b95;
+                    background-color: #f7d800;
                 }
             }
         }
@@ -52,7 +53,7 @@
         background-color: white;
         border-radius: 10px;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        z-index: 1000;
+        z-index: 99;
         max-height: 80vh;
         overflow-y: auto;
 
@@ -71,12 +72,12 @@
                 white-space: nowrap;
 
                 &:hover {
-                    color: #0071ba;
+                    color: #49bce2;
                 }
 
                 &.active {
-                    color: #0071ba;
-                    border-bottom-color: #0071ba;
+                    color: #49bce2;
+                    border-bottom-color: #49bce2;
                 }
             }
         }
@@ -100,7 +101,7 @@
 
                 i {
                     margin-right: 5px;
-                    color: #0071ba;
+                    color: #49bce2;
                 }
             }
 
@@ -133,7 +134,7 @@
                         &.doctor-image .image {
                             border-radius: 50%;
                             background-color: #f0f0f0;
-                            border: 2px solid #f7d800;
+                            border: 2px solid #49bce2;
                         }
 
                         &.specialty-image .image {
@@ -151,7 +152,7 @@
 
                     .search-item-info {
                         flex: 1;
-                        min-width: 0; // Fix text overflow
+                        min-width: 0;
 
                         .search-item-name {
                             font-weight: 600;
@@ -184,11 +185,11 @@
                                 margin-right: 5px;
 
                                 &.fa-user-md {
-                                    color: #f7d800;
+                                    color: #49bce2;
                                 }
 
                                 &.fa-stethoscope {
-                                    color: #0071ba;
+                                    color: #49bce2;
                                 }
 
                                 &.fa-hospital {

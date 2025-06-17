@@ -111,7 +111,7 @@ class SearchResultPage extends Component {
 
                             return (
                                 <div
-                                    className="col-lg-4 col-md-6"
+                                    className="col-lg-4 col-md-6 section-item"
                                     key={`doctor-${doctor.id}`}
                                 >
                                     <div
@@ -138,13 +138,12 @@ class SearchResultPage extends Component {
 
                                             {doctor.Doctor_Info &&
                                                 doctor.Doctor_Info
-                                                    .specialtyData && (
+                                                    .description && (
                                                     <div className="doctor-specialty">
-                                                        <i className="fas fa-stethoscope"></i>{" "}
+                                                        {/* <i className="fas fa-stethoscope"></i>{" "} */}
                                                         {
                                                             doctor.Doctor_Info
-                                                                .specialtyData
-                                                                .name
+                                                                .description
                                                         }
                                                     </div>
                                                 )}
@@ -180,7 +179,7 @@ class SearchResultPage extends Component {
                     <div className="row">
                         {specialties.map((specialty) => (
                             <div
-                                className="col-lg-4 col-md-6"
+                                className="col-lg-4 col-md-6 section-item"
                                 key={`specialty-${specialty.id}`}
                             >
                                 <div
@@ -244,7 +243,7 @@ class SearchResultPage extends Component {
                     <div className="row">
                         {clinics.map((clinic) => (
                             <div
-                                className="col-lg-4 col-md-6"
+                                className="col-lg-4 col-md-6 section-item"
                                 key={`clinic-${clinic.id}`}
                             >
                                 <div

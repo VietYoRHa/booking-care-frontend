@@ -77,10 +77,10 @@ class HomeHeader extends Component {
                             </div>
                         </div>
                         <div className="right-content">
-                            <div className="support">
+                            {/* <div className="support">
                                 <i className="fas fa-question-circle"></i>{" "}
                                 <FormattedMessage id="home-header.support" />
-                            </div>
+                            </div> */}
                             <div
                                 className={
                                     language === LANGUAGES.VI
