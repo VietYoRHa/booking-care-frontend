@@ -127,11 +127,11 @@ class AdminManageSchedule extends Component {
     handleSaveSchedule = async () => {
         let { selectedDoctor, currentDate, rangeTime } = this.state;
         if (selectedDoctor && _.isEmpty(selectedDoctor)) {
-            toast.error("Invalid selected doctor!");
+            toast.error("Vui long chọn bác sĩ!");
             return;
         }
         if (!currentDate) {
-            toast.error("Invalid selected date!");
+            toast.error("Vui lòng chọn ngày!");
             return;
         }
         let result = [];

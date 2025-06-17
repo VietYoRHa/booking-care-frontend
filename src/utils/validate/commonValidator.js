@@ -6,6 +6,18 @@ export const full_name = z
     .max(100, "Họ tên tối đa 100 ký tự")
     .trim();
 
+export const first_name = z
+    .string()
+    .min(1, "Tên là bắt buộc")
+    .max(50, "Tên tối đa 50 ký tự")
+    .trim();
+
+export const last_name = z
+    .string()
+    .min(1, "Họ là bắt buộc")
+    .max(50, "Họ tối đa 50 ký tự")
+    .trim();
+
 export const phone_number = z
     .string()
     .min(1, "Số điện thoại là bắt buộc")

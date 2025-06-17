@@ -95,7 +95,7 @@ class ManageSchedule extends Component {
         let { selectedDoctor, currentDate, rangeTime } = this.state;
 
         if (!currentDate) {
-            toast.error("Invalid selected date!");
+            toast.error("Vui lòng chọn ngày khám");
             return;
         }
         let result = [];

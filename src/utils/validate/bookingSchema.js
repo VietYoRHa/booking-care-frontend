@@ -10,11 +10,11 @@ import {
 } from "./commonValidator";
 
 export const bookingSchema = z.object({
-    // full_name,
-    // phone_number,
-    // email,
-    // address,
-    // reason,
+    full_name,
+    phone_number,
+    email,
+    address,
+    reason,
     date_of_birth,
     gender,
 });

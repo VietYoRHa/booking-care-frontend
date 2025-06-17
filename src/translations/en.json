@@ -57,7 +57,8 @@
         "image": "Avatar",
         "save": "Save ",
         "edit": "Edit",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "delete-self-error": "You cannot delete your own account"
     },
     "homepage": {
         "search": "Search",

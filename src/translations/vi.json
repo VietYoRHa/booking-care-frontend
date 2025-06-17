@@ -57,7 +57,8 @@
         "image": "Ảnh đại diện",
         "save": "Lưu",
         "edit": "Chỉnh sửa thông tin",
-        "cancel": "Hủy"
+        "cancel": "Hủy",
+        "delete-self-error": "Bạn không thể xóa tài khoản của chính mình"
     },
     "homepage": {
         "search": "Tìm kiếm",

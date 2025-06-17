@@ -6,6 +6,7 @@ import MarkdownIt from "markdown-it";
 import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import { FormattedMessage } from "react-intl";
+import { toast } from "react-toastify";
 
 // const mdParser = new MarkdownIt();
 
@@ -34,6 +35,15 @@ class TableManageUser extends Component {
     }
 
     handleDeleteUser = (user) => {
+        if (this.props.currentUser.id === user.id) {
+            toast.error(
+                <FormattedMessage
+                    id="manage-user.delete-self-error"
+                    defaultMessage="Không thể xoá chính mình"
+                />
+            );
+            return;
+        }
         this.props.deleteUser(user.id);
     };
 
@@ -109,6 +119,7 @@ class TableManageUser extends Component {
 const mapStateToProps = (state) => {
     return {
         listUsers: state.admin.users,
+        currentUser: state.user.userInfo,
     };
 };
 
