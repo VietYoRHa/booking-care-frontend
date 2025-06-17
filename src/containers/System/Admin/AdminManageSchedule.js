@@ -1,10 +1,10 @@
 import { Component } from "react";
 import { connect } from "react-redux";
-import "./ManageSchedule.scss";
+import "./AdminManageSchedule.scss";
 import { FormattedMessage } from "react-intl";
 import Select from "react-select";
 import * as actions from "../../../store/actions";
-import { LANGUAGES, USER_ROLES } from "../../../utils/constant";
+import { LANGUAGES } from "../../../utils/constant";
 import DatePicker from "../../../components/Input/DatePicker";
 import { toast } from "react-toastify";
 import _ from "lodash";
@@ -13,30 +13,35 @@ import {
     saveBulkScheduleDoctor,
 } from "../../../services/userService";
 
-class ManageSchedule extends Component {
+class AdminManageSchedule extends Component {
     constructor(prop) {
         super(prop);
         this.state = {
-            selectedDoctor: -1,
+            listDoctors: [],
+            selectedDoctor: {},
             currentDate: "",
             rangeTime: [],
         };
     }
 
     componentDidMount() {
+        this.props.fetchAllDoctors();
         this.props.fetchAllScheduleTime();
-        if (
-            this.props.isLoggedIn &&
-            this.props.userInfo &&
-            this.props.userInfo.roleId === USER_ROLES.DOCTOR
-        ) {
-            this.setState({
-                selectedDoctor: this.props.userInfo.id,
-            });
-        }
     }
 
     componentDidUpdate(prevProps) {
+        if (prevProps.allDoctors !== this.props.allDoctors) {
+            let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
+            this.setState({
+                listDoctors: dataSelect,
+            });
+        }
+        if (prevProps.language !== this.props.language) {
+            let dataSelect = this.buildDataInputSelect(this.props.allDoctors);
+            this.setState({
+                listDoctors: dataSelect,
+            });
+        }
         if (prevProps.allScheduleTime !== this.props.allScheduleTime) {
             let data = this.props.allScheduleTime;
             if (data && data.length > 0) {
@@ -48,10 +53,38 @@ class ManageSchedule extends Component {
         }
     }
 
+    buildDataInputSelect = (inputData) => {
+        let result = [];
+        let { language } = this.props;
+        if (inputData && inputData.length > 0) {
+            inputData.map((item, index) => {
+                let object = {};
+                let labelVi = `${item.lastName} ${item.firstName}`;
+                let labelEn = `${item.firstName} ${item.lastName}`;
+                object.label = language === LANGUAGES.VI ? labelVi : labelEn;
+                object.value = item.id;
+                result.push(object);
+            });
+        }
+        return result;
+    };
+
+    handleChangeSelect = async (selectedDoctor) => {
+        let data = this.props.allScheduleTime;
+        if (data && data.length > 0) {
+            data = data.map((item) => ({ ...item, isSelected: false }));
+        }
+        this.setState({
+            selectedDoctor: selectedDoctor,
+            rangeTime: data,
+            currentDate: "",
+        });
+    };
+
     handleOnChangeDatePicker = async (date) => {
         let selectedDate = date[0].setHours(0, 0, 0, 0);
         let res = await getScheduleDoctorByDate(
-            this.state.selectedDoctor,
+            this.state.selectedDoctor.value,
             selectedDate
         );
         if (res && res.errCode === 0) {
@@ -93,9 +126,12 @@ class ManageSchedule extends Component {
 
     handleSaveSchedule = async () => {
         let { selectedDoctor, currentDate, rangeTime } = this.state;
-
+        if (selectedDoctor && _.isEmpty(selectedDoctor)) {
+            toast.error("Vui long chọn bác sĩ!");
+            return;
+        }
         if (!currentDate) {
-            toast.error("Vui lòng chọn ngày khám");
+            toast.error("Vui lòng chọn ngày!");
             return;
         }
         let result = [];
@@ -108,7 +144,7 @@ class ManageSchedule extends Component {
             if (selectedTime && selectedTime.length > 0) {
                 selectedTime.forEach((item) => {
                     let object = {};
-                    object.doctorId = selectedDoctor;
+                    object.doctorId = selectedDoctor.value;
                     object.date = formattedDate;
                     object.timeType = item.keyMap;
                     result.push(object);
@@ -117,7 +153,7 @@ class ManageSchedule extends Component {
         }
         let res = await saveBulkScheduleDoctor({
             arrSchedule: result,
-            doctorId: selectedDoctor,
+            doctorId: selectedDoctor.value,
             date: formattedDate,
         });
 
@@ -139,6 +175,16 @@ class ManageSchedule extends Component {
                 </div>
                 <div className="container">
                     <div className="row">
+                        <div className="col-6 form-group">
+                            <label>
+                                <FormattedMessage id="manage-schedule.choose-doctor" />
+                            </label>
+                            <Select
+                                value={this.state.selectedDoctor}
+                                onChange={this.handleChangeSelect}
+                                options={this.state.listDoctors}
+                            />
+                        </div>
                         <div className="col-6 form-group">
                             <label>
                                 <FormattedMessage id="manage-schedule.choose-date" />
@@ -191,7 +237,7 @@ class ManageSchedule extends Component {
 const mapStateToProps = (state) => {
     return {
         isLoggedIn: state.user.isLoggedIn,
-        userInfo: state.user.userInfo,
+        allDoctors: state.admin.allDoctors,
         language: state.app.language,
         allScheduleTime: state.admin.allScheduleTime,
     };
@@ -199,8 +245,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
+        fetchAllDoctors: () => dispatch(actions.fetchAllDoctors()),
         fetchAllScheduleTime: () => dispatch(actions.fetchAllScheduleTime()),
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ManageSchedule);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(AdminManageSchedule);

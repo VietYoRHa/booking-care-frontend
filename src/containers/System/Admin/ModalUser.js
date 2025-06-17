@@ -4,10 +4,12 @@ import { connect } from "react-redux";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import { LANGUAGES, CRUD_ACTIONS, CommonUtils } from "../../../utils";
 import * as actions from "../../../store/actions";
-import "./UserRedux.scss";
+import "./ManageUser.scss";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { toast } from "react-toastify";
+import { zodValidate } from "../../../utils/validate/validate";
+import { modalUserSchema } from "../../../utils/validate/modalUserSchema";
 
 class ModalUser extends Component {
     constructor(props) {
@@ -26,6 +28,7 @@ class ModalUser extends Component {
             avatar: "",
             previewImgUrl: "",
             isOpen: false,
+            showPositionSelect: false,
         };
     }
 
@@ -34,10 +37,6 @@ class ModalUser extends Component {
             gender:
                 this.props.genders && this.props.genders.length > 0
                     ? this.props.genders[0].keyMap
-                    : "",
-            position:
-                this.props.positions && this.props.positions.length > 0
-                    ? this.props.positions[0].keyMap
                     : "",
             role:
                 this.props.roles && this.props.roles.length > 0
@@ -49,11 +48,9 @@ class ModalUser extends Component {
     componentDidUpdate(prevProps) {
         if (prevProps.userEdit !== this.props.userEdit && this.props.userEdit) {
             let user = this.props.userEdit;
-            let imageBase64 = "";
-            if (user.image) {
-                imageBase64 = new Buffer(user.image, "base64").toString(
-                    "binary"
-                );
+            let isShowPositionSelect = true;
+            if (user.roleId === "R1" || user.roleId === "R3") {
+                isShowPositionSelect = false;
             }
 
             this.setState({
@@ -67,7 +64,8 @@ class ModalUser extends Component {
                 gender: user.gender,
                 position: user.positionId,
                 role: user.roleId,
-                previewImgUrl: imageBase64,
+                previewImgUrl: user.image,
+                showPositionSelect: isShowPositionSelect,
             });
         }
 
@@ -125,35 +123,39 @@ class ModalUser extends Component {
     handleOnChangeInput = (event, id) => {
         let copyState = { ...this.state };
         copyState[id] = event.target.value;
+
+        if (id === "role") {
+            if (event.target.value === "R1" || event.target.value === "R3") {
+                copyState.position = "";
+                copyState.showPositionSelect = false;
+            } else {
+                let user = this.props.userEdit;
+                if (user && user.positionId) {
+                    copyState.position = user.positionId;
+                }
+                copyState.showPositionSelect = true;
+            }
+        }
         this.setState({
             ...copyState,
         });
     };
 
-    checkValidationInput = () => {
-        let isValid = true;
-        let arrInput = [
-            "email",
-            "password",
-            "firstName",
-            "lastName",
-            "address",
-            "phoneNumber",
-        ];
-        for (let i = 0; i < arrInput.length; i++) {
-            if (!this.state[arrInput[i]]) {
-                isValid = false;
-                toast.error("Missing parameter: " + arrInput[i]);
-                break;
-            }
-        }
-        return isValid;
-    };
-
     handleSaveUser = () => {
-        let isValid = this.checkValidationInput();
-        if (isValid === false) return;
+        const formObject = {
+            email: this.state.email,
+            password: this.state.password,
+            first_name: this.state.firstName,
+            last_name: this.state.lastName,
+            phone_number: this.state.phoneNumber,
+            address: this.state.address,
+        };
+        let validate = zodValidate(modalUserSchema, formObject);
 
+        if (!validate.isValid) {
+            toast.error(validate.errors[0].message);
+            return;
+        }
         const { action } = this.props;
 
         if (action === CRUD_ACTIONS.CREATE) {
@@ -249,7 +251,7 @@ class ModalUser extends Component {
                                         ? "Loading roles..."
                                         : ""}
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.email" />
                                     </label>
@@ -266,7 +268,7 @@ class ModalUser extends Component {
                                         }
                                     />
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.password" />
                                     </label>
@@ -283,7 +285,7 @@ class ModalUser extends Component {
                                         }
                                     />
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.first-name" />
                                     </label>
@@ -299,7 +301,7 @@ class ModalUser extends Component {
                                         }
                                     />
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.last-name" />
                                     </label>
@@ -315,7 +317,7 @@ class ModalUser extends Component {
                                         }
                                     />
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.phone-number" />
                                     </label>
@@ -331,7 +333,7 @@ class ModalUser extends Component {
                                         }
                                     />
                                 </div>
-                                <div className="col-9">
+                                <div className="col-9 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.address" />
                                     </label>
@@ -347,7 +349,7 @@ class ModalUser extends Component {
                                         }
                                     />
                                 </div>
-                                <div className="col-3">
+                                <div className="col-3 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.gender" />
                                     </label>
@@ -378,38 +380,8 @@ class ModalUser extends Component {
                                             })}
                                     </select>
                                 </div>
-                                <div className="col-3">
-                                    <label>
-                                        <FormattedMessage id="manage-user.position" />
-                                    </label>
-                                    <select
-                                        className="form-control"
-                                        onChange={(event) =>
-                                            this.handleOnChangeInput(
-                                                event,
-                                                "position"
-                                            )
-                                        }
-                                        value={position}
-                                    >
-                                        {positions &&
-                                            positions.length > 0 &&
-                                            positions.map((item, index) => {
-                                                return (
-                                                    <option
-                                                        key={index}
-                                                        value={item.keyMap}
-                                                    >
-                                                        {language ===
-                                                        LANGUAGES.VI
-                                                            ? item.valueVi
-                                                            : item.valueEn}
-                                                    </option>
-                                                );
-                                            })}
-                                    </select>
-                                </div>
-                                <div className="col-3">
+
+                                <div className="col-3 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.role" />
                                     </label>
@@ -440,7 +412,40 @@ class ModalUser extends Component {
                                             })}
                                     </select>
                                 </div>
-                                <div className="col-3">
+                                {this.state.showPositionSelect && (
+                                    <div className="col-3 mb-3">
+                                        <label>
+                                            <FormattedMessage id="manage-user.position" />
+                                        </label>
+                                        <select
+                                            className="form-control"
+                                            onChange={(event) =>
+                                                this.handleOnChangeInput(
+                                                    event,
+                                                    "position"
+                                                )
+                                            }
+                                            value={position}
+                                        >
+                                            {positions &&
+                                                positions.length > 0 &&
+                                                positions.map((item, index) => {
+                                                    return (
+                                                        <option
+                                                            key={index}
+                                                            value={item.keyMap}
+                                                        >
+                                                            {language ===
+                                                            LANGUAGES.VI
+                                                                ? item.valueVi
+                                                                : item.valueEn}
+                                                        </option>
+                                                    );
+                                                })}
+                                        </select>
+                                    </div>
+                                )}
+                                <div className="col-3 mb-3">
                                     <label>
                                         <FormattedMessage id="manage-user.image" />
                                     </label>
@@ -465,9 +470,6 @@ class ModalUser extends Component {
                                             style={{
                                                 backgroundImage: `url(${previewImgUrl})`,
                                             }}
-                                            // onClick={() =>
-                                            //     this.handleOpenPreviewImg()
-                                            // }
                                         ></div>
                                     </div>
                                 </div>
@@ -486,17 +488,6 @@ class ModalUser extends Component {
                         </Button>
                     </ModalFooter>
                 </Modal>
-
-                {/* {isOpen === true && (
-                    <div className="lightbox-container">
-                        <Lightbox
-                            mainSrc={previewImgUrl}
-                            onCloseRequest={() =>
-                                this.setState({ isOpen: false })
-                            }
-                        />
-                    </div>
-                )} */}
             </>
         );
     }

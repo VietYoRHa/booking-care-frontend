@@ -6,6 +6,7 @@ import { FormattedMessage } from "react-intl";
 import { LANGUAGES } from "../../utils/constant.js";
 import { changeLanguageApp } from "../../store/actions";
 import { withRouter } from "react-router";
+import SearchContainer from "../Search/SearchContainer.js";
 
 class HomeHeader extends Component {
     changeLanguage = (language) => {
@@ -25,7 +26,7 @@ class HomeHeader extends Component {
                 <div className="home-header-container">
                     <div className="home-header-content">
                         <div className="left-content">
-                            <i className="fas fa-bars"></i>
+                            {/* <i className="fas fa-bars"></i> */}
                             <img
                                 className="header-logo"
                                 src={logo}
@@ -76,10 +77,10 @@ class HomeHeader extends Component {
                             </div>
                         </div>
                         <div className="right-content">
-                            <div className="support">
+                            {/* <div className="support">
                                 <i className="fas fa-question-circle"></i>{" "}
                                 <FormattedMessage id="home-header.support" />
-                            </div>
+                            </div> */}
                             <div
                                 className={
                                     language === LANGUAGES.VI
@@ -123,15 +124,18 @@ class HomeHeader extends Component {
                                 <FormattedMessage id="banner.subtitle" />
                             </div>
                             <div className="search">
-                                <i className="fas fa-search"></i>
+                                {/* <i className="fas fa-search"></i>
                                 <input
                                     type="text"
                                     placeholder="Tìm chuyên khoa khám bệnh"
-                                />
+                                /> */}
+                                <div className="search-container-wrapper">
+                                    <SearchContainer />
+                                </div>
                             </div>
                         </div>
                         <div className="content-down">
-                            <div className="options">
+                            {/* <div className="options">
                                 <div className="option-child">
                                     <div className="icon-child">
                                         <i className="far fa-hospital"></i>
@@ -180,7 +184,7 @@ class HomeHeader extends Component {
                                         <FormattedMessage id="banner.dental-checkup" />
                                     </div>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
                     </div>
                 )}

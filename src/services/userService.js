@@ -75,12 +75,32 @@ const postVerifyBookAppointment = (data) => {
     return axios.post("/api/verify-book-appointment", data);
 };
 
+const postCompleteAppointment = (data) => {
+    return axios.post("/api/complete-appointment", data, {
+        headers: {
+            "Content-Type": "multipart/form-data",
+        },
+    });
+};
+
+const postCancelAppointment = (data) => {
+    return axios.post("/api/cancel-appointment", data);
+};
+
 const createNewSpecialty = (data) => {
     return axios.post("/api/create-new-specialty", data);
 };
 
 const getAllSpecialty = () => {
     return axios.get("/api/get-all-specialty");
+};
+
+const editSpecialty = (data) => {
+    return axios.put("/api/edit-specialty", data);
+};
+
+const deleteSpecialty = (specialtyId) => {
+    return axios.delete("/api/delete-specialty", { data: { id: specialtyId } });
 };
 
 const getDetailSpecialtyById = (data) => {
@@ -97,8 +117,20 @@ const getAllClinic = () => {
     return axios.get("/api/get-all-clinic");
 };
 
+const editClinic = (data) => {
+    return axios.put("/api/edit-clinic", data);
+};
+
+const deleteClinic = (clinicId) => {
+    return axios.delete("/api/delete-clinic", { data: { id: clinicId } });
+};
+
 const getDetailClinicById = (data) => {
     return axios.get(`/api/get-detail-clinic-by-id?id=${data.id}`);
+};
+
+const searchEverything = (keyword) => {
+    return axios.get(`/api/search?keyword=${encodeURIComponent(keyword)}`);
 };
 
 export {
@@ -119,10 +151,17 @@ export {
     getListPatientForDoctor,
     postBookAppointment,
     postVerifyBookAppointment,
+    postCompleteAppointment,
+    postCancelAppointment,
     createNewSpecialty,
     getAllSpecialty,
+    editSpecialty,
+    deleteSpecialty,
     getDetailSpecialtyById,
     createNewClinic,
     getAllClinic,
+    editClinic,
+    deleteClinic,
     getDetailClinicById,
+    searchEverything,
 };

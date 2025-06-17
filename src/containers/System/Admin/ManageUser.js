@@ -3,11 +3,11 @@ import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 import { LANGUAGES, CRUD_ACTIONS } from "../../../utils";
 import * as actions from "../../../store/actions";
-import "./UserRedux.scss";
+import "./ManageUser.scss";
 import TableManageUser from "./TableManageUser";
 import ModalUser from "./ModalUser";
 
-class UserRedux extends Component {
+class ManageUser extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -111,4 +111,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UserRedux);
+export default connect(mapStateToProps, mapDispatchToProps)(ManageUser);

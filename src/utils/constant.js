@@ -9,6 +9,11 @@ export const path = {
     DETAIL_CLINIC: "/detail-clinic/:id",
     DOCTOR: "/doctor",
     VERIFY: "/verify-booking",
+    FORBIDDEN: "/forbidden",
+    ALL_SPECIALTIES: "/all-specialties",
+    ALL_CLINICS: "/all-clinics",
+    ALL_DOCTORS: "/all-doctors",
+    SEARCH: "/search",
 };
 
 export const LANGUAGES = {
@@ -36,4 +41,11 @@ export const USER_ROLES = {
     ADMIN: "R1",
     DOCTOR: "R2",
     PATIENT: "R3",
+};
+
+export const APPOINTMENT_STATUS = {
+    NEW: "S1",
+    CONFIRMED: "S2",
+    DONE: "S3",
+    CANCEL: "S4",
 };

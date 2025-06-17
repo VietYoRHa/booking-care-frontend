@@ -21,13 +21,15 @@ class HomePage extends Component {
             slidesToScroll: 1,
         };
         return (
-            <div>
+            <div className="homepage-container">
                 <HomeHeader isShowBanner={true} />
-                <Specialty settings={settings} />
-                <MedicalFacility settings={settings} />
-                <OutStandingDoctor settings={settings} />
-                {/* <HandBook settings={settings} /> */}
-                {/* <About /> */}
+                <div className="homepage-content">
+                    <Specialty settings={settings} />
+                    <MedicalFacility settings={settings} />
+                    <OutStandingDoctor settings={settings} />
+                    {/* <HandBook settings={settings} /> */}
+                    <About />
+                </div>
                 <HomeFooter />
             </div>
         );

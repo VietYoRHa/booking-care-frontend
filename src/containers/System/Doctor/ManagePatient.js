@@ -3,8 +3,10 @@ import { connect } from "react-redux";
 import "./ManagePatient.scss";
 import DatePicker from "../../../components/Input/DatePicker";
 import { getListPatientForDoctor } from "../../../services/userService";
-import { LANGUAGES } from "../../../utils";
+import { APPOINTMENT_STATUS, LANGUAGES } from "../../../utils";
 import ModalConfirmUser from "./ModalConfirmUser";
+import moment from "moment";
+import _ from "lodash";
 
 class ManagePatient extends Component {
     constructor(prop) {
@@ -29,6 +31,13 @@ class ManagePatient extends Component {
         }
     }
 
+    refetchListPatient = () => {
+        let { user } = this.props;
+        let { currentDate } = this.state;
+        let formattedDate = currentDate.setHours(0, 0, 0, 0);
+        this.getListPatient(user.id, formattedDate);
+    };
+
     handleOnChangeDatePicker = (date) => {
         let { user } = this.props;
         let formattedDate = date[0].setHours(0, 0, 0, 0);
@@ -50,11 +59,63 @@ class ManagePatient extends Component {
         }
     };
 
-    handleConfirm = (item) => {
+    capitalizeFirstLetter = (string) => {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+
+    buildTimeBooking = (data) => {
+        let { language } = this.props;
+        if (data && !_.isEmpty(data)) {
+            let date = this.capitalizeFirstLetter(
+                language === LANGUAGES.VI
+                    ? moment.unix(+data.date / 1000).format("dddd - DD/MM/YYYY")
+                    : moment
+                          .unix(+data.date / 1000)
+                          .locale("en")
+                          .format("dddd - MM/DD/YYYY")
+            );
+            let time =
+                language === LANGUAGES.VI
+                    ? data.patientTimeTypeData.valueVi
+                    : data.patientTimeTypeData.valueEn;
+            return `${time} - ${date}`;
+        }
+        return ``;
+    };
+
+    buildPatientName = (data) => {
+        let { language } = this.props;
+        if (data && !_.isEmpty(data)) {
+            let nameVi = `${data.patientData.lastName} ${data.patientData.firstName}`;
+            let nameEn = `${data.patientData.firstName} ${data.patientData.lastName}`;
+            return language === LANGUAGES.VI ? nameVi : nameEn;
+        }
+        return ``;
+    };
+
+    buildDoctorName = () => {
+        let { language, user } = this.props;
+        if (user && !_.isEmpty(user)) {
+            return language === LANGUAGES.VI
+                ? `${user.lastName} ${user.firstName}`
+                : `${user.firstName} ${user.lastName}`;
+        }
+        return ``;
+    };
+
+    handleConfirm = (item, statusId) => {
         let data = {
+            id: item.id,
             doctorId: item.doctorId,
             patientId: item.patientId,
+            fullName: this.buildPatientName(item),
             email: item.patientData.email,
+            date: item.date,
+            timeType: item.timeType,
+            timeString: this.buildTimeBooking(item),
+            doctorName: this.buildDoctorName(),
+            statusId: statusId,
+            language: this.props.language,
         };
         this.setState({
             isOpenModal: true,
@@ -62,9 +123,9 @@ class ManagePatient extends Component {
         });
     };
 
-    closeModal = () => {
+    toggleModal = () => {
         this.setState({
-            isOpenModal: false,
+            isOpenModal: !this.state.isOpenModal,
             dataConfirm: {},
         });
     };
@@ -72,7 +133,6 @@ class ManagePatient extends Component {
     render() {
         let { data, isOpenModal, dataConfirm } = this.state;
         let { language } = this.props;
-
         return (
             <>
                 <div className="manage-patient-container">
@@ -87,18 +147,21 @@ class ManagePatient extends Component {
                             />
                         </div>
                         <div className="col-12">
-                            <table id="TableManageUser">
+                            <table id="TableManage">
                                 <tbody>
                                     <tr>
                                         <th>STT</th>
                                         <th>Thời gian</th>
-                                        <th>họ tên</th>
+                                        <th>Họ tên</th>
                                         <th>Địa chỉ</th>
                                         <th>Giới tính</th>
+                                        <th>Lí do khám</th>
                                         <th>Hành động</th>
                                     </tr>
                                     {data && data.length > 0
                                         ? data.map((item, index) => {
+                                              let nameVi = `${item.patientData.lastName} ${item.patientData.firstName}`;
+                                              let nameEn = `${item.patientData.firstName} ${item.patientData.lastName}`;
                                               let genderLabel =
                                                   language === LANGUAGES.VI
                                                       ? item.patientData
@@ -116,10 +179,10 @@ class ManagePatient extends Component {
                                                       <td>{index + 1}</td>
                                                       <td>{timeLabel}</td>
                                                       <td>
-                                                          {
-                                                              item.patientData
-                                                                  .firstName
-                                                          }
+                                                          {language ===
+                                                          LANGUAGES.VI
+                                                              ? nameVi
+                                                              : nameEn}
                                                       </td>
                                                       <td>
                                                           {
@@ -128,16 +191,30 @@ class ManagePatient extends Component {
                                                           }
                                                       </td>
                                                       <td>{genderLabel}</td>
+                                                      <td>{item.reason}</td>
+
                                                       <td>
                                                           <button
                                                               className="btn btn-primary"
                                                               onClick={() =>
                                                                   this.handleConfirm(
-                                                                      item
+                                                                      item,
+                                                                      APPOINTMENT_STATUS.DONE
                                                                   )
                                                               }
                                                           >
                                                               Xác nhận
+                                                          </button>
+                                                          <button
+                                                              className="btn btn-secondary ml-4"
+                                                              onClick={() =>
+                                                                  this.handleConfirm(
+                                                                      item,
+                                                                      APPOINTMENT_STATUS.CANCEL
+                                                                  )
+                                                              }
+                                                          >
+                                                              Từ chối
                                                           </button>
                                                       </td>
                                                   </tr>
@@ -151,8 +228,9 @@ class ManagePatient extends Component {
                 </div>
                 <ModalConfirmUser
                     isOpen={isOpenModal}
-                    handleCloseModal={this.closeModal}
+                    toggle={this.toggleModal}
                     dataConfirm={dataConfirm}
+                    refetchListPatient={this.refetchListPatient}
                 />
             </>
         );

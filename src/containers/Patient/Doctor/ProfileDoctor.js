@@ -134,11 +134,11 @@ class ProfileDoctor extends Component {
                             {isShowDoctorDescription === true ? (
                                 <>
                                     {profileData &&
-                                        profileData.Markdown &&
-                                        profileData.Markdown.description && (
+                                        profileData.Doctor_Info &&
+                                        profileData.Doctor_Info.description && (
                                             <span>
                                                 {
-                                                    profileData.Markdown
+                                                    profileData.Doctor_Info
                                                         .description
                                                 }
                                             </span>
@@ -156,11 +156,12 @@ class ProfileDoctor extends Component {
                                 </span>
                                 <span className="right">
                                     {profileData &&
-                                        profileData.Doctor_Info &&
+                                        profileData.Doctor_Clinic_Specialty &&
                                         language === LANGUAGES.VI && (
                                             <NumberFormat
                                                 value={
-                                                    profileData.Doctor_Info
+                                                    profileData
+                                                        .Doctor_Clinic_Specialty
                                                         .priceTypeData.valueVi
                                                 }
                                                 displayType={"text"}
@@ -169,11 +170,12 @@ class ProfileDoctor extends Component {
                                             />
                                         )}{" "}
                                     {profileData &&
-                                        profileData.Doctor_Info &&
+                                        profileData.Doctor_Clinic_Specialty &&
                                         language === LANGUAGES.EN && (
                                             <NumberFormat
                                                 value={
-                                                    profileData.Doctor_Info
+                                                    profileData
+                                                        .Doctor_Clinic_Specialty
                                                         .priceTypeData.valueEn
                                                 }
                                                 displayType={"text"}

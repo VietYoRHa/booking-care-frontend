@@ -21,6 +21,10 @@ import VerifyEmail from "./Patient/VerifyBooking.js";
 import DetailSpecialty from "./Patient/Specialty/DetailSpecialty.js";
 import DetailClinic from "./Patient/Clinic/DetailClinic.js";
 import Forbidden from "./Forbidden/Forbidden.js";
+import AllSpecialties from "./Patient/Specialty/AllSpecialties.js";
+import AllClinics from "./Patient/Clinic/AllClinics.js";
+import AllDoctors from "./Patient/Doctor/AllDoctors.js";
+import SearchResultPage from "./Search/SearchResultPage.js";
 
 class App extends Component {
     handlePersistorState = () => {
@@ -92,8 +96,24 @@ class App extends Component {
                                     />
 
                                     <Route
-                                        path="/forbidden"
+                                        path={path.FORBIDDEN}
                                         component={Forbidden}
+                                    />
+                                    <Route
+                                        path={path.ALL_SPECIALTIES}
+                                        component={AllSpecialties}
+                                    />
+                                    <Route
+                                        path={path.ALL_CLINICS}
+                                        component={AllClinics}
+                                    />
+                                    <Route
+                                        path={path.ALL_DOCTORS}
+                                        component={AllDoctors}
+                                    />
+                                    <Route
+                                        path={path.SEARCH}
+                                        component={SearchResultPage}
                                     />
                                 </Switch>
                             </CustomScrollbars>

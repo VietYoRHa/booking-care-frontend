@@ -12,6 +12,8 @@ import { postBookAppointment } from "../../../../services/userService";
 import { toast } from "react-toastify";
 import { FormattedMessage } from "react-intl";
 import moment from "moment";
+import { zodValidate } from "../../../../utils/validate/validate";
+import { bookingSchema } from "../../../../utils/validate/bookingSchema";
 
 class BookingModal extends Component {
     constructor(props) {
@@ -33,6 +35,13 @@ class BookingModal extends Component {
 
     async componentDidMount() {
         this.props.fetchGenderStart();
+        let { data } = this.props;
+        let doctorId = data.doctorId;
+        let timeType = data.timeType;
+        this.setState({
+            doctorId: doctorId,
+            timeType: timeType,
+        });
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -95,13 +104,35 @@ class BookingModal extends Component {
 
     handleConfirmBooking = async () => {
         let { data } = this.props;
-        let dateOfBirth = new Date(this.state.dateOfBirth).getTime();
+        let dateOfBirth = new Date(this.state.dateOfBirth).getTime() || "";
         let timeString = this.buildTimeBooking(this.props.data);
         let doctorName = this.buildDoctorName(this.props.data);
+        let fullName = this.state.fullName.trim();
+        let firstName = fullName.split(" ").slice(-1).join(" ");
+        let lastName = fullName.split(" ").slice(0, -1).join(" ");
+
+        let formObject = {
+            full_name: this.state.fullName,
+            phone_number: this.state.phoneNumber,
+            email: this.state.email,
+            address: this.state.address,
+            reason: this.state.reason,
+            date_of_birth: dateOfBirth,
+            gender: this.state.selectedGender.value,
+        };
+
+        let validate = zodValidate(bookingSchema, formObject);
+        if (!validate.isValid) {
+            toast.error(validate.errors[0].message);
+            return;
+        }
+
         try {
             this.setState({ isLoading: true });
             let res = await postBookAppointment({
                 fullName: this.state.fullName,
+                firstName: firstName,
+                lastName: lastName,
                 phoneNumber: this.state.phoneNumber,
                 email: this.state.email,
                 address: this.state.address,
@@ -117,12 +148,14 @@ class BookingModal extends Component {
             });
             if (res && res.errCode === 0) {
                 this.props.handleCloseModal();
-                toast.success("Booking a new appointment successfully!");
+                toast.success(
+                    "Đặt lịch hẹn thành công! Vui lòng kiểm tra email để xác nhận."
+                );
             } else {
-                toast.error("Booking a new appointment error!");
+                toast.error("Đặt lịch hẹn thất bại!");
             }
         } catch (error) {
-            toast.error("Booking a new appointment error!");
+            toast.error("Đặt lịch hẹn thất bại!");
         } finally {
             this.setState({ isLoading: false });
         }
@@ -280,6 +313,7 @@ class BookingModal extends Component {
                                     onChange={this.handleOnChangeDatePicker}
                                     className="form-control"
                                     value={dateOfBirth}
+                                    maxDate={new Date().setHours(0, 0, 0, 0)}
                                 />
                             </div>
                             <div className="col-6 form-group">

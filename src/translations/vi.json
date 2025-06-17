@@ -26,9 +26,10 @@
         "admin": {
             "user": "Người dùng",
             "manage-doctor": "Quản lý Bác sĩ",
+            "manage-schedule": "Quản lý lịch khám",
             "manage-admin": "Admin",
             "crud": "CRUD User",
-            "crud-redux": "Quản lý User",
+            "manage-user": "Quản lý người dùng",
             "clinic": "Phòng khám",
             "manage-clinic": "Quản lý phòng khám",
             "specialty": "Chuyên khoa",
@@ -56,7 +57,8 @@
         "image": "Ảnh đại diện",
         "save": "Lưu",
         "edit": "Chỉnh sửa thông tin",
-        "cancel": "Hủy"
+        "cancel": "Hủy",
+        "delete-self-error": "Bạn không thể xóa tài khoản của chính mình"
     },
     "homepage": {
         "search": "Tìm kiếm",
@@ -66,7 +68,7 @@
         "doctor": "Bác sĩ",
         "health-facility": "Cơ sở y tế",
         "handbook": "Cẩm nang",
-        "outstanding-doctor": "Bác sĩ nổi bật",
+        "outstanding-doctor": "Bác sĩ",
         "more-info": "Xem thêm"
     },
     "manage-schedule": {
@@ -107,6 +109,44 @@
             "loading": "Đang tải...",
             "success": "Xác nhận lịch hẹn thành công!",
             "error": "Lịch hẹn không tồn tại hoặc đã được xác nhận!"
+        },
+        "all-specialties": {
+            "title": "Danh sách chuyên khoa",
+            "sub-title": "Tìm và khám phá các chuyên khoa y tế phù hợp với nhu cầu của bạn",
+            "view-detail": "Xem chi tiết",
+            "no-data": "Không có dữ liệu"
+        },
+        "all-clinics": {
+            "title": "Danh sách phòng khám",
+            "sub-title": "Khám phá các cơ sở y tế hàng đầu và đối tác của VitaBook",
+            "view-detail": "Xem chi tiết",
+            "no-data": "Không có dữ liệu"
+        },
+        "all-doctors": {
+            "title": "Danh sách bác sĩ",
+            "sub-title": "Tìm kiếm và khám phá các bác sĩ hàng đầu trong lĩnh vực y tế",
+            "view-detail": "Xem chi tiết",
+            "no-data": "Không có dữ liệu",
+            "no-info": "Chưa có thông tin"
+        },
+        "search": {
+            "all": "Tất cả",
+            "doctors": "Bác sĩ",
+            "specialties": "Chuyên khoa",
+            "clinics": "Cơ sở y tế",
+            "doctor": "Bác sĩ",
+            "specialty": "Chuyên khoa",
+            "clinic": "Cơ sở y tế",
+            "no-results": "Không tìm thấy kết quả",
+            "view-all-results": "Xem tất cả kết quả",
+            "results-for": "Kết quả tìm kiếm cho",
+            "total-results": "Tổng số kết quả",
+            "no-results-found": "Không tìm thấy kết quả nào",
+            "try-different-keyword": "Vui lòng thử với từ khóa khác hoặc kiểm tra chính tả",
+            "no-results-in-category": "Không tìm thấy kết quả trong danh mục này",
+            "view-profile": "Xem hồ sơ",
+            "learn-more": "Tìm hiểu thêm",
+            "no-clinic": "Chưa có thông tin"
         }
     },
     "admin": {

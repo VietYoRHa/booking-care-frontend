@@ -2,11 +2,22 @@ import { Component } from "react";
 import { connect } from "react-redux";
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import "./ModalConfirmUser.scss";
+import { APPOINTMENT_STATUS } from "../../../utils";
+import {
+    postCancelAppointment,
+    postCompleteAppointment,
+} from "../../../services/userService";
+import { toast } from "react-toastify";
 
 class ModalConfirmUser extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            cancelReason: "",
+            file: null,
+            isLoading: false,
+            fileName: "",
+        };
     }
 
     async componentDidMount() {}
@@ -16,38 +27,169 @@ class ModalConfirmUser extends Component {
         }
     }
 
+    handleChangeTextArea = (event) => {
+        this.setState({
+            cancelReason: event.target.value,
+        });
+    };
+
+    handleFileChange = (e) => {
+        if (e.target.files && e.target.files[0]) {
+            this.setState({
+                file: e.target.files[0],
+                fileName: e.target.files[0].name,
+            });
+        }
+    };
+
+    handleConfirmAppointment = async () => {
+        let { dataConfirm, toggle, refetchListPatient } = this.props;
+        if (dataConfirm && dataConfirm.statusId === APPOINTMENT_STATUS.CANCEL) {
+            try {
+                let res = await postCancelAppointment({
+                    id: dataConfirm.id,
+                    doctorId: dataConfirm.doctorId,
+                    email: dataConfirm.email,
+                    fullName: dataConfirm.fullName,
+                    date: dataConfirm.date,
+                    language: dataConfirm.language,
+                    patientId: dataConfirm.patientId,
+                    statusId: dataConfirm.statusId,
+                    timeString: dataConfirm.timeString,
+                    timeType: dataConfirm.timeType,
+                    doctorName: dataConfirm.doctorName,
+                    cancelReason: this.state.cancelReason,
+                });
+                if (res && res.errCode === 0) {
+                    this.setState({
+                        cancelReason: "",
+                    });
+                    toast.success("Từ chối lịch hẹn thành công");
+                    toggle();
+                    refetchListPatient();
+                } else {
+                    toast.error("Từ chối lịch hẹn thất bại");
+                }
+            } catch (error) {
+                toast.error("Từ chối lịch hẹn thất bại");
+            }
+        }
+        if (dataConfirm && dataConfirm.statusId === APPOINTMENT_STATUS.DONE) {
+            const formData = new FormData();
+            formData.append("id", dataConfirm.id);
+            formData.append("doctorId", dataConfirm.doctorId);
+            formData.append("email", dataConfirm.email);
+            formData.append("fullName", dataConfirm.fullName);
+            formData.append("date", dataConfirm.date);
+            formData.append("language", dataConfirm.language);
+            formData.append("patientId", dataConfirm.patientId);
+            formData.append("statusId", dataConfirm.statusId);
+            formData.append("timeString", dataConfirm.timeString);
+            formData.append("timeType", dataConfirm.timeType);
+            formData.append("doctorName", dataConfirm.doctorName);
+            formData.append("file", this.state.file);
+            try {
+                let res = await postCompleteAppointment(formData);
+                if (res && res.errCode === 0) {
+                    this.setState({
+                        file: null,
+                        fileName: "",
+                    });
+                    toast.success("Xác nhận bệnh nhân đã khám thành công");
+                    toggle();
+                    refetchListPatient();
+                } else {
+                    toast.error("Xác nhận bệnh nhân đã khám thất bại");
+                }
+            } catch (error) {
+                toast.error("Xác nhận bệnh nhân đã khám thất bại");
+            }
+        }
+    };
+
+    handleCloseModal = () => {
+        this.setState({
+            cancelReason: "",
+            file: null,
+            fileName: "",
+        });
+        this.props.toggle();
+    };
+
     render() {
-        let { isOpen, dataConfirm, handleCloseModal } = this.props;
+        let { isOpen, dataConfirm, toggle } = this.props;
+
         return (
             <Modal
                 isOpen={isOpen}
                 className={"confirm-modal-container"}
                 centered={true}
             >
-                <ModalHeader toggle={handleCloseModal}>
-                    Xác nhận lịch hẹn
+                <ModalHeader toggle={toggle}>
+                    {dataConfirm &&
+                        dataConfirm.statusId === APPOINTMENT_STATUS.DONE &&
+                        "Xác nhận bệnh nhân đã khám"}
+                    {dataConfirm &&
+                        dataConfirm.statusId === APPOINTMENT_STATUS.CANCEL &&
+                        "Từ chối lịch hẹn"}
                 </ModalHeader>
                 <ModalBody>
-                    <div className="row">
-                        <div className="col-6 form-group">
-                            <label>Email bệnh nhân</label>
-                            <input
-                                className="form-control"
-                                value={dataConfirm.email}
-                                disabled
-                            />
-                        </div>
-                        <div className="col-6 form-group">
-                            <label>Nội dung đính kèm</label>
-                            <input type="file" className="form-control-file" />
-                        </div>
-                    </div>
+                    {dataConfirm &&
+                        dataConfirm.statusId === APPOINTMENT_STATUS.DONE && (
+                            <div className="row">
+                                <div className="col-6 form-group">
+                                    <label>Email bệnh nhân</label>
+                                    <input
+                                        className="form-control"
+                                        value={dataConfirm.email}
+                                        disabled
+                                    />
+                                </div>
+                                <div className="col-6 form-group">
+                                    <label>Nội dung đính kèm</label>
+                                    <input
+                                        type="file"
+                                        className="form-control-file"
+                                        onChange={this.handleFileChange}
+                                    />
+                                </div>
+                            </div>
+                        )}
+                    {dataConfirm &&
+                        dataConfirm.statusId === APPOINTMENT_STATUS.CANCEL && (
+                            <div className="row">
+                                <div className="col-12 form-group">
+                                    <label>Email bệnh nhân</label>
+                                    <input
+                                        className="form-control"
+                                        value={dataConfirm.email}
+                                        disabled
+                                    />
+                                </div>
+                                <div className="col-12 form-group">
+                                    <label>Lí do từ chối</label>
+                                    <textarea
+                                        className="form-control"
+                                        value={this.state.cancelReason}
+                                        onChange={(event) =>
+                                            this.handleChangeTextArea(event)
+                                        }
+                                    />
+                                </div>
+                            </div>
+                        )}
                 </ModalBody>
                 <ModalFooter>
-                    <Button color="primary" onClick={handleCloseModal}>
+                    <Button
+                        color="primary"
+                        onClick={() => this.handleConfirmAppointment()}
+                    >
                         Confirm
                     </Button>
-                    <Button color="secondary" onClick={handleCloseModal}>
+                    <Button
+                        color="secondary"
+                        onClick={() => this.handleCloseModal()}
+                    >
                         Cancel
                     </Button>
                 </ModalFooter>

@@ -1,0 +1,323 @@
+.search-result-page {
+    background-color: #f5f5f5;
+
+    .search-header {
+        padding: 30px 0;
+        background-color: #49bce2;
+    }
+
+    .search-result-container {
+        padding: 30px 0 50px;
+
+        .search-summary {
+            margin-bottom: 20px;
+
+            h2 {
+                font-size: 24px;
+                font-weight: 600;
+                margin-bottom: 10px;
+                color: #333;
+
+                .keyword {
+                    color: #49bce2;
+                    margin-left: 5px;
+                }
+            }
+
+            p {
+                color: #666;
+                font-size: 15px;
+            }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 50px 0;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+
+            i {
+                font-size: 48px;
+                color: #ddd;
+                margin-bottom: 20px;
+            }
+
+            h3 {
+                font-weight: 600;
+                color: #555;
+                margin-bottom: 15px;
+            }
+
+            p {
+                color: #888;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            &.category-no-results {
+                padding: 30px 0;
+
+                i {
+                    font-size: 36px;
+                }
+
+                h4 {
+                    font-size: 18px;
+                    color: #555;
+                    margin-top: 15px;
+                }
+            }
+        }
+
+        .search-tabs {
+            display: flex;
+            background-color: white;
+            border-radius: 10px 10px 0 0;
+            box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+            overflow-x: auto;
+            margin-bottom: 20px;
+
+            .tab {
+                padding: 15px 25px;
+                cursor: pointer;
+                font-weight: 600;
+                color: #555;
+                border-bottom: 2px solid transparent;
+                white-space: nowrap;
+
+                &:hover {
+                    color: #49bce2;
+                }
+
+                &.active {
+                    color: #49bce2;
+                    border-bottom-color: #49bce2;
+                }
+            }
+        }
+
+        .search-results {
+            .search-result-section {
+                margin-bottom: 30px;
+
+                .section-item {
+                    margin-bottom: 30px;
+                }
+
+                .section-title {
+                    font-size: 20px;
+                    font-weight: 600;
+                    margin-bottom: 20px;
+                    padding-bottom: 10px;
+                    border-bottom: 1px solid #e0e0e0;
+                    color: #333;
+
+                    i {
+                        margin-right: 8px;
+
+                        &.fa-user-md {
+                            color: #49bce2;
+                        }
+
+                        &.fa-stethoscope {
+                            color: #49bce2;
+                        }
+
+                        &.fa-hospital {
+                            color: #49bce2;
+                        }
+                    }
+                }
+
+                .doctor-card {
+                    background-color: white;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+                    margin-bottom: 20px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+
+                    &:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                    }
+
+                    .doctor-image {
+                        height: 150px;
+                        width: 150px;
+                        margin: 20px auto;
+                        border-radius: 50%;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                        border: 3px solid #49bce2;
+                    }
+
+                    .doctor-info {
+                        padding: 20px;
+                        background-color: #f9f9f9;
+                        flex: 1;
+
+                        .doctor-name {
+                            font-size: 17px;
+                            font-weight: 600;
+                            margin-bottom: 10px;
+                            text-align: center;
+                            color: #333;
+                        }
+
+                        .doctor-specialty {
+                            font-size: 14px;
+                            color: #555;
+                            margin-bottom: 15px;
+                            white-space: pre-wrap;
+                            word-wrap: break-word;
+
+                            i {
+                                color: #49bce2;
+                                margin-right: 5px;
+                            }
+                        }
+
+                        .view-profile {
+                            padding-top: 10px;
+                            border-top: 1px solid #eee;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            font-size: 14px;
+                            font-weight: 600;
+                            color: #0071ba;
+
+                            i {
+                                transition: all 0.2s ease;
+                            }
+
+                            &:hover i {
+                                transform: translateX(5px);
+                            }
+                        }
+                    }
+                }
+
+                .specialty-card,
+                .clinic-card {
+                    background-color: white;
+                    border-radius: 10px;
+                    overflow: hidden;
+                    box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+                    margin-bottom: 20px;
+                    cursor: pointer;
+                    transition: all 0.2s ease;
+                    display: flex;
+                    flex-direction: column;
+                    height: 100%;
+
+                    &:hover {
+                        transform: translateY(-5px);
+                        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                    }
+
+                    .specialty-image,
+                    .clinic-image {
+                        height: 180px;
+                        background-position: center;
+                        background-repeat: no-repeat;
+                        background-size: contain;
+                    }
+
+                    .specialty-info,
+                    .clinic-info {
+                        padding: 20px;
+                        flex: 1;
+                        display: flex;
+                        flex-direction: column;
+
+                        .specialty-name,
+                        .clinic-name {
+                            font-size: 18px;
+                            font-weight: 600;
+                            margin-bottom: 10px;
+                            color: #333;
+                        }
+
+                        .specialty-description {
+                            font-size: 14px;
+                            color: #666;
+                            margin-bottom: 15px;
+                            flex: 1;
+                        }
+
+                        .clinic-address {
+                            font-size: 14px;
+                            color: #555;
+                            margin-bottom: 15px;
+
+                            i {
+                                color: #49bce2;
+                                margin-right: 5px;
+                            }
+                        }
+
+                        .view-detail {
+                            margin-top: auto;
+                            padding-top: 15px;
+                            border-top: 1px solid #eee;
+                            display: flex;
+                            justify-content: space-between;
+                            align-items: center;
+                            font-size: 14px;
+                            font-weight: 600;
+
+                            i {
+                                transition: all 0.2s ease;
+                            }
+
+                            &:hover i {
+                                transform: translateX(5px);
+                            }
+                        }
+                    }
+                }
+
+                .specialty-card .view-detail {
+                    color: #49bce2;
+                }
+
+                .clinic-card .view-detail {
+                    color: #49bce2;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .search-result-page {
+        .search-header {
+            padding: 20px 0;
+        }
+
+        .search-result-container {
+            padding: 20px 0 30px;
+
+            .search-summary {
+                h2 {
+                    font-size: 20px;
+                }
+            }
+
+            .search-tabs {
+                .tab {
+                    padding: 12px 15px;
+                    font-size: 14px;
+                }
+            }
+        }
+    }
+}
