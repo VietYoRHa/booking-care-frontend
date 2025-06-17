@@ -11,6 +11,7 @@ export const path = {
     VERIFY: "/verify-booking",
     FORBIDDEN: "/forbidden",
     ALL_SPECIALTIES: "/all-specialties",
+    ALL_CLINICS: "/all-clinics",
 };
 
 export const LANGUAGES = {

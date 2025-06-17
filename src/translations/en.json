@@ -114,6 +114,12 @@
             "sub-title": "Find and explore medical specialties that meet your needs",
             "view-detail": "View details",
             "no-data": "No data available"
+        },
+        "all-clinics": {
+            "title": "All Medical Facilities",
+            "sub-title": "Explore top medical facilities and partners of VitaBook",
+            "view-detail": "View details",
+            "no-data": "No data available"
         }
     },
     "admin": {

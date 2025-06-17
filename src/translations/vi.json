@@ -114,6 +114,12 @@
             "sub-title": "Tìm và khám phá các chuyên khoa y tế phù hợp với nhu cầu của bạn",
             "view-detail": "Xem chi tiết",
             "no-data": "Không có dữ liệu"
+        },
+        "all-clinics": {
+            "title": "Danh sách phòng khám",
+            "sub-title": "Khám phá các cơ sở y tế hàng đầu và đối tác của VitaBook",
+            "view-detail": "Xem chi tiết",
+            "no-data": "Không có dữ liệu"
         }
     },
     "admin": {
