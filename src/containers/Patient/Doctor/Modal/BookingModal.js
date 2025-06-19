@@ -13,7 +13,7 @@ import { toast } from "react-toastify";
 import { FormattedMessage } from "react-intl";
 import moment from "moment";
 import { zodValidate } from "../../../../utils/validate/validate";
-import { bookingSchema } from "../../../../utils/validate/bookingSchema";
+import { createBookingSchema } from "../../../../utils/validate/bookingSchema";
 
 class BookingModal extends Component {
     constructor(props) {
@@ -121,6 +121,7 @@ class BookingModal extends Component {
             gender: this.state.selectedGender.value,
         };
 
+        const bookingSchema = createBookingSchema();
         let validate = zodValidate(bookingSchema, formObject);
         if (!validate.isValid) {
             toast.error(validate.errors[0].message);
