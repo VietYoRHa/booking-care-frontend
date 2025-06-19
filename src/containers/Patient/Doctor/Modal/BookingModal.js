@@ -148,14 +148,12 @@ class BookingModal extends Component {
             });
             if (res && res.errCode === 0) {
                 this.props.handleCloseModal();
-                toast.success(
-                    "Đặt lịch hẹn thành công! Vui lòng kiểm tra email để xác nhận."
-                );
+                toast.success(<FormattedMessage id="toast.success.booking" />);
             } else {
-                toast.error("Đặt lịch hẹn thất bại!");
+                toast.error(<FormattedMessage id="toast.error.booking" />);
             }
         } catch (error) {
-            toast.error("Đặt lịch hẹn thất bại!");
+            toast.error(<FormattedMessage id="toast.error.common" />);
         } finally {
             this.setState({ isLoading: false });
         }

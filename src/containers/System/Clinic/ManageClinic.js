@@ -5,6 +5,7 @@ import { CRUD_ACTIONS } from "../../../utils";
 import { deleteClinic, getAllClinic } from "../../../services/userService";
 import { toast } from "react-toastify";
 import ModalClinic from "./ModalClinic";
+import { FormattedMessage } from "react-intl";
 
 class ManageClinic extends Component {
     constructor(props) {
@@ -63,10 +64,14 @@ class ManageClinic extends Component {
         if (clinic && clinic.id) {
             let res = await deleteClinic(clinic.id);
             if (res && res.errCode === 0) {
-                toast.success("Xoá phòng khám thành công");
+                toast.success(
+                    <FormattedMessage id="toast.success.delete-clinic" />
+                );
                 this.fetchAllClinic();
             } else {
-                toast.error("Xoá phòng khám thất bại");
+                toast.error(
+                    <FormattedMessage id="toast.error.delete-clinic" />
+                );
             }
         }
     };

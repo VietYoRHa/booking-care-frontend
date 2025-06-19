@@ -127,11 +127,11 @@ class AdminManageSchedule extends Component {
     handleSaveSchedule = async () => {
         let { selectedDoctor, currentDate, rangeTime } = this.state;
         if (selectedDoctor && _.isEmpty(selectedDoctor)) {
-            toast.error("Vui long chọn bác sĩ!");
+            toast.error(<FormattedMessage id="toast.error.choose-doctor" />);
             return;
         }
         if (!currentDate) {
-            toast.error("Vui lòng chọn ngày!");
+            toast.error(<FormattedMessage id="toast.error.choose-date" />);
             return;
         }
         let result = [];
@@ -158,7 +158,9 @@ class AdminManageSchedule extends Component {
         });
 
         if (res && res.errCode === 0) {
-            toast.success("Lưu lịch khám thành công");
+            toast.success(
+                <FormattedMessage id="toast.success.save-schedule" />
+            );
         } else {
             toast.error(res.errMessage);
         }

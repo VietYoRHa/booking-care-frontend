@@ -7,6 +7,7 @@ import { CommonUtils, CRUD_ACTIONS } from "../../../utils";
 import { createNewClinic, editClinic } from "../../../services/userService";
 import { toast } from "react-toastify";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FormattedMessage } from "react-intl";
 
 const mdParser = new MarkdownIt();
 
@@ -105,11 +106,15 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Tạo phòng khám thành công");
+                    toast.success(
+                        <FormattedMessage id="toast.success.create-clinic" />
+                    );
                     this.props.toggle();
                     this.props.fetchAllClinic();
                 } else {
-                    toast.error("Tạo phòng khám thất bại");
+                    toast.error(
+                        <FormattedMessage id="toast.error.create-clinic" />
+                    );
                 }
             }
             if (this.props.action === CRUD_ACTIONS.EDIT) {
@@ -129,15 +134,19 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Sửa thông tin phòng khám thành công");
+                    toast.success(
+                        <FormattedMessage id="toast.success.update-clinic" />
+                    );
                     this.props.toggle();
                     this.props.fetchAllClinic();
                 } else {
-                    toast.error("Sửa thông tin phòng khám thất bại");
+                    toast.error(
+                        <FormattedMessage id="toast.error.update-clinic" />
+                    );
                 }
             }
         } catch (error) {
-            toast.error("Có lỗi xảy ra khi lưu thông tin phòng khám");
+            toast.error(<FormattedMessage id="toast.error.common" />);
         } finally {
             this.setState({
                 isLoading: false,

@@ -12,6 +12,7 @@ import {
     getAllClinic,
 } from "../../services/userService";
 import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 
 export const fetchGenderStart = () => {
     return async (dispatch, getState) => {
@@ -96,15 +97,17 @@ export const createNewUser = (data) => {
         try {
             let res = await createNewUserService(data);
             if (res && res.errCode === 0) {
-                toast.success("Tạo người dùng mới thành công!");
+                toast.success(
+                    <FormattedMessage id="toast.success.create-user" />
+                );
                 dispatch(createUserSuccess());
                 dispatch(fetchAllUsersStart());
             } else {
-                toast.error("Tạo người dùng mới thất bại!");
+                toast.error(<FormattedMessage id="toast.error.create-user" />);
                 dispatch(createUserFailed());
             }
         } catch (error) {
-            toast.error("Tạo người dùng mới thất bại!");
+            toast.error(<FormattedMessage id="toast.error.common" />);
             dispatch(createUserFailed());
             console.log("error", error);
         }
@@ -149,15 +152,17 @@ export const editUser = (data) => {
         try {
             let res = await editUserService(data);
             if (res && res.errCode === 0) {
-                toast.success("Cập nhật thông tin người dùng thành công!");
+                toast.success(
+                    <FormattedMessage id="toast.success.update-user" />
+                );
                 dispatch(editUserSuccess());
                 dispatch(fetchAllUsersStart());
             } else {
-                toast.error("Cập nhật thông tin người dùng thất bại!");
+                toast.error(<FormattedMessage id="toast.error.update-user" />);
                 dispatch(editUserFailed());
             }
         } catch (error) {
-            toast.error("Cập nhật thông tin người dùng thất bại!");
+            toast.error(<FormattedMessage id="toast.error.common" />);
             dispatch(editUserFailed());
             console.log("error", error);
         }
@@ -177,15 +182,17 @@ export const deleteUser = (userId) => {
         try {
             let res = await deleteUserService(userId);
             if (res && res.errCode === 0) {
-                toast.success("Xoá người dùng thành công!");
+                toast.success(
+                    <FormattedMessage id="toast.success.delete-user" />
+                );
                 dispatch(deleteUserSuccess());
                 dispatch(fetchAllUsersStart());
             } else {
-                toast.error("Xoá người dùng thất bại!");
+                toast.error(<FormattedMessage id="toast.error.delete-user" />);
                 dispatch(deleteUserFailed());
             }
         } catch (error) {
-            toast.error("Xoá người dùng thất bại!");
+            toast.error(<FormattedMessage id="toast.error.common" />);
             dispatch(deleteUserFailed());
             console.log("error", error);
         }
@@ -254,14 +261,18 @@ export const saveDetailDoctor = (data) => {
         try {
             let res = await saveDetailDoctorService(data);
             if (res && res.errCode === 0) {
-                toast.success("Lưu thông tin chi tiết bác sĩ thành công!");
+                toast.success(
+                    <FormattedMessage id="toast.success.update-doctor" />
+                );
                 dispatch(saveDetailDoctorSuccess());
             } else {
-                toast.error("Lưu thông tin chi tiết bác sĩ thất bại!");
+                toast.error(
+                    <FormattedMessage id="toast.error.update-doctor" />
+                );
                 dispatch(saveDetailDoctorFailed());
             }
         } catch (error) {
-            toast.error("Lưu thông tin chi tiết bác sĩ thất bại!");
+            toast.error(<FormattedMessage id="toast.error.common" />);
             dispatch(saveDetailDoctorFailed());
         }
     };

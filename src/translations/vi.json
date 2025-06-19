@@ -170,5 +170,56 @@
         "access-denied": "Từ chối truy cập",
         "no-permission": "Bạn không có quyền truy cập vào trang này",
         "back-to-home": "Quay về trang chủ"
+    },
+    "toast": {
+        "success": {
+            "login": "Đăng nhập thành công!",
+            "booking": "Đặt lịch hẹn thành công! Vui lòng kiểm tra email để xác nhận.",
+            "save-schedule": "Lưu lịch khám thành công!",
+            "delete-clinic": "Xóa phòng khám thành công!",
+            "create-clinic": "Tạo phòng khám thành công!",
+            "update-clinic": "Cập nhật phòng khám thành công!",
+            "deny-appointment": "Từ chối lịch hẹn thành công!",
+            "accept-appointment": "Xác nhận bệnh nhân đã khám thành công!",
+            "delete-specialty": "Xóa chuyên khoa thành công!",
+            "create-specialty": "Tạo chuyên khoa thành công!",
+            "update-specialty": "Cập nhật chuyên khoa thành công!",
+            "create-user": "Tạo người dùng mới thành công!",
+            "update-user": "Cập nhật thông tin người dùng thành công!",
+            "delete-user": "Xóa người dùng thành công!",
+            "update-doctor": "Cập nhật thông tin bác sĩ thành công!"
+        },
+        "error": {
+            "common": "Đã có lỗi xảy ra, vui lòng thử lại sau!",
+            "login": "Đăng nhập thất bại!",
+            "booking": "Đặt lịch hẹn thất bại!",
+            "save-schedule": "Lưu lịch khám thất bại!",
+            "delete-clinic": "Xóa phòng khám thất bại!",
+            "create-clinic": "Tạo phòng khám thất bại!",
+            "update-clinic": "Cập nhật phòng khám thất bại!",
+            "deny-appointment": "Từ chối lịch hẹn thất bại!",
+            "accept-appointment": "Xác nhận bệnh nhân đã khám thất bại!",
+            "delete-specialty": "Xóa chuyên khoa thất bại!",
+            "create-specialty": "Tạo chuyên khoa thất bại!",
+            "update-specialty": "Cập nhật chuyên khoa thất bại!",
+            "create-user": "Tạo người dùng mới thất bại!",
+            "update-user": "Cập nhật thông tin người dùng thất bại!",
+            "delete-user": "Xóa người dùng thất bại!",
+            "update-doctor": "Cập nhật thông tin bác sĩ thất bại!",
+            "choose-doctor": "Vui lòng chọn bác sĩ!",
+            "choose-date": "Vui lòng chọn ngày!"
+        }
+    },
+    "zod": {
+        "full_name": {
+            "required": "Họ và tên là bắt buộc",
+            "min": "Họ và tên phải có ít nhất 1 ký tự",
+            "max": "Họ và tên không được vượt quá 100 ký tự"
+        },
+        "first_name": {
+            "required": "Tên là bắt buộc",
+            "min": "Tên phải có ít nhất 1 ký tự",
+            "max": "Tên không được vượt quá 50 ký tự"
+        }
     }
 }

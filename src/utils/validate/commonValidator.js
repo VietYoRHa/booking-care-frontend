@@ -1,14 +1,16 @@
 import { z } from "zod";
+import { FormattedMessage } from "react-intl";
+import LanguageUtils from "../LanguageUtils";
 
 export const full_name = z
     .string()
-    .min(1, "Họ tên là bắt buộc")
+    .min(1, <FormattedMessage id="zod.full_name.required" />)
     .max(100, "Họ tên tối đa 100 ký tự")
     .trim();
 
 export const first_name = z
     .string()
-    .min(1, "Tên là bắt buộc")
+    .min(1, <FormattedMessage id="zod.first_name.required" />)
     .max(50, "Tên tối đa 50 ký tự")
     .trim();
 

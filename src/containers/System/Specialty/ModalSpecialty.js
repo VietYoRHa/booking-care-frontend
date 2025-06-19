@@ -10,6 +10,7 @@ import {
 } from "../../../services/userService";
 import { toast } from "react-toastify";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FormattedMessage } from "react-intl";
 
 const mdParser = new MarkdownIt();
 
@@ -105,11 +106,15 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Tạo chuyên khoa thành công");
+                    toast.success(
+                        <FormattedMessage id="toast.success.create-specialty" />
+                    );
                     this.props.toggle();
                     this.props.fetchAllSpecialty();
                 } else {
-                    toast.error("Tạo chuyên khoa thất bại");
+                    toast.error(
+                        <FormattedMessage id="toast.error.create-specialty" />
+                    );
                 }
             }
             if (this.props.action === CRUD_ACTIONS.EDIT) {
@@ -129,15 +134,19 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Sửa chuyên khoa thành công");
+                    toast.success(
+                        <FormattedMessage id="toast.success.update-specialty" />
+                    );
                     this.props.toggle();
                     this.props.fetchAllSpecialty();
                 } else {
-                    toast.error("Sửa chuyên khoa thất bại");
+                    toast.error(
+                        <FormattedMessage id="toast.error.update-specialty" />
+                    );
                 }
             }
         } catch (error) {
-            toast.error("Đã xảy ra lỗi khi lưu chuyên khoa");
+            toast.error(<FormattedMessage id="toast.error.common" />);
         } finally {
             this.setState({
                 isLoading: false,

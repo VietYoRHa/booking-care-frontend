@@ -170,5 +170,64 @@
         "access-denied": "Access Denied",
         "no-permission": "You do not have permission to access this page",
         "back-to-home": "Back to Home"
+    },
+    "toast": {
+        "success": {
+            "login": "Login successful!",
+            "booking": "Appointment booked successfully! Please check your email for confirmation.",
+            "save-schedule": "Schedule saved successfully!",
+            "delete-clinic": "Clinic deleted successfully!",
+            "create-clinic": "Clinic created successfully!",
+            "update-clinic": "Clinic updated successfully!",
+            "deny-appointment": "Appointment denied successfully!",
+            "accept-appointment": "Patient examination confirmed successfully!",
+            "delete-specialty": "Specialty deleted successfully!",
+            "create-specialty": "Specialty created successfully!",
+            "update-specialty": "Specialty updated successfully!",
+            "create-user": "New user created successfully!",
+            "update-user": "User information updated successfully!",
+            "delete-user": "User deleted successfully!",
+            "update-doctor": "Doctor information updated successfully!"
+        },
+        "error": {
+            "common": "An error occurred, please try again later!",
+            "login": "Login failed!",
+            "booking": "Appointment booking failed!",
+            "save-schedule": "Failed to save schedule!",
+            "delete-clinic": "Failed to delete clinic!",
+            "create-clinic": "Failed to create clinic!",
+            "update-clinic": "Failed to update clinic!",
+            "deny-appointment": "Failed to deny appointment!",
+            "accept-appointment": "Failed to confirm patient examination!",
+            "delete-specialty": "Failed to delete specialty!",
+            "create-specialty": "Failed to create specialty!",
+            "update-specialty": "Failed to update specialty!",
+            "create-user": "Failed to create new user!",
+            "update-user": "Failed to update user information!",
+            "delete-user": "Failed to delete user!",
+            "update-doctor": "Failed to update doctor information!",
+            "choose-doctor": "Please select a doctor!",
+            "choose-date": "Please select a date!"
+        }
+    },
+    "zod": {
+        "full_name": {
+            "required": "Full name is required",
+            "min_length": "Full name must be at least 2 characters long",
+            "max_length": "Full name must not exceed 50 characters"
+        },
+        "email": {
+            "required": "Email is required",
+            "invalid": "Invalid email format"
+        },
+        "phone_number": {
+            "required": "Phone number is required",
+            "invalid": "Invalid phone number format"
+        },
+        "address": {
+            "required": "Address is required",
+            "min_length": "Address must be at least 5 characters long",
+            "max_length": "Address must not exceed 100 characters"
+        }
     }
 }

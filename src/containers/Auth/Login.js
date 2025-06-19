@@ -55,7 +55,7 @@ class Login extends Component {
                     authService.setToken(data.user.accessToken);
                 }
                 this.props.userLoginSuccess(data.user);
-                toast.success("Đăng nhập thành công!");
+                toast.success(<FormattedMessage id="toast.success.login" />);
             }
         } catch (error) {
             if (error.response) {

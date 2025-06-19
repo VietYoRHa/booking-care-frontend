@@ -95,7 +95,7 @@ class ManageSchedule extends Component {
         let { selectedDoctor, currentDate, rangeTime } = this.state;
 
         if (!currentDate) {
-            toast.error("Vui lòng chọn ngày khám");
+            toast.error(<FormattedMessage id="toast.error.choose-date" />);
             return;
         }
         let result = [];
@@ -122,7 +122,9 @@ class ManageSchedule extends Component {
         });
 
         if (res && res.errCode === 0) {
-            toast.success("Lưu lịch khám thành công");
+            toast.success(
+                <FormattedMessage id="toast.success.save-schedule" />
+            );
         } else {
             toast.error(res.errMessage);
         }

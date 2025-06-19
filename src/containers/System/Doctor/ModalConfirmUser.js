@@ -8,6 +8,7 @@ import {
     postCompleteAppointment,
 } from "../../../services/userService";
 import { toast } from "react-toastify";
+import { FormattedMessage } from "react-intl";
 
 class ModalConfirmUser extends Component {
     constructor(props) {
@@ -64,14 +65,18 @@ class ModalConfirmUser extends Component {
                     this.setState({
                         cancelReason: "",
                     });
-                    toast.success("Từ chối lịch hẹn thành công");
+                    toast.success(
+                        <FormattedMessage id="toast.success.deny-appointment" />
+                    );
                     toggle();
                     refetchListPatient();
                 } else {
-                    toast.error("Từ chối lịch hẹn thất bại");
+                    toast.error(
+                        <FormattedMessage id="toast.error.deny-appointment" />
+                    );
                 }
             } catch (error) {
-                toast.error("Từ chối lịch hẹn thất bại");
+                toast.error(<FormattedMessage id="toast.error.common" />);
             }
         }
         if (dataConfirm && dataConfirm.statusId === APPOINTMENT_STATUS.DONE) {
@@ -95,14 +100,18 @@ class ModalConfirmUser extends Component {
                         file: null,
                         fileName: "",
                     });
-                    toast.success("Xác nhận bệnh nhân đã khám thành công");
+                    toast.success(
+                        <FormattedMessage id="toast.success.accept-appointment" />
+                    );
                     toggle();
                     refetchListPatient();
                 } else {
-                    toast.error("Xác nhận bệnh nhân đã khám thất bại");
+                    toast.error(
+                        <FormattedMessage id="toast.error.accept-appointment" />
+                    );
                 }
             } catch (error) {
-                toast.error("Xác nhận bệnh nhân đã khám thất bại");
+                toast.error(<FormattedMessage id="toast.error.common" />);
             }
         }
     };

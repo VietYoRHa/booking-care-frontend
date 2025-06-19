@@ -8,6 +8,7 @@ import {
 } from "../../../services/userService";
 import { toast } from "react-toastify";
 import ModalSpecialty from "./ModalSpecialty";
+import { FormattedMessage } from "react-intl";
 
 class ManageSpecialty extends Component {
     constructor(props) {
@@ -66,10 +67,14 @@ class ManageSpecialty extends Component {
         if (specialty && specialty.id) {
             let res = await deleteSpecialty(specialty.id);
             if (res && res.errCode === 0) {
-                toast.success("Xoá chuyên khoa thành công");
+                toast.success(
+                    <FormattedMessage id="toast.success.delete-specialty" />
+                );
                 this.fetchAllSpecialty();
             } else {
-                toast.error("Xoá chuyên khoa thất bại");
+                toast.error(
+                    <FormattedMessage id="toast.error.delete-specialty" />
+                );
             }
         }
     };
