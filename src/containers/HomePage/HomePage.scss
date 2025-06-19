@@ -38,10 +38,10 @@
     width: 100%;
     .homepage-content {
         width: 100%;
-        max-width: 1440px;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
+        padding: 0 calc((100% - 1440px) / 2);
+    }
+    .striped {
+        background-color: #f5f5f5;
     }
 }
 
@@ -68,7 +68,6 @@
     }
     &.section-about {
         height: 500px !important;
-        padding: 0 100px;
         border-top: 1px solid #f5f5f5;
         .section-about-header {
             padding: 20px 0;
@@ -118,7 +117,6 @@
     height: 330px;
 
     .section-container {
-        margin: 0 100px;
         display: flex;
         flex-direction: column;
 
