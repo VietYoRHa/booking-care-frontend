@@ -49,56 +49,62 @@ class DetailDoctor extends Component {
             <>
                 <HomeHeader isShowBanner={false} />
                 <div className="doctor-detail-container">
-                    <div className="intro-doctor">
-                        <div
-                            className="content-left"
-                            style={{
-                                backgroundImage: `url(${
-                                    detailDoctor && detailDoctor.image
-                                        ? detailDoctor.image
-                                        : ""
-                                })`,
-                            }}
-                        ></div>
-                        <div className="content-right">
-                            <div className="up">
-                                {language === LANGUAGES.VI ? nameVi : nameEn}
+                    <div className="doctor-detail-wrapper">
+                        <div className="intro-doctor">
+                            <div
+                                className="content-left"
+                                style={{
+                                    backgroundImage: `url(${
+                                        detailDoctor && detailDoctor.image
+                                            ? detailDoctor.image
+                                            : ""
+                                    })`,
+                                }}
+                            ></div>
+                            <div className="content-right">
+                                <div className="up">
+                                    {language === LANGUAGES.VI
+                                        ? nameVi
+                                        : nameEn}
+                                </div>
+                                <div className="down">
+                                    {detailDoctor &&
+                                        detailDoctor.Doctor_Info &&
+                                        detailDoctor.Doctor_Info
+                                            .description && (
+                                            <span>
+                                                {
+                                                    detailDoctor.Doctor_Info
+                                                        .description
+                                                }
+                                            </span>
+                                        )}
+                                </div>
                             </div>
-                            <div className="down">
-                                {detailDoctor &&
-                                    detailDoctor.Doctor_Info &&
-                                    detailDoctor.Doctor_Info.description && (
-                                        <span>
-                                            {
-                                                detailDoctor.Doctor_Info
-                                                    .description
-                                            }
-                                        </span>
-                                    )}
+                        </div>
+                        <div className="schedule-doctor">
+                            <div className="content-left">
+                                <DoctorSchedule doctorId={currentDoctorId} />
+                            </div>
+                            <div className="content-right">
+                                <DoctorExtraInfo doctorId={currentDoctorId} />
                             </div>
                         </div>
                     </div>
-                    <div className="schedule-doctor">
-                        <div className="content-left">
-                            <DoctorSchedule doctorId={currentDoctorId} />
-                        </div>
-                        <div className="content-right">
-                            <DoctorExtraInfo doctorId={currentDoctorId} />
+                    <div className="doctor-detail-wrapper striped-border-top">
+                        <div className="detail-info-doctor">
+                            {detailDoctor &&
+                                detailDoctor.Doctor_Info &&
+                                detailDoctor.Doctor_Info.contentHTML && (
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: detailDoctor.Doctor_Info
+                                                .contentHTML,
+                                        }}
+                                    ></div>
+                                )}
                         </div>
                     </div>
-                    <div className="detail-info-doctor">
-                        {detailDoctor &&
-                            detailDoctor.Doctor_Info &&
-                            detailDoctor.Doctor_Info.contentHTML && (
-                                <div
-                                    dangerouslySetInnerHTML={{
-                                        __html: detailDoctor.Doctor_Info
-                                            .contentHTML,
-                                    }}
-                                ></div>
-                            )}
-                    </div>
-                    <div className="comment-doctor"></div>
                 </div>
             </>
         );
