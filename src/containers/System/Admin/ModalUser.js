@@ -9,7 +9,7 @@ import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { toast } from "react-toastify";
 import { zodValidate } from "../../../utils/validate/validate";
-import { modalUserSchema } from "../../../utils/validate/modalUserSchema";
+import { createModalUserSchema } from "../../../utils/validate/modalUserSchema";
 
 class ModalUser extends Component {
     constructor(props) {
@@ -150,6 +150,8 @@ class ModalUser extends Component {
             phone_number: this.state.phoneNumber,
             address: this.state.address,
         };
+
+        const modalUserSchema = createModalUserSchema();
         let validate = zodValidate(modalUserSchema, formObject);
 
         if (!validate.isValid) {

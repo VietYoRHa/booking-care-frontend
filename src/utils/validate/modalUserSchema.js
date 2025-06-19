@@ -1,18 +1,15 @@
 import { z } from "zod";
-import {
-    address,
-    email,
-    first_name,
-    last_name,
-    password,
-    phone_number,
-} from "./commonValidator";
+import { getValidators } from "./commonValidator";
 
-export const modalUserSchema = z.object({
-    email,
-    password,
-    first_name,
-    last_name,
-    phone_number,
-    address,
-});
+export const createModalUserSchema = () => {
+    const { email, password, first_name, last_name, phone_number, address } =
+        getValidators();
+    return z.object({
+        email,
+        password,
+        first_name,
+        last_name,
+        phone_number,
+        address,
+    });
+};
