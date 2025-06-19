@@ -42,6 +42,12 @@
             "manage-patient": "Quản lý bệnh nhân"
         }
     },
+    "login": {
+        "title": "Đăng nhập",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "login-button": "Đăng nhập"
+    },
     "manage-user": {
         "title": "Quản lý người dùng",
         "add": "Thêm người dùng",
@@ -213,13 +219,40 @@
     "zod": {
         "full_name": {
             "required": "Họ và tên là bắt buộc",
-            "min": "Họ và tên phải có ít nhất 1 ký tự",
             "max": "Họ và tên không được vượt quá 100 ký tự"
         },
         "first_name": {
             "required": "Tên là bắt buộc",
-            "min": "Tên phải có ít nhất 1 ký tự",
             "max": "Tên không được vượt quá 50 ký tự"
+        },
+        "last_name": {
+            "required": "Họ là bắt buộc",
+            "max": "Họ không được vượt quá 50 ký tự"
+        },
+        "phone_number": {
+            "required": "Số điện thoại là bắt buộc",
+            "invalid": "Định dạng số điện thoại không hợp lệ",
+            "max": "Số điện thoại không được vượt quá 10 chữ số"
+        },
+        "email": {
+            "required": "Email là bắt buộc",
+            "invalid": "Định dạng email không hợp lệ"
+        },
+        "password": {
+            "min": "Mật khẩu phải có ít nhất 6 ký tự"
+        },
+        "gender": {
+            "required": "Giới tính là bắt buộc"
+        },
+        "address": {
+            "required": "Địa chỉ là bắt buộc"
+        },
+        "reason": {
+            "required": "Lý do khám là bắt buộc",
+            "max": "Lý do khám không được vượt quá 500 ký tự"
+        },
+        "date_of_birth": {
+            "required": "Ngày sinh là bắt buộc"
         }
     }
 }

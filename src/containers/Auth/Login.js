@@ -6,9 +6,9 @@ import "./Login.scss";
 import { FormattedMessage } from "react-intl";
 import { handleLoginApi } from "../../services/userService";
 import authService from "../../services/authService";
-import { loginSchema } from "../../utils/validate/loginSchema";
 import { toast } from "react-toastify";
 import { zodValidate } from "../../utils/validate/validate";
+import { createLoginSchema } from "../../utils/validate/loginSchema";
 
 class Login extends Component {
     constructor(props) {
@@ -32,6 +32,7 @@ class Login extends Component {
             email: this.state.email,
             password: this.state.password,
         };
+        const loginSchema = createLoginSchema();
         let validate = zodValidate(loginSchema, formObject);
         if (!validate.isValid) {
             toast.error(validate.errors[0].message);
@@ -81,16 +82,17 @@ class Login extends Component {
     };
 
     render() {
-        // JSX
         return (
             <div className="login-background">
                 <div className="login-container">
                     <div className="login-content row">
                         <div className="col-12 text-login">
-                            Đăng nhập hệ thống
+                            <FormattedMessage id="login.title" />
                         </div>
                         <div className="col-12 form-group login-input">
-                            <label>Email</label>
+                            <label>
+                                <FormattedMessage id="login.email" />
+                            </label>
                             <input
                                 type="text"
                                 className="form-control"
@@ -103,7 +105,9 @@ class Login extends Component {
                             />
                         </div>
                         <div className="col-12 form-group login-input">
-                            <label>Mật khẩu:</label>
+                            <label>
+                                <FormattedMessage id="login.password" />
+                            </label>
                             <div className="custom-input-password">
                                 <input
                                     type={
@@ -149,7 +153,7 @@ class Login extends Component {
                                     this.handleLogin();
                                 }}
                             >
-                                Đăng nhập
+                                <FormattedMessage id="login.login-button" />
                             </button>
                         </div>
                     </div>

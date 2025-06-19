@@ -42,6 +42,12 @@
             "manage-patient": "Manage Patient"
         }
     },
+    "login": {
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "login-button": "Login"
+    },
     "manage-user": {
         "title": "Manage User",
         "add": "Add user",
@@ -213,21 +219,40 @@
     "zod": {
         "full_name": {
             "required": "Full name is required",
-            "min_length": "Full name must be at least 2 characters long",
-            "max_length": "Full name must not exceed 50 characters"
+            "max": "Full name cannot exceed 100 characters"
         },
-        "email": {
-            "required": "Email is required",
-            "invalid": "Invalid email format"
+        "first_name": {
+            "required": "First name is required",
+            "max": "First name cannot exceed 50 characters"
+        },
+        "last_name": {
+            "required": "Last name is required",
+            "max": "Last name cannot exceed 50 characters"
         },
         "phone_number": {
             "required": "Phone number is required",
-            "invalid": "Invalid phone number format"
+            "invalid": "Phone number format is invalid",
+            "max": "Phone number cannot exceed 10 digits"
+        },
+        "email": {
+            "required": "Email is required",
+            "invalid": "Email format is invalid"
+        },
+        "password": {
+            "min": "Password must be at least 6 characters"
+        },
+        "gender": {
+            "required": "Gender is required"
         },
         "address": {
-            "required": "Address is required",
-            "min_length": "Address must be at least 5 characters long",
-            "max_length": "Address must not exceed 100 characters"
+            "required": "Address is required"
+        },
+        "reason": {
+            "required": "Medical reason is required",
+            "max": "Medical reason cannot exceed 500 characters"
+        },
+        "date_of_birth": {
+            "required": "Date of birth is required"
         }
     }
 }
