@@ -50,7 +50,7 @@
     },
     "manage-user": {
         "title": "Manage User",
-        "add": "Add user",
+        "add": "Add User",
         "email": "Email",
         "password": "Password",
         "first-name": "First name",
@@ -64,7 +64,10 @@
         "save": "Save ",
         "edit": "Edit",
         "cancel": "Cancel",
-        "delete-self-error": "You cannot delete your own account"
+        "delete-self-error": "You cannot delete your own account",
+        "admin": "Admin",
+        "doctor": "Doctor",
+        "patient": "Patient"
     },
     "homepage": {
         "search": "Search",
@@ -82,6 +85,25 @@
         "choose-doctor": "Choose doctor",
         "choose-date": "Choose date",
         "save": "Save"
+    },
+    "manage-clinic": {
+        "title": "Manage Clinic",
+        "add": "Add Clinic",
+        "name": "Name",
+        "address": "Address",
+        "description": "Description",
+        "image": "Image",
+        "save": "Save",
+        "cancel": "Cancel"
+    },
+    "manage-specialty": {
+        "title": "Manage Specialty",
+        "add": "Add Specialty",
+        "name": "Name",
+        "description": "Description",
+        "image": "Image",
+        "save": "Save",
+        "cancel": "Cancel"
     },
     "patient": {
         "detail-doctor": {

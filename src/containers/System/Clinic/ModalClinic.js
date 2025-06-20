@@ -174,7 +174,9 @@ class ModalClinic extends Component {
                     <ModalBody>
                         <div className="add-new-specialty row col-12 ">
                             <div className="col-6 form-group">
-                                <label>Tên phòng khám</label>
+                                <label>
+                                    <FormattedMessage id="manage-clinic.name" />
+                                </label>
                                 <input
                                     className="form-control"
                                     type="text"
@@ -185,7 +187,9 @@ class ModalClinic extends Component {
                                 />
                             </div>
                             <div className="col-6 form-group">
-                                <label>Địa chỉ phòng khám</label>
+                                <label>
+                                    <FormattedMessage id="manage-clinic.address" />
+                                </label>
                                 <input
                                     className="form-control"
                                     type="text"
@@ -196,7 +200,9 @@ class ModalClinic extends Component {
                                 />
                             </div>
                             <div className="col-12 form-group">
-                                <label>Ảnh phòng khám</label>
+                                <label>
+                                    <FormattedMessage id="manage-clinic.image" />
+                                </label>
                                 <input
                                     className="form-control-file"
                                     type="file"
@@ -207,7 +213,9 @@ class ModalClinic extends Component {
                             </div>
                         </div>
                         <div className="col-12">
-                            <label>Mô tả phòng khám</label>
+                            <label>
+                                <FormattedMessage id="manage-clinic.description" />
+                            </label>
                             <MdEditor
                                 style={{ height: "500px" }}
                                 renderHTML={(text) => mdParser.render(text)}
@@ -222,13 +230,13 @@ class ModalClinic extends Component {
                             onClick={() => this.handleSaveClinic()}
                             disabled={isLoading}
                         >
-                            Save
+                            <FormattedMessage id="manage-clinic.save" />
                         </button>
                         <button
                             className="btn btn-secondary mt-3"
                             onClick={() => toggle()}
                         >
-                            Cancel
+                            <FormattedMessage id="manage-clinic.cancel" />
                         </button>
                     </ModalFooter>
                 </Modal>

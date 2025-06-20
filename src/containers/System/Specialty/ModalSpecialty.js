@@ -174,7 +174,9 @@ class ModalClinic extends Component {
                     <ModalBody>
                         <div className="add-new-specialty row col-12 ">
                             <div className="col-6 form-group">
-                                <label>Tên chuyên khoa</label>
+                                <label>
+                                    <FormattedMessage id="manage-specialty.name" />
+                                </label>
                                 <input
                                     className="form-control"
                                     type="text"
@@ -186,7 +188,9 @@ class ModalClinic extends Component {
                             </div>
 
                             <div className="col-6 form-group">
-                                <label>Ảnh chuyên khoa</label>
+                                <label>
+                                    <FormattedMessage id="manage-specialty.image" />
+                                </label>
                                 <input
                                     className="form-control-file"
                                     type="file"
@@ -197,7 +201,9 @@ class ModalClinic extends Component {
                             </div>
                         </div>
                         <div className="col-12 form-group">
-                            <label>Mô tả chuyên khoa</label>
+                            <label>
+                                <FormattedMessage id="manage-specialty.description" />
+                            </label>
                             <MdEditor
                                 style={{ height: "500px" }}
                                 renderHTML={(text) => mdParser.render(text)}
@@ -212,13 +218,13 @@ class ModalClinic extends Component {
                             onClick={() => this.handleSaveSpecialty()}
                             disabled={isLoading}
                         >
-                            Lưu
+                            <FormattedMessage id="manage-specialty.save" />
                         </button>
                         <button
                             className="btn btn-secondary mt-3"
                             onClick={() => toggle()}
                         >
-                            Huỷ
+                            <FormattedMessage id="manage-specialty.cancel" />
                         </button>
                     </ModalFooter>
                 </Modal>

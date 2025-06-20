@@ -384,30 +384,6 @@ class ManageDoctor extends Component {
                             }
                         />
                     </div>
-                    {/* <div className="col-4 form-group">
-                        <label>
-                            <FormattedMessage id="admin.manage-doctor.name-clinic" />
-                        </label>
-                        <input
-                            className="form-control"
-                            onChange={(event) =>
-                                this.handleOnChangeInput(event, "nameClinic")
-                            }
-                            value={this.state.nameClinic}
-                        />
-                    </div>
-                    <div className="col-4 form-group">
-                        <label>
-                            <FormattedMessage id="admin.manage-doctor.address-clinic" />
-                        </label>
-                        <input
-                            className="form-control"
-                            onChange={(event) =>
-                                this.handleOnChangeInput(event, "addressClinic")
-                            }
-                            value={this.state.addressClinic}
-                        />
-                    </div> */}
                     <div className="col-12 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.note" />
@@ -437,7 +413,7 @@ class ManageDoctor extends Component {
                 </div>
                 <div className="manage-doctor-editor">
                     <MdEditor
-                        style={{ height: "500px" }}
+                        style={{ height: "430px" }}
                         renderHTML={(text) => mdParser.render(text)}
                         onChange={this.handleEditorChange}
                         value={this.state.contentMarkdown}
@@ -445,21 +421,11 @@ class ManageDoctor extends Component {
                 </div>
                 <button
                     onClick={this.handleSaveContentMarkdown}
-                    className={
-                        hasOldData === true
-                            ? "btn btn-warning mt-3"
-                            : "btn btn-primary mt-3"
-                    }
+                    className={"btn btn-primary mt-3"}
                 >
-                    {hasOldData === true ? (
-                        <span>
-                            <FormattedMessage id="admin.manage-doctor.save" />
-                        </span>
-                    ) : (
-                        <span>
-                            <FormattedMessage id="admin.manage-doctor.add" />
-                        </span>
-                    )}
+                    <span>
+                        <FormattedMessage id="admin.manage-doctor.save" />
+                    </span>
                 </button>
             </div>
         );

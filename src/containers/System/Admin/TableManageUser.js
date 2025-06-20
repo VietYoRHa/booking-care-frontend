@@ -7,6 +7,7 @@ import MdEditor from "react-markdown-editor-lite";
 import "react-markdown-editor-lite/lib/index.css";
 import { FormattedMessage } from "react-intl";
 import { toast } from "react-toastify";
+import { USER_ROLES } from "../../../utils";
 
 // const mdParser = new MarkdownIt();
 
@@ -59,6 +60,9 @@ class TableManageUser extends Component {
                     <tbody>
                         <tr>
                             <th>
+                                <FormattedMessage id="manage-user.role" />
+                            </th>
+                            <th>
                                 <FormattedMessage id="manage-user.email" />
                             </th>
                             <th>
@@ -75,8 +79,30 @@ class TableManageUser extends Component {
                         {arrUsers &&
                             arrUsers.length > 0 &&
                             arrUsers.map((item, index) => {
+                                let userRole = "";
+                                switch (item.roleId) {
+                                    case USER_ROLES.ADMIN:
+                                        userRole = (
+                                            <FormattedMessage id="manage-user.admin" />
+                                        );
+                                        break;
+                                    case USER_ROLES.DOCTOR:
+                                        userRole = (
+                                            <FormattedMessage id="manage-user.doctor" />
+                                        );
+                                        break;
+                                    case USER_ROLES.PATIENT:
+                                        userRole = (
+                                            <FormattedMessage id="manage-user.patient" />
+                                        );
+                                        break;
+                                    default:
+                                        userRole = "N/A";
+                                        break;
+                                }
                                 return (
                                     <tr key={index}>
+                                        <td>{userRole}</td>
                                         <td>{item.email}</td>
                                         <td>{item.firstName}</td>
                                         <td>{item.lastName}</td>

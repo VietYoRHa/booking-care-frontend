@@ -64,7 +64,10 @@
         "save": "Lưu",
         "edit": "Chỉnh sửa thông tin",
         "cancel": "Hủy",
-        "delete-self-error": "Bạn không thể xóa tài khoản của chính mình"
+        "delete-self-error": "Bạn không thể xóa tài khoản của chính mình",
+        "admin": "Quản trị viên",
+        "doctor": "Bác sĩ",
+        "patient": "Bệnh nhân"
     },
     "homepage": {
         "search": "Tìm kiếm",
@@ -82,6 +85,25 @@
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày",
         "save": "Lưu thông tin"
+    },
+    "manage-clinic": {
+        "title": "Quản lý phòng khám",
+        "add": "Thêm phòng khám",
+        "name": "Tên phòng khám",
+        "address": "Địa chỉ phòng khám",
+        "description": "Mô tả phòng khám",
+        "image": "Ảnh phòng khám",
+        "save": "Lưu",
+        "cancel": "Hủy"
+    },
+    "manage-specialty": {
+        "title": "Quản lý chuyên khoa",
+        "add": "Thêm chuyên khoa",
+        "name": "Tên chuyên khoa",
+        "description": "Mô tả chuyên khoa",
+        "image": "Ảnh chuyên khoa",
+        "save": "Lưu",
+        "cancel": "Hủy"
     },
     "patient": {
         "detail-doctor": {
@@ -163,7 +185,7 @@
             "clinic": "Phòng khám",
             "introduce": "Thông tin giới thiệu",
             "add": "Tạo thông tin",
-            "save": "Lưu thông tin",
+            "save": "Lưu",
             "price": "Giá khám",
             "payment": "Phương thức thanh toán",
             "province": "Tỉnh/Thành phố",

@@ -84,28 +84,31 @@ class ManageSpecialty extends Component {
         return (
             <>
                 <div className="manage-specialty-container">
-                    <div className="title ms-title">Quản lý chuyên khoa</div>
+                    <div className="title ms-title">
+                        <FormattedMessage id="manage-specialty.title" />
+                    </div>
                     <div className="col-12">
                         <button
                             className="btn btn-primary mt-3 mb-3"
                             onClick={() => this.handleCreateButtonClick()}
                         >
-                            Thêm chuyên khoa
+                            <i className="fas fa-plus"></i>{" "}
+                            <FormattedMessage id="manage-specialty.add" />
                         </button>
                     </div>
                     <div className="col-12">
                         <table id="TableManage">
                             <tbody>
                                 <tr>
-                                    <th>STT</th>
-                                    <th>Tên chuyên khoa</th>
-                                    <th>Hành động</th>
+                                    <th>
+                                        <FormattedMessage id="manage-specialty.name" />
+                                    </th>
+                                    <th></th>
                                 </tr>
                                 {specialtyData && specialtyData.length > 0
                                     ? specialtyData.map((item, index) => {
                                           return (
                                               <tr key={index}>
-                                                  <td>{index + 1}</td>
                                                   <td>{item.name}</td>
                                                   <td>
                                                       <button
