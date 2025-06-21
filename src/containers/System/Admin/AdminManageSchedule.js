@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import _ from "lodash";
 import {
     getScheduleDoctorByDate,
-    saveBulkScheduleDoctor,
+    saveScheduleDoctor,
 } from "../../../services/userService";
 
 class AdminManageSchedule extends Component {
@@ -151,7 +151,7 @@ class AdminManageSchedule extends Component {
                 });
             }
         }
-        let res = await saveBulkScheduleDoctor({
+        let res = await saveScheduleDoctor({
             arrSchedule: result,
             doctorId: selectedDoctor.value,
             date: formattedDate,
