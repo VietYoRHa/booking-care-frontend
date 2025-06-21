@@ -105,6 +105,27 @@
         "save": "Lưu",
         "cancel": "Hủy"
     },
+    "manage-patient": {
+        "title": "Quản lý bệnh nhân",
+        "choose-date": "Chọn ngày",
+        "time": "Thời gian",
+        "patient-name": "Tên bệnh nhân",
+        "phone-number": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "reason": "Lý do khám",
+        "confirm": "Xác nhận",
+        "deny": "Từ chối",
+        "cancel": "Hủy",
+        "no-data": "Không có dữ liệu",
+        "modal": {
+            "confirm-title": "Xác nhận bệnh nhân đã khám",
+            "deny-title": "Từ chối lịch hẹn",
+            "patient-email": "Email bệnh nhân",
+            "attachment": "Tệp đính kèm",
+            "refuse-reason": "Lý do từ chối"
+        }
+    },
     "patient": {
         "detail-doctor": {
             "schedule": "Lịch khám",

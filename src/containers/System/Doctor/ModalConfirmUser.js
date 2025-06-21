@@ -136,18 +136,23 @@ class ModalConfirmUser extends Component {
             >
                 <ModalHeader toggle={toggle}>
                     {dataConfirm &&
-                        dataConfirm.statusId === APPOINTMENT_STATUS.DONE &&
-                        "Xác nhận bệnh nhân đã khám"}
+                        dataConfirm.statusId === APPOINTMENT_STATUS.DONE && (
+                            <FormattedMessage id="manage-patient.modal.confirm-title" />
+                        )}
                     {dataConfirm &&
-                        dataConfirm.statusId === APPOINTMENT_STATUS.CANCEL &&
-                        "Từ chối lịch hẹn"}
+                        dataConfirm.statusId === APPOINTMENT_STATUS.CANCEL && (
+                            <FormattedMessage id="manage-patient.modal.deny-title" />
+                        )}
                 </ModalHeader>
                 <ModalBody>
                     {dataConfirm &&
                         dataConfirm.statusId === APPOINTMENT_STATUS.DONE && (
                             <div className="row">
                                 <div className="col-6 form-group">
-                                    <label>Email bệnh nhân</label>
+                                    <label>
+                                        {" "}
+                                        <FormattedMessage id="manage-patient.modal.patient-email" />
+                                    </label>
                                     <input
                                         className="form-control"
                                         value={dataConfirm.email}
@@ -155,7 +160,10 @@ class ModalConfirmUser extends Component {
                                     />
                                 </div>
                                 <div className="col-6 form-group">
-                                    <label>Nội dung đính kèm</label>
+                                    <label>
+                                        {" "}
+                                        <FormattedMessage id="manage-patient.modal.attachment" />
+                                    </label>
                                     <input
                                         type="file"
                                         className="form-control-file"
@@ -168,7 +176,9 @@ class ModalConfirmUser extends Component {
                         dataConfirm.statusId === APPOINTMENT_STATUS.CANCEL && (
                             <div className="row">
                                 <div className="col-12 form-group">
-                                    <label>Email bệnh nhân</label>
+                                    <label>
+                                        <FormattedMessage id="manage-patient.modal.patient-email" />
+                                    </label>
                                     <input
                                         className="form-control"
                                         value={dataConfirm.email}
@@ -176,7 +186,9 @@ class ModalConfirmUser extends Component {
                                     />
                                 </div>
                                 <div className="col-12 form-group">
-                                    <label>Lí do từ chối</label>
+                                    <label>
+                                        <FormattedMessage id="manage-patient.modal.refuse-reason" />
+                                    </label>
                                     <textarea
                                         className="form-control"
                                         value={this.state.cancelReason}
@@ -193,13 +205,13 @@ class ModalConfirmUser extends Component {
                         color="primary"
                         onClick={() => this.handleConfirmAppointment()}
                     >
-                        Confirm
+                        <FormattedMessage id="manage-patient.confirm" />
                     </Button>
                     <Button
                         color="secondary"
                         onClick={() => this.handleCloseModal()}
                     >
-                        Cancel
+                        <FormattedMessage id="manage-patient.cancel" />
                     </Button>
                 </ModalFooter>
             </Modal>

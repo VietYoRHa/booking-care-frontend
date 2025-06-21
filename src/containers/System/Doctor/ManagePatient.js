@@ -7,6 +7,7 @@ import { APPOINTMENT_STATUS, LANGUAGES } from "../../../utils";
 import ModalConfirmUser from "./ModalConfirmUser";
 import moment from "moment";
 import _ from "lodash";
+import { FormattedMessage } from "react-intl";
 
 class ManagePatient extends Component {
     constructor(prop) {
@@ -136,10 +137,14 @@ class ManagePatient extends Component {
         return (
             <>
                 <div className="manage-patient-container">
-                    <div className="title">Quản lý bệnh nhân</div>
+                    <div className="title">
+                        <FormattedMessage id="manage-patient.title" />
+                    </div>
                     <div className="manage-patient-body row">
                         <div className="col-4 form-group">
-                            <label>Chọn ngày khám</label>
+                            <label>
+                                <FormattedMessage id="manage-patient.choose-date" />
+                            </label>
                             <DatePicker
                                 onChange={this.handleOnChangeDatePicker}
                                 className="form-control"
@@ -150,77 +155,96 @@ class ManagePatient extends Component {
                             <table id="TableManage">
                                 <tbody>
                                     <tr>
-                                        <th>STT</th>
-                                        <th>Thời gian</th>
-                                        <th>Họ tên</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Giới tính</th>
-                                        <th>Lí do khám</th>
-                                        <th>Hành động</th>
+                                        <th>
+                                            <FormattedMessage id="manage-patient.time" />
+                                        </th>
+                                        <th>
+                                            <FormattedMessage id="manage-patient.patient-name" />
+                                        </th>
+                                        <th>
+                                            <FormattedMessage id="manage-patient.phone-number" />
+                                        </th>
+                                        <th>
+                                            <FormattedMessage id="manage-patient.address" />
+                                        </th>
+                                        <th>
+                                            <FormattedMessage id="manage-patient.gender" />
+                                        </th>
+                                        <th>
+                                            <FormattedMessage id="manage-patient.reason" />
+                                        </th>
+                                        <th></th>
                                     </tr>
-                                    {data && data.length > 0
-                                        ? data.map((item, index) => {
-                                              let nameVi = `${item.patientData.lastName} ${item.patientData.firstName}`;
-                                              let nameEn = `${item.patientData.firstName} ${item.patientData.lastName}`;
-                                              let genderLabel =
-                                                  language === LANGUAGES.VI
-                                                      ? item.patientData
-                                                            .genderData.valueVi
-                                                      : item.patientData
-                                                            .genderData.valueEn;
-                                              let timeLabel =
-                                                  language === LANGUAGES.VI
-                                                      ? item.patientTimeTypeData
-                                                            .valueVi
-                                                      : item.patientTimeTypeData
-                                                            .valueEn;
-                                              return (
-                                                  <tr key={index}>
-                                                      <td>{index + 1}</td>
-                                                      <td>{timeLabel}</td>
-                                                      <td>
-                                                          {language ===
-                                                          LANGUAGES.VI
-                                                              ? nameVi
-                                                              : nameEn}
-                                                      </td>
-                                                      <td>
-                                                          {
-                                                              item.patientData
-                                                                  .address
-                                                          }
-                                                      </td>
-                                                      <td>{genderLabel}</td>
-                                                      <td>{item.reason}</td>
+                                    {data && data.length > 0 ? (
+                                        data.map((item, index) => {
+                                            let nameVi = `${item.patientData.lastName} ${item.patientData.firstName}`;
+                                            let nameEn = `${item.patientData.firstName} ${item.patientData.lastName}`;
+                                            let genderLabel =
+                                                language === LANGUAGES.VI
+                                                    ? item.patientData
+                                                          .genderData.valueVi
+                                                    : item.patientData
+                                                          .genderData.valueEn;
+                                            let timeLabel =
+                                                language === LANGUAGES.VI
+                                                    ? item.patientTimeTypeData
+                                                          .valueVi
+                                                    : item.patientTimeTypeData
+                                                          .valueEn;
+                                            return (
+                                                <tr key={index}>
+                                                    <td>{timeLabel}</td>
+                                                    <td>
+                                                        {language ===
+                                                        LANGUAGES.VI
+                                                            ? nameVi
+                                                            : nameEn}
+                                                    </td>
+                                                    <td>
+                                                        {
+                                                            item.patientData
+                                                                .phoneNumber
+                                                        }
+                                                    </td>
+                                                    <td>
+                                                        {
+                                                            item.patientData
+                                                                .address
+                                                        }
+                                                    </td>
+                                                    <td>{genderLabel}</td>
+                                                    <td>{item.reason}</td>
 
-                                                      <td>
-                                                          <button
-                                                              className="btn btn-primary"
-                                                              onClick={() =>
-                                                                  this.handleConfirm(
-                                                                      item,
-                                                                      APPOINTMENT_STATUS.DONE
-                                                                  )
-                                                              }
-                                                          >
-                                                              Xác nhận
-                                                          </button>
-                                                          <button
-                                                              className="btn btn-secondary ml-4"
-                                                              onClick={() =>
-                                                                  this.handleConfirm(
-                                                                      item,
-                                                                      APPOINTMENT_STATUS.CANCEL
-                                                                  )
-                                                              }
-                                                          >
-                                                              Từ chối
-                                                          </button>
-                                                      </td>
-                                                  </tr>
-                                              );
-                                          })
-                                        : "Không có dữ liệu"}
+                                                    <td>
+                                                        <button
+                                                            className="btn btn-primary"
+                                                            onClick={() =>
+                                                                this.handleConfirm(
+                                                                    item,
+                                                                    APPOINTMENT_STATUS.DONE
+                                                                )
+                                                            }
+                                                        >
+                                                            <FormattedMessage id="manage-patient.confirm" />
+                                                        </button>
+                                                        <button
+                                                            className="btn btn-secondary ml-4"
+                                                            onClick={() =>
+                                                                this.handleConfirm(
+                                                                    item,
+                                                                    APPOINTMENT_STATUS.CANCEL
+                                                                )
+                                                            }
+                                                        >
+                                                            <FormattedMessage id="manage-patient.deny" />
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })
+                                    ) : (
+                                        <FormattedMessage id="manage-patient.no-data" />
+                                    )}
                                 </tbody>
                             </table>
                         </div>

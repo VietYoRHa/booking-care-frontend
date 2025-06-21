@@ -105,6 +105,27 @@
         "save": "Save",
         "cancel": "Cancel"
     },
+    "manage-patient": {
+        "title": "Manage Patient",
+        "choose-date": "Choose date",
+        "time": "Time",
+        "patient-name": "Patient's name",
+        "phone-number": "Phone number",
+        "address": "Address",
+        "gender": "Gender",
+        "reason": "Reason for visit",
+        "confirm": "Confirm",
+        "deny": "Deny",
+        "cancel": "Cancel",
+        "no-data": "No data available",
+        "modal": {
+            "confirm-title": "Confirm Appointment",
+            "deny-title": "Deny Appointment",
+            "patient-email": "Patient's Email",
+            "attachment": "Attachment",
+            "refuse-reason": "Reason for Refusal"
+        }
+    },
     "patient": {
         "detail-doctor": {
             "schedule": "Schedule",
