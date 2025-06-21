@@ -7,6 +7,7 @@ import DoctorExtraInfo from "../Doctor/DoctorExtraInfo";
 import ProfileDoctor from "../Doctor/ProfileDoctor";
 import { getDetailClinicById } from "../../../services/userService";
 import _ from "lodash";
+import HomeFooter from "../../HomePage/HomeFooter";
 
 class DetailClinic extends Component {
     constructor(prop) {
@@ -52,53 +53,62 @@ class DetailClinic extends Component {
         let { arrDoctorId, detailClinic } = this.state;
 
         return (
-            <div className="detail-clinic-container">
-                <HomeHeader />
-                <div className="detail-clinic-body">
-                    <div className="detail-clinic-name">
-                        <h2>{detailClinic && detailClinic.name}</h2>
-                        <p>
-                            <b>Địa chỉ:</b>{" "}
-                            {detailClinic && detailClinic.address}
-                        </p>
-                    </div>
-                    <div className="description-clinic">
-                        {detailClinic && detailClinic.descriptionHTML && (
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: detailClinic.descriptionHTML,
-                                }}
-                            ></div>
-                        )}
-                    </div>
+            <>
+                <div className="detail-clinic-container">
+                    <HomeHeader />
+                    <div className="detail-clinic-body">
+                        <div className="detail-clinic-name">
+                            <h2>{detailClinic && detailClinic.name}</h2>
+                            <p>
+                                <b>Địa chỉ:</b>{" "}
+                                {detailClinic && detailClinic.address}
+                            </p>
+                        </div>
+                        <div className="description-clinic">
+                            {detailClinic && detailClinic.descriptionHTML && (
+                                <div
+                                    dangerouslySetInnerHTML={{
+                                        __html: detailClinic.descriptionHTML,
+                                    }}
+                                ></div>
+                            )}
+                        </div>
 
-                    {arrDoctorId &&
-                        arrDoctorId.length > 0 &&
-                        arrDoctorId.map((item, index) => {
-                            return (
-                                <div className="doctor" key={index}>
-                                    <div className="doctor__content-left">
-                                        <div className="profile-doctor">
-                                            <ProfileDoctor
-                                                doctorId={item}
-                                                isShowDoctorDescription={true}
-                                                isShowDetailLink={true}
-                                            />
+                        {arrDoctorId &&
+                            arrDoctorId.length > 0 &&
+                            arrDoctorId.map((item, index) => {
+                                return (
+                                    <div className="doctor" key={index}>
+                                        <div className="doctor__content-left">
+                                            <div className="profile-doctor">
+                                                <ProfileDoctor
+                                                    doctorId={item}
+                                                    isShowDoctorDescription={
+                                                        true
+                                                    }
+                                                    isShowDetailLink={true}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="doctor__content-right">
+                                            <div className="doctor-schedule">
+                                                <DoctorSchedule
+                                                    doctorId={item}
+                                                />
+                                            </div>
+                                            <div className="doctor-extra-info">
+                                                <DoctorExtraInfo
+                                                    doctorId={item}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="doctor__content-right">
-                                        <div className="doctor-schedule">
-                                            <DoctorSchedule doctorId={item} />
-                                        </div>
-                                        <div className="doctor-extra-info">
-                                            <DoctorExtraInfo doctorId={item} />
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                    </div>
                 </div>
-            </div>
+                <HomeFooter />
+            </>
         );
     }
 }

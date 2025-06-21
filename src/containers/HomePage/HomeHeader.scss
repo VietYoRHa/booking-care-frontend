@@ -111,7 +111,7 @@
 
 .home-header-banner {
     background: url("../../assets/header-background.jpg");
-    height: 700px;
+    height: 600px;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -198,10 +198,10 @@
                 .text-child {
                     font-size: 17px;
                     font-weight: 500;
-                    cursor: pointer;
-                    &:hover {
-                        color: #49bce2;
-                    }
+                    // cursor: pointer;
+                    // &:hover {
+                    //     color: #49bce2;
+                    // }
                 }
             }
         }

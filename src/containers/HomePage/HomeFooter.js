@@ -7,14 +7,6 @@ class HomeFooter extends Component {
             <div className="home-footer">
                 <p>
                     &copy; 2025 VitaBook. All rights reserved. <br />
-                    <span>Contact: </span>
-                    <a
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        href="https://github.com/VietYoRHa"
-                    >
-                        &#8594; More info &#8592;
-                    </a>
                 </p>
             </div>
         );

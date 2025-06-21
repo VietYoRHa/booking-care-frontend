@@ -134,7 +134,7 @@ class HomeHeader extends Component {
                             </div>
                         </div>
                         <div className="content-down">
-                            {/* <div className="options">
+                            <div className="options">
                                 <div className="option-child">
                                     <div className="icon-child">
                                         <i className="far fa-hospital"></i>
@@ -183,7 +183,7 @@ class HomeHeader extends Component {
                                         <FormattedMessage id="banner.dental-checkup" />
                                     </div>
                                 </div>
-                            </div> */}
+                            </div>
                         </div>
                     </div>
                 )}

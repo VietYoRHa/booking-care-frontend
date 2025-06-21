@@ -12,6 +12,7 @@ import {
 import _ from "lodash";
 import Select from "react-select";
 import { LANGUAGES } from "../../../utils/constant";
+import HomeFooter from "../../HomePage/HomeFooter";
 
 class DetailSpecialty extends Component {
     constructor(prop) {
@@ -139,58 +140,68 @@ class DetailSpecialty extends Component {
         let { language } = this.props;
 
         return (
-            <div className="detail-specialty-container">
-                <HomeHeader />
-                <div className="detail-specialty-body">
-                    <div className="description-specialty">
-                        {detailSpecialty && detailSpecialty.descriptionHTML && (
-                            <div
-                                dangerouslySetInnerHTML={{
-                                    __html: detailSpecialty.descriptionHTML,
-                                }}
-                            ></div>
-                        )}
-                    </div>
-                    <div className="location-search">
-                        <Select
-                            value={selectedProvince}
-                            onChange={this.handleChangeSelect}
-                            options={listProvinces}
-                            name="selectedProvince"
-                            placeholder={
-                                language === LANGUAGES.VI
-                                    ? "Tỉnh thành"
-                                    : "Province"
-                            }
-                        />
-                    </div>
-                    {arrDoctorId &&
-                        arrDoctorId.length > 0 &&
-                        arrDoctorId.map((item, index) => {
-                            return (
-                                <div className="doctor" key={index}>
-                                    <div className="doctor__content-left">
-                                        <div className="profile-doctor">
-                                            <ProfileDoctor
-                                                doctorId={item}
-                                                isShowDoctorDescription={true}
-                                                isShowDetailLink={true}
-                                            />
+            <>
+                <div className="detail-specialty-container">
+                    <HomeHeader />
+                    <div className="detail-specialty-body">
+                        <div className="description-specialty">
+                            {detailSpecialty &&
+                                detailSpecialty.descriptionHTML && (
+                                    <div
+                                        dangerouslySetInnerHTML={{
+                                            __html: detailSpecialty.descriptionHTML,
+                                        }}
+                                    ></div>
+                                )}
+                        </div>
+                        <div className="location-search">
+                            <Select
+                                value={selectedProvince}
+                                onChange={this.handleChangeSelect}
+                                options={listProvinces}
+                                name="selectedProvince"
+                                placeholder={
+                                    language === LANGUAGES.VI
+                                        ? "Tỉnh thành"
+                                        : "Province"
+                                }
+                            />
+                        </div>
+                        {arrDoctorId &&
+                            arrDoctorId.length > 0 &&
+                            arrDoctorId.map((item, index) => {
+                                return (
+                                    <div className="doctor" key={index}>
+                                        <div className="doctor__content-left">
+                                            <div className="profile-doctor">
+                                                <ProfileDoctor
+                                                    doctorId={item}
+                                                    isShowDoctorDescription={
+                                                        true
+                                                    }
+                                                    isShowDetailLink={true}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="doctor__content-right">
+                                            <div className="doctor-schedule">
+                                                <DoctorSchedule
+                                                    doctorId={item}
+                                                />
+                                            </div>
+                                            <div className="doctor-extra-info">
+                                                <DoctorExtraInfo
+                                                    doctorId={item}
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="doctor__content-right">
-                                        <div className="doctor-schedule">
-                                            <DoctorSchedule doctorId={item} />
-                                        </div>
-                                        <div className="doctor-extra-info">
-                                            <DoctorExtraInfo doctorId={item} />
-                                        </div>
-                                    </div>
-                                </div>
-                            );
-                        })}
+                                );
+                            })}
+                    </div>
                 </div>
-            </div>
+                <HomeFooter />
+            </>
         );
     }
 }
