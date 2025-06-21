@@ -77,8 +77,11 @@
         "doctor": "Doctor",
         "health-facility": "Health facility",
         "handbook": "Handbook",
-        "outstanding-doctor": "Doctor",
-        "more-info": "More"
+        "outstanding-doctor": "Outstanding Doctors",
+        "more-info": "More",
+        "about-us": "About Us",
+        "about-us-description1": "VitaBook is an online healthcare platform, connecting patients with leading doctors and medical facilities.",
+        "about-us-description2": "We provide remote medical examination services, appointment scheduling, and online health consultation."
     },
     "manage-schedule": {
         "title": "Manage Schedule",

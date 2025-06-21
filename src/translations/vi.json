@@ -77,8 +77,11 @@
         "doctor": "Bác sĩ",
         "health-facility": "Cơ sở y tế",
         "handbook": "Cẩm nang",
-        "outstanding-doctor": "Bác sĩ",
-        "more-info": "Xem thêm"
+        "outstanding-doctor": "Bác sĩ nổi bật",
+        "more-info": "Xem thêm",
+        "about-us": "Về chúng tôi",
+        "about-us-description1": "VitaBook là nền tảng y tế trực tuyến, kết nối bệnh nhân với các bác sĩ và cơ sở y tế hàng đầu.",
+        "about-us-description2": "Chúng tôi cung cấp dịch vụ khám bệnh từ xa, đặt lịch hẹn và tư vấn sức khoẻ trực tuyến."
     },
     "manage-schedule": {
         "title": "Quản lý lịch khám",

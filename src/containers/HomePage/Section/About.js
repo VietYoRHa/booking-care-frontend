@@ -1,11 +1,14 @@
 import React, { Component } from "react";
+import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
 
 class About extends Component {
     render() {
         return (
             <div className="section-share section-about">
-                <div className="section-about-header">Về chúng tôi</div>
+                <div className="section-about-header">
+                    <FormattedMessage id="homepage.about-us" />
+                </div>
                 <div className="section-about-content">
                     <div className="content-left">
                         <iframe
@@ -20,8 +23,12 @@ class About extends Component {
                         ></iframe>
                     </div>
                     <div className="content-right">
-                        <p>Xây dựng uy tín và thương hiệu cá nhân cho bác sĩ</p>
-                        <p>Tăng số lượng bệnh nhân và quản lý hiệu quả</p>
+                        <p>
+                            <FormattedMessage id="homepage.about-us-description1" />
+                        </p>
+                        <p>
+                            <FormattedMessage id="homepage.about-us-description2" />
+                        </p>
                     </div>
                 </div>
             </div>
