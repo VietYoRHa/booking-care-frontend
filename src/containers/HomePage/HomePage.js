@@ -23,11 +23,16 @@ class HomePage extends Component {
         return (
             <div className="homepage-container">
                 <HomeHeader isShowBanner={true} />
-                <div className="homepage-content">
+                <div className="homepage-content striped">
                     <Specialty settings={settings} />
+                </div>
+                <div className="homepage-content">
                     <MedicalFacility settings={settings} />
+                </div>
+                <div className="homepage-content striped">
                     <OutStandingDoctor settings={settings} />
-                    {/* <HandBook settings={settings} /> */}
+                </div>
+                <div className="homepage-content">
                     <About />
                 </div>
                 <HomeFooter />

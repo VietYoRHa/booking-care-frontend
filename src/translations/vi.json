@@ -42,6 +42,12 @@
             "manage-patient": "Quản lý bệnh nhân"
         }
     },
+    "login": {
+        "title": "Đăng nhập",
+        "email": "Email",
+        "password": "Mật khẩu",
+        "login-button": "Đăng nhập"
+    },
     "manage-user": {
         "title": "Quản lý người dùng",
         "add": "Thêm người dùng",
@@ -58,7 +64,10 @@
         "save": "Lưu",
         "edit": "Chỉnh sửa thông tin",
         "cancel": "Hủy",
-        "delete-self-error": "Bạn không thể xóa tài khoản của chính mình"
+        "delete-self-error": "Bạn không thể xóa tài khoản của chính mình",
+        "admin": "Quản trị viên",
+        "doctor": "Bác sĩ",
+        "patient": "Bệnh nhân"
     },
     "homepage": {
         "search": "Tìm kiếm",
@@ -68,14 +77,57 @@
         "doctor": "Bác sĩ",
         "health-facility": "Cơ sở y tế",
         "handbook": "Cẩm nang",
-        "outstanding-doctor": "Bác sĩ",
-        "more-info": "Xem thêm"
+        "outstanding-doctor": "Bác sĩ nổi bật",
+        "more-info": "Xem thêm",
+        "about-us": "Về chúng tôi",
+        "about-us-description1": "VitaBook là nền tảng y tế trực tuyến, kết nối bệnh nhân với các bác sĩ và cơ sở y tế hàng đầu.",
+        "about-us-description2": "Chúng tôi cung cấp dịch vụ khám bệnh từ xa, đặt lịch hẹn và tư vấn sức khoẻ trực tuyến."
     },
     "manage-schedule": {
         "title": "Quản lý lịch khám",
         "choose-doctor": "Chọn bác sĩ",
         "choose-date": "Chọn ngày",
         "save": "Lưu thông tin"
+    },
+    "manage-clinic": {
+        "title": "Quản lý phòng khám",
+        "add": "Thêm phòng khám",
+        "name": "Tên phòng khám",
+        "address": "Địa chỉ phòng khám",
+        "description": "Mô tả phòng khám",
+        "image": "Ảnh phòng khám",
+        "save": "Lưu",
+        "cancel": "Hủy"
+    },
+    "manage-specialty": {
+        "title": "Quản lý chuyên khoa",
+        "add": "Thêm chuyên khoa",
+        "name": "Tên chuyên khoa",
+        "description": "Mô tả chuyên khoa",
+        "image": "Ảnh chuyên khoa",
+        "save": "Lưu",
+        "cancel": "Hủy"
+    },
+    "manage-patient": {
+        "title": "Quản lý bệnh nhân",
+        "choose-date": "Chọn ngày",
+        "time": "Thời gian",
+        "patient-name": "Tên bệnh nhân",
+        "phone-number": "Số điện thoại",
+        "address": "Địa chỉ",
+        "gender": "Giới tính",
+        "reason": "Lý do khám",
+        "confirm": "Xác nhận",
+        "deny": "Từ chối",
+        "cancel": "Hủy",
+        "no-data": "Không có dữ liệu",
+        "modal": {
+            "confirm-title": "Xác nhận bệnh nhân đã khám",
+            "deny-title": "Từ chối lịch hẹn",
+            "patient-email": "Email bệnh nhân",
+            "attachment": "Tệp đính kèm",
+            "refuse-reason": "Lý do từ chối"
+        }
     },
     "patient": {
         "detail-doctor": {
@@ -157,7 +209,7 @@
             "clinic": "Phòng khám",
             "introduce": "Thông tin giới thiệu",
             "add": "Tạo thông tin",
-            "save": "Lưu thông tin",
+            "save": "Lưu",
             "price": "Giá khám",
             "payment": "Phương thức thanh toán",
             "province": "Tỉnh/Thành phố",
@@ -170,5 +222,83 @@
         "access-denied": "Từ chối truy cập",
         "no-permission": "Bạn không có quyền truy cập vào trang này",
         "back-to-home": "Quay về trang chủ"
+    },
+    "toast": {
+        "success": {
+            "login": "Đăng nhập thành công!",
+            "booking": "Đặt lịch hẹn thành công! Vui lòng kiểm tra email để xác nhận.",
+            "save-schedule": "Lưu lịch khám thành công!",
+            "delete-clinic": "Xóa phòng khám thành công!",
+            "create-clinic": "Tạo phòng khám thành công!",
+            "update-clinic": "Cập nhật phòng khám thành công!",
+            "deny-appointment": "Từ chối lịch hẹn thành công!",
+            "accept-appointment": "Xác nhận bệnh nhân đã khám thành công!",
+            "delete-specialty": "Xóa chuyên khoa thành công!",
+            "create-specialty": "Tạo chuyên khoa thành công!",
+            "update-specialty": "Cập nhật chuyên khoa thành công!",
+            "create-user": "Tạo người dùng mới thành công!",
+            "update-user": "Cập nhật thông tin người dùng thành công!",
+            "delete-user": "Xóa người dùng thành công!",
+            "update-doctor": "Cập nhật thông tin bác sĩ thành công!"
+        },
+        "error": {
+            "common": "Đã có lỗi xảy ra, vui lòng thử lại sau!",
+            "login": "Đăng nhập thất bại!",
+            "booking": "Đặt lịch hẹn thất bại!",
+            "save-schedule": "Lưu lịch khám thất bại!",
+            "delete-clinic": "Xóa phòng khám thất bại!",
+            "create-clinic": "Tạo phòng khám thất bại!",
+            "update-clinic": "Cập nhật phòng khám thất bại!",
+            "deny-appointment": "Từ chối lịch hẹn thất bại!",
+            "accept-appointment": "Xác nhận bệnh nhân đã khám thất bại!",
+            "delete-specialty": "Xóa chuyên khoa thất bại!",
+            "create-specialty": "Tạo chuyên khoa thất bại!",
+            "update-specialty": "Cập nhật chuyên khoa thất bại!",
+            "create-user": "Tạo người dùng mới thất bại!",
+            "update-user": "Cập nhật thông tin người dùng thất bại!",
+            "delete-user": "Xóa người dùng thất bại!",
+            "update-doctor": "Cập nhật thông tin bác sĩ thất bại!",
+            "choose-doctor": "Vui lòng chọn bác sĩ!",
+            "choose-date": "Vui lòng chọn ngày!"
+        }
+    },
+    "zod": {
+        "full_name": {
+            "required": "Họ và tên là bắt buộc",
+            "max": "Họ và tên không được vượt quá 100 ký tự"
+        },
+        "first_name": {
+            "required": "Tên là bắt buộc",
+            "max": "Tên không được vượt quá 50 ký tự"
+        },
+        "last_name": {
+            "required": "Họ là bắt buộc",
+            "max": "Họ không được vượt quá 50 ký tự"
+        },
+        "phone_number": {
+            "required": "Số điện thoại là bắt buộc",
+            "invalid": "Định dạng số điện thoại không hợp lệ",
+            "max": "Số điện thoại không được vượt quá 10 chữ số"
+        },
+        "email": {
+            "required": "Email là bắt buộc",
+            "invalid": "Định dạng email không hợp lệ"
+        },
+        "password": {
+            "min": "Mật khẩu phải có ít nhất 6 ký tự"
+        },
+        "gender": {
+            "required": "Giới tính là bắt buộc"
+        },
+        "address": {
+            "required": "Địa chỉ là bắt buộc"
+        },
+        "reason": {
+            "required": "Lý do khám là bắt buộc",
+            "max": "Lý do khám không được vượt quá 500 ký tự"
+        },
+        "date_of_birth": {
+            "required": "Ngày sinh là bắt buộc"
+        }
     }
 }

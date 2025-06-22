@@ -53,6 +53,7 @@ class AllDoctors extends Component {
                 active={isLoading}
                 spinner
                 text="Đang tải dữ liệu..."
+                className="loading-overlay"
             >
                 <div className="all-doctors-container">
                     <HomeHeader />

@@ -52,6 +52,7 @@ class AllSpecialties extends Component {
                 active={isLoading}
                 spinner
                 text="Đang tải dữ liệu..."
+                className="loading-overlay"
             >
                 <div className="all-specialties-container">
                     <HomeHeader />

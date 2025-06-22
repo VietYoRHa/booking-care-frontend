@@ -10,6 +10,7 @@ import {
 } from "../../../services/userService";
 import { toast } from "react-toastify";
 import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import { FormattedMessage } from "react-intl";
 
 const mdParser = new MarkdownIt();
 
@@ -105,11 +106,15 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Tạo chuyên khoa thành công");
+                    toast.success(
+                        <FormattedMessage id="toast.success.create-specialty" />
+                    );
                     this.props.toggle();
                     this.props.fetchAllSpecialty();
                 } else {
-                    toast.error("Tạo chuyên khoa thất bại");
+                    toast.error(
+                        <FormattedMessage id="toast.error.create-specialty" />
+                    );
                 }
             }
             if (this.props.action === CRUD_ACTIONS.EDIT) {
@@ -129,15 +134,19 @@ class ModalClinic extends Component {
                         descriptionHTML: "",
                         descriptionMarkdown: "",
                     });
-                    toast.success("Sửa chuyên khoa thành công");
+                    toast.success(
+                        <FormattedMessage id="toast.success.update-specialty" />
+                    );
                     this.props.toggle();
                     this.props.fetchAllSpecialty();
                 } else {
-                    toast.error("Sửa chuyên khoa thất bại");
+                    toast.error(
+                        <FormattedMessage id="toast.error.update-specialty" />
+                    );
                 }
             }
         } catch (error) {
-            toast.error("Đã xảy ra lỗi khi lưu chuyên khoa");
+            toast.error(<FormattedMessage id="toast.error.common" />);
         } finally {
             this.setState({
                 isLoading: false,
@@ -165,7 +174,9 @@ class ModalClinic extends Component {
                     <ModalBody>
                         <div className="add-new-specialty row col-12 ">
                             <div className="col-6 form-group">
-                                <label>Tên chuyên khoa</label>
+                                <label>
+                                    <FormattedMessage id="manage-specialty.name" />
+                                </label>
                                 <input
                                     className="form-control"
                                     type="text"
@@ -177,7 +188,9 @@ class ModalClinic extends Component {
                             </div>
 
                             <div className="col-6 form-group">
-                                <label>Ảnh chuyên khoa</label>
+                                <label>
+                                    <FormattedMessage id="manage-specialty.image" />
+                                </label>
                                 <input
                                     className="form-control-file"
                                     type="file"
@@ -188,7 +201,9 @@ class ModalClinic extends Component {
                             </div>
                         </div>
                         <div className="col-12 form-group">
-                            <label>Mô tả chuyên khoa</label>
+                            <label>
+                                <FormattedMessage id="manage-specialty.description" />
+                            </label>
                             <MdEditor
                                 style={{ height: "500px" }}
                                 renderHTML={(text) => mdParser.render(text)}
@@ -203,13 +218,13 @@ class ModalClinic extends Component {
                             onClick={() => this.handleSaveSpecialty()}
                             disabled={isLoading}
                         >
-                            Lưu
+                            <FormattedMessage id="manage-specialty.save" />
                         </button>
                         <button
                             className="btn btn-secondary mt-3"
                             onClick={() => toggle()}
                         >
-                            Huỷ
+                            <FormattedMessage id="manage-specialty.cancel" />
                         </button>
                     </ModalFooter>
                 </Modal>

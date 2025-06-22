@@ -21,25 +21,20 @@ instance.interceptors.request.use(
 
 instance.interceptors.response.use(
     (response) => {
-        // Thrown error for request with OK status code
-        const { data } = response;
         return response.data;
     },
     (error) => {
-        // Xử lý các lỗi phổ biến liên quan đến JWT
         const status = error.response ? error.response.status : null;
 
-        // Nếu token hết hạn hoặc không hợp lệ (401 Unauthorized)
         if (status === 401) {
             localStorage.removeItem("accessToken");
-            // Nếu đang ở trang yêu cầu đăng nhập, chuyển về trang login
+            localStorage.removeItem("persist:user");
             if (window.location.pathname !== "/login") {
                 alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
                 window.location.href = "/login";
             }
         }
 
-        // Nếu không có quyền truy cập (403 Forbidden)
         if (status === 403) {
             window.location.href = "/forbidden";
         }

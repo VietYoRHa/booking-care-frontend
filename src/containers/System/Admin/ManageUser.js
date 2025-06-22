@@ -59,29 +59,25 @@ class ManageUser extends Component {
 
     render() {
         return (
-            <div className="user-redux-container">
+            <div className="manage-user-container">
                 <div className="title">
                     <FormattedMessage id="manage-user.title" />
                 </div>
-                <div className="user-redux-body">
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-12 mb-3">
-                                <button
-                                    className="btn btn-primary px-3"
-                                    onClick={this.handleAddNewUser}
-                                >
-                                    <i className="fas fa-plus"></i>{" "}
-                                    <FormattedMessage id="manage-user.add" />
-                                </button>
-                            </div>
-                            <div className="col-12 mb-5">
-                                <TableManageUser
-                                    handleEditUser={this.handleEditUser}
-                                    action={this.state.action}
-                                />
-                            </div>
-                        </div>
+                <div className="manage-user-body">
+                    <div className="col-12 mb-3">
+                        <button
+                            className="btn btn-primary px-3"
+                            onClick={this.handleAddNewUser}
+                        >
+                            <i className="fas fa-plus"></i>{" "}
+                            <FormattedMessage id="manage-user.add" />
+                        </button>
+                    </div>
+                    <div className="col-12 mb-5">
+                        <TableManageUser
+                            handleEditUser={this.handleEditUser}
+                            action={this.state.action}
+                        />
                     </div>
                 </div>
 

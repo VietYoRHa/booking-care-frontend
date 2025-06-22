@@ -8,6 +8,7 @@ import {
 } from "../../../services/userService";
 import { toast } from "react-toastify";
 import ModalSpecialty from "./ModalSpecialty";
+import { FormattedMessage } from "react-intl";
 
 class ManageSpecialty extends Component {
     constructor(props) {
@@ -66,10 +67,14 @@ class ManageSpecialty extends Component {
         if (specialty && specialty.id) {
             let res = await deleteSpecialty(specialty.id);
             if (res && res.errCode === 0) {
-                toast.success("Xoá chuyên khoa thành công");
+                toast.success(
+                    <FormattedMessage id="toast.success.delete-specialty" />
+                );
                 this.fetchAllSpecialty();
             } else {
-                toast.error("Xoá chuyên khoa thất bại");
+                toast.error(
+                    <FormattedMessage id="toast.error.delete-specialty" />
+                );
             }
         }
     };
@@ -79,28 +84,31 @@ class ManageSpecialty extends Component {
         return (
             <>
                 <div className="manage-specialty-container">
-                    <div className="title ms-title">Quản lý chuyên khoa</div>
+                    <div className="title ms-title">
+                        <FormattedMessage id="manage-specialty.title" />
+                    </div>
                     <div className="col-12">
                         <button
                             className="btn btn-primary mt-3 mb-3"
                             onClick={() => this.handleCreateButtonClick()}
                         >
-                            Thêm chuyên khoa
+                            <i className="fas fa-plus"></i>{" "}
+                            <FormattedMessage id="manage-specialty.add" />
                         </button>
                     </div>
                     <div className="col-12">
                         <table id="TableManage">
                             <tbody>
                                 <tr>
-                                    <th>STT</th>
-                                    <th>Tên chuyên khoa</th>
-                                    <th>Hành động</th>
+                                    <th>
+                                        <FormattedMessage id="manage-specialty.name" />
+                                    </th>
+                                    <th></th>
                                 </tr>
                                 {specialtyData && specialtyData.length > 0
                                     ? specialtyData.map((item, index) => {
                                           return (
                                               <tr key={index}>
-                                                  <td>{index + 1}</td>
                                                   <td>{item.name}</td>
                                                   <td>
                                                       <button

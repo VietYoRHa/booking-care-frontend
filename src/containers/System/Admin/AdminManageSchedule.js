@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import _ from "lodash";
 import {
     getScheduleDoctorByDate,
-    saveBulkScheduleDoctor,
+    saveScheduleDoctor,
 } from "../../../services/userService";
 
 class AdminManageSchedule extends Component {
@@ -127,11 +127,11 @@ class AdminManageSchedule extends Component {
     handleSaveSchedule = async () => {
         let { selectedDoctor, currentDate, rangeTime } = this.state;
         if (selectedDoctor && _.isEmpty(selectedDoctor)) {
-            toast.error("Vui long chọn bác sĩ!");
+            toast.error(<FormattedMessage id="toast.error.choose-doctor" />);
             return;
         }
         if (!currentDate) {
-            toast.error("Vui lòng chọn ngày!");
+            toast.error(<FormattedMessage id="toast.error.choose-date" />);
             return;
         }
         let result = [];
@@ -151,14 +151,16 @@ class AdminManageSchedule extends Component {
                 });
             }
         }
-        let res = await saveBulkScheduleDoctor({
+        let res = await saveScheduleDoctor({
             arrSchedule: result,
             doctorId: selectedDoctor.value,
             date: formattedDate,
         });
 
         if (res && res.errCode === 0) {
-            toast.success("Lưu lịch khám thành công");
+            toast.success(
+                <FormattedMessage id="toast.success.save-schedule" />
+            );
         } else {
             toast.error(res.errMessage);
         }

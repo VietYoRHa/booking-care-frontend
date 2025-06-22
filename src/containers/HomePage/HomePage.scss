@@ -38,10 +38,16 @@
     width: 100%;
     .homepage-content {
         width: 100%;
-        max-width: 1440px;
-        display: flex;
-        flex-direction: column;
-        margin: 0 auto;
+        padding: 0 calc((100% - 1440px) / 2);
+    }
+    .striped {
+        background-color: #f5f5f5;
+    }
+    .homepage-content-background {
+        background-image: url("../../assets/homepage_background_1.png");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
     }
 }
 
@@ -68,7 +74,6 @@
     }
     &.section-about {
         height: 500px !important;
-        padding: 0 100px;
         border-top: 1px solid #f5f5f5;
         .section-about-header {
             padding: 20px 0;
@@ -118,7 +123,6 @@
     height: 330px;
 
     .section-container {
-        margin: 0 100px;
         display: flex;
         flex-direction: column;
 
@@ -154,9 +158,20 @@
 
 .home-footer {
     text-align: center;
-    padding-top: 8px;
-    border-top: 1px solid #f5f5f5;
+    padding: 16px 0;
+    background-color: #49bce2;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    p {
+        margin: 0;
+    }
     a {
         text-decoration: none;
     }
+}
+
+.loading-overlay {
+    height: 100%;
 }

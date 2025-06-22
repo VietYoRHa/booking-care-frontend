@@ -42,9 +42,15 @@
             "manage-patient": "Manage Patient"
         }
     },
+    "login": {
+        "title": "Login",
+        "email": "Email",
+        "password": "Password",
+        "login-button": "Login"
+    },
     "manage-user": {
         "title": "Manage User",
-        "add": "Add user",
+        "add": "Add User",
         "email": "Email",
         "password": "Password",
         "first-name": "First name",
@@ -58,7 +64,10 @@
         "save": "Save ",
         "edit": "Edit",
         "cancel": "Cancel",
-        "delete-self-error": "You cannot delete your own account"
+        "delete-self-error": "You cannot delete your own account",
+        "admin": "Admin",
+        "doctor": "Doctor",
+        "patient": "Patient"
     },
     "homepage": {
         "search": "Search",
@@ -68,14 +77,57 @@
         "doctor": "Doctor",
         "health-facility": "Health facility",
         "handbook": "Handbook",
-        "outstanding-doctor": "Doctor",
-        "more-info": "More"
+        "outstanding-doctor": "Outstanding Doctors",
+        "more-info": "More",
+        "about-us": "About Us",
+        "about-us-description1": "VitaBook is an online healthcare platform, connecting patients with leading doctors and medical facilities.",
+        "about-us-description2": "We provide remote medical examination services, appointment scheduling, and online health consultation."
     },
     "manage-schedule": {
         "title": "Manage Schedule",
         "choose-doctor": "Choose doctor",
         "choose-date": "Choose date",
         "save": "Save"
+    },
+    "manage-clinic": {
+        "title": "Manage Clinic",
+        "add": "Add Clinic",
+        "name": "Name",
+        "address": "Address",
+        "description": "Description",
+        "image": "Image",
+        "save": "Save",
+        "cancel": "Cancel"
+    },
+    "manage-specialty": {
+        "title": "Manage Specialty",
+        "add": "Add Specialty",
+        "name": "Name",
+        "description": "Description",
+        "image": "Image",
+        "save": "Save",
+        "cancel": "Cancel"
+    },
+    "manage-patient": {
+        "title": "Manage Patient",
+        "choose-date": "Choose date",
+        "time": "Time",
+        "patient-name": "Patient's name",
+        "phone-number": "Phone number",
+        "address": "Address",
+        "gender": "Gender",
+        "reason": "Reason for visit",
+        "confirm": "Confirm",
+        "deny": "Deny",
+        "cancel": "Cancel",
+        "no-data": "No data available",
+        "modal": {
+            "confirm-title": "Confirm Appointment",
+            "deny-title": "Deny Appointment",
+            "patient-email": "Patient's Email",
+            "attachment": "Attachment",
+            "refuse-reason": "Reason for Refusal"
+        }
     },
     "patient": {
         "detail-doctor": {
@@ -170,5 +222,83 @@
         "access-denied": "Access Denied",
         "no-permission": "You do not have permission to access this page",
         "back-to-home": "Back to Home"
+    },
+    "toast": {
+        "success": {
+            "login": "Login successful!",
+            "booking": "Appointment booked successfully! Please check your email for confirmation.",
+            "save-schedule": "Schedule saved successfully!",
+            "delete-clinic": "Clinic deleted successfully!",
+            "create-clinic": "Clinic created successfully!",
+            "update-clinic": "Clinic updated successfully!",
+            "deny-appointment": "Appointment denied successfully!",
+            "accept-appointment": "Patient examination confirmed successfully!",
+            "delete-specialty": "Specialty deleted successfully!",
+            "create-specialty": "Specialty created successfully!",
+            "update-specialty": "Specialty updated successfully!",
+            "create-user": "New user created successfully!",
+            "update-user": "User information updated successfully!",
+            "delete-user": "User deleted successfully!",
+            "update-doctor": "Doctor information updated successfully!"
+        },
+        "error": {
+            "common": "An error occurred, please try again later!",
+            "login": "Login failed!",
+            "booking": "Appointment booking failed!",
+            "save-schedule": "Failed to save schedule!",
+            "delete-clinic": "Failed to delete clinic!",
+            "create-clinic": "Failed to create clinic!",
+            "update-clinic": "Failed to update clinic!",
+            "deny-appointment": "Failed to deny appointment!",
+            "accept-appointment": "Failed to confirm patient examination!",
+            "delete-specialty": "Failed to delete specialty!",
+            "create-specialty": "Failed to create specialty!",
+            "update-specialty": "Failed to update specialty!",
+            "create-user": "Failed to create new user!",
+            "update-user": "Failed to update user information!",
+            "delete-user": "Failed to delete user!",
+            "update-doctor": "Failed to update doctor information!",
+            "choose-doctor": "Please select a doctor!",
+            "choose-date": "Please select a date!"
+        }
+    },
+    "zod": {
+        "full_name": {
+            "required": "Full name is required",
+            "max": "Full name cannot exceed 100 characters"
+        },
+        "first_name": {
+            "required": "First name is required",
+            "max": "First name cannot exceed 50 characters"
+        },
+        "last_name": {
+            "required": "Last name is required",
+            "max": "Last name cannot exceed 50 characters"
+        },
+        "phone_number": {
+            "required": "Phone number is required",
+            "invalid": "Phone number format is invalid",
+            "max": "Phone number cannot exceed 10 digits"
+        },
+        "email": {
+            "required": "Email is required",
+            "invalid": "Email format is invalid"
+        },
+        "password": {
+            "min": "Password must be at least 6 characters"
+        },
+        "gender": {
+            "required": "Gender is required"
+        },
+        "address": {
+            "required": "Address is required"
+        },
+        "reason": {
+            "required": "Medical reason is required",
+            "max": "Medical reason cannot exceed 500 characters"
+        },
+        "date_of_birth": {
+            "required": "Date of birth is required"
+        }
     }
 }

@@ -1,5 +1,6 @@
 import messages_vi from '../translations/vi.json';
 import messages_en from '../translations/en.json';
+import store from "../redux"
 
 const flattenMessages = ((nestedMessages, prefix = '') => {
     if (nestedMessages == null) {
@@ -24,6 +25,11 @@ const messages = {
     'en': flattenMessages(messages_en),
 };
 
+const getCurrentLanguage = () => {
+    const state = store.getState();
+    return state.app.language;
+};
+
 export default class LanguageUtils {
     static getMessageByKey(key, lang) {
         return messages[lang][key]
@@ -31,5 +37,9 @@ export default class LanguageUtils {
 
     static getFlattenedMessages() {
         return messages;
+    }
+
+    static getAppLanguage() {
+        return getCurrentLanguage();
     }
 }
