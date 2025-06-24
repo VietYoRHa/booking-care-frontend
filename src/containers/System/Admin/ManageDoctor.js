@@ -23,6 +23,7 @@ class ManageDoctor extends Component {
             description: "",
             listDoctors: [],
             hasOldData: false,
+            doctorEmail: "",
             // Extra information
             listPrice: [],
             listPayment: [],
@@ -242,6 +243,7 @@ class ManageDoctor extends Component {
                 selectedSpecialty: selectedSpecialty,
                 selectedClinic: selectedClinic,
                 note: note,
+                doctorEmail: res.data.email,
             });
         } else {
             this.setState({
@@ -255,6 +257,7 @@ class ManageDoctor extends Component {
                 selectedSpecialty: "",
                 selectedClinic: "",
                 note: "",
+                doctorEmail: "",
             });
         }
     };
@@ -299,7 +302,7 @@ class ManageDoctor extends Component {
                     <FormattedMessage id="admin.manage-doctor.title" />
                 </div>
                 <div className="row">
-                    <div className="col-4 form-group">
+                    <div className="col-3 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.select-doctor" />
                         </label>
@@ -312,7 +315,15 @@ class ManageDoctor extends Component {
                             }
                         />
                     </div>
-                    <div className="col-4 form-group">
+                    <div className="col-3 form-group">
+                        <label>Email</label>
+                        <input
+                            className="form-control"
+                            disabled
+                            value={this.state.doctorEmail}
+                        />
+                    </div>
+                    <div className="col-3 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.specialty" />
                         </label>
@@ -326,7 +337,7 @@ class ManageDoctor extends Component {
                             }
                         />
                     </div>
-                    <div className="col-4 form-group">
+                    <div className="col-3 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.clinic" />
                         </label>
@@ -342,7 +353,7 @@ class ManageDoctor extends Component {
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-4 form-group">
+                    <div className="col-3 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.price" />
                         </label>
@@ -356,7 +367,7 @@ class ManageDoctor extends Component {
                             }
                         />
                     </div>
-                    <div className="col-4 form-group">
+                    <div className="col-3 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.payment" />
                         </label>
@@ -370,7 +381,7 @@ class ManageDoctor extends Component {
                             }
                         />
                     </div>
-                    <div className="col-4 form-group">
+                    <div className="col-3 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.province" />
                         </label>
@@ -384,7 +395,7 @@ class ManageDoctor extends Component {
                             }
                         />
                     </div>
-                    <div className="col-12 form-group">
+                    <div className="col-3 form-group">
                         <label>
                             <FormattedMessage id="admin.manage-doctor.note" />
                         </label>
@@ -407,6 +418,7 @@ class ManageDoctor extends Component {
                             onChange={(event) =>
                                 this.handleOnChangeInput(event, "description")
                             }
+                            style={{ height: "130px" }}
                             value={this.state.description}
                         ></textarea>
                     </div>
