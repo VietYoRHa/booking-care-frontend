@@ -27,12 +27,18 @@ instance.interceptors.response.use(
         const status = error.response ? error.response.status : null;
 
         if (status === 401) {
-            localStorage.removeItem("accessToken");
-            localStorage.removeItem("persist:user");
-            if (window.location.pathname !== "/login") {
-                alert("Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại.");
-                window.location.href = "/login";
-            }
+            const removeTokens = () => {
+                localStorage.removeItem("accessToken");
+                localStorage.removeItem("persist:user");
+
+                if (window.location.pathname !== "/login") {
+                    alert(
+                        "Phiên đăng nhập đã hết hạn. Vui lòng đăng nhập lại."
+                    );
+                    window.location.href = "/login";
+                }
+            };
+            removeTokens();
         }
 
         if (status === 403) {
